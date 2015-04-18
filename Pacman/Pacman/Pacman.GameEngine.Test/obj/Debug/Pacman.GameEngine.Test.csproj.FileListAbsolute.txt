@@ -1,0 +1,12 @@
+D:\visual_studio\IT Lab\Pacman\Pacman.GameEngine.Test\bin\Debug\Pacman.GameEngine.Test.dll
+D:\visual_studio\IT Lab\Pacman\Pacman.GameEngine.Test\bin\Debug\Pacman.GameEngine.Test.pdb
+D:\visual_studio\IT Lab\Pacman\Pacman.GameEngine.Test\obj\Debug\Pacman.GameEngine.Test.csprojResolveAssemblyReference.cache
+D:\visual_studio\IT Lab\Pacman\Pacman.GameEngine.Test\obj\Debug\Pacman.GameEngine.Test.dll
+D:\visual_studio\IT Lab\Pacman\Pacman.GameEngine.Test\obj\Debug\Pacman.GameEngine.Test.pdb
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\bin\Debug\Pacman.GameEngine.Test.dll
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\bin\Debug\Pacman.GameEngine.Test.pdb
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\bin\Debug\Pacman.GameEngine.dll
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\bin\Debug\Pacman.GameEngine.pdb
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\obj\Debug\Pacman.GameEngine.Test.csprojResolveAssemblyReference.cache
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\obj\Debug\Pacman.GameEngine.Test.dll
+D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.GameEngine.Test\obj\Debug\Pacman.GameEngine.Test.pdb
