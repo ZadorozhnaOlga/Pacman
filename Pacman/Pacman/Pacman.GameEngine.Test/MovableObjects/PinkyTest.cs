@@ -83,5 +83,13 @@ namespace Pacman.GameEngine.Test.MovableObjects
             Assert.AreEqual(targetX, 13);
 
         }
+
+        [TestMethod]
+        public void Move()
+        {
+            Game game = new Game();
+            
+
+        }
     }
 }

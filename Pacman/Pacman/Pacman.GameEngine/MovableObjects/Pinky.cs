@@ -14,7 +14,7 @@ namespace Pacman.GameEngine
 
         }
 
-        public void ChooseTarget(Game game, out int targetX, out int targetY) 
+        public override void ChooseTarget(Game game, out int targetX, out int targetY) 
         {
             targetX = game.myPacman.X;
             targetY = game.myPacman.Y;
@@ -81,23 +81,7 @@ namespace Pacman.GameEngine
             }
         }
         
-        
-
-        public Direction Move(Game game)
-        {
-
-            int targetX, targetY;
-            
-            int[,] cMap;
-            ChooseTarget(game, out targetX, out targetY);
-                       
-            Map.FindWave(game, targetX, targetY, out cMap);
-
-            int[] direction = { cMap[Y, X - 1], cMap[Y, X + 1], cMap[Y - 1, X], cMap[this.Y + 1, this.X] };
-
-           Direction k = (Direction) MinValue(direction);
-            return MoveOneStep(game, k);
-        }
+   
 
 
     }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Pacman.GameEngine
 {
 
-    public abstract class Ghost : Person
+    public class Ghost : Person
     {
 
         public Ghost(int x, int y) : base(x, y)
@@ -45,39 +45,20 @@ namespace Pacman.GameEngine
 
         public static int MinValue(int[] x)
         {
-            int k = 0;
-            int min = 0;
-            if (x[0] != -2)
-            {
-                min = x[0];
-            }
-            else if (x[1] != -2)
-            {
-                min = x[1]; k = 1;
-            }
-            else if (x[2] != -2)
-            {
-                min = x[2]; k = 2;
-            }
-            else
-            {
-                min = x[3]; k = 3;
-            }
+            int [] copyx = (int []) x.Clone();
+            Array.Sort(x);
 
-
-            //if (x[0] != -2) { min = x[0]; }
-            for (int i = 0; i < x.Length; i++)
-            {
-                if (min > x[i] && x[i] != -2)
-                {
-                    min = x[i];
-                    k = i;
-                }
-            }
-            return k;
+            int k = Array.LastIndexOf(x, -2) + 1;
+            int c = Array.IndexOf(copyx, x[k]);
+            return c;
+           
         }
 
-
+        public virtual void ChooseTarget(Game game, out int targetX, out int targetY)
+        {
+            targetX = 0;
+            targetY = 0;
+        }
 
         public Direction MoveOneStep(Game game, Direction direction) 
         {
@@ -133,9 +114,30 @@ namespace Pacman.GameEngine
                 default: return Direction.None;
             }
         }
-       
 
-        
+
+        public Direction Move(Game game)
+        {
+
+            int targetX, targetY;
+
+            this.ChooseTarget(game, out targetX, out targetY);
+
+            int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
+
+            int[] direction = { cMap[Y, X - 1], cMap[Y, X + 1], cMap[Y - 1, X], cMap[this.Y + 1, this.X] };
+
+            Direction k = (Direction)MinValue(direction);
+            if (!game.GameOver())
+            {
+                return MoveOneStep(game, k);
+            }
+            else
+            {
+                return Direction.None;
+            }
+
+        }
     }
        
     

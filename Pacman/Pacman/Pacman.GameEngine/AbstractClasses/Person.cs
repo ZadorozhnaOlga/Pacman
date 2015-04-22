@@ -44,7 +44,7 @@ namespace Pacman.GameEngine
 
         public bool MoveLeft(int [,] array)
         {
-            direction = Direction.Left;
+            //direction = Direction.Left;
             if (CheckPosition(array, -1, 0))
             {
                 
@@ -60,7 +60,7 @@ namespace Pacman.GameEngine
 
         public bool MoveRight(int[,] array)
         {
-            direction = Direction.Right; 
+            //direction = Direction.Right; 
             if (CheckPosition(array, 1, 0))
             {
                
@@ -76,7 +76,7 @@ namespace Pacman.GameEngine
 
         public bool MoveUp(int[,] array)
         {
-            direction = Direction.Up;
+            //direction = Direction.Up;
             if (CheckPosition(array, 0, -1))
             {
                 
@@ -92,7 +92,7 @@ namespace Pacman.GameEngine
 
         public bool MoveDown(int[,] array)
         {
-            direction = Direction.Down;
+            //direction = Direction.Down;
             if (CheckPosition(array, 0, 1))
             {
                 
@@ -105,6 +105,13 @@ namespace Pacman.GameEngine
                 return false;
             }
         }
+
+
+
+
+
+
+
 
 
 

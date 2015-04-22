@@ -28,51 +28,82 @@ namespace Pacman.GameEngine
             return apples;
         }
 
-       
-
-
-        public static void FindWave(Game game, int targetX, int targetY, out int[,] cMap)
+        public int [,] FindPaths(Game game, int targetX, int targetY)
         {
-            //int[,] array = Game.LoadMap(@"../../Map\Map.txt", 28, 32);
             int[,] array = game.Map.myMap;
-            bool add = true;
-            cMap = new int[array.GetLength(0), array.GetLength(1)];
+            int Width = array.GetLength(0);
+            int Heigth = array.GetLength(1);         
+            int [,] cMap = new int[Width, Heigth];
             int x, y, step = 0;
-            for (y = 0; y < array.GetLength(0); y++)
-                for (x = 0; x < array.GetLength(1); x++)
+
+            for (y = 0; y < Width; y++) 
+            {
+                for (x = 0; x < Heigth; x++)
                 {
                     if (array[y, x] == 1)
+                    {
                         cMap[y, x] = -2;
-                    else
+                    }
+                    else 
+                    {
                         cMap[y, x] = -1;
+                    }                       
                 }
+            }
+                
             cMap[targetY, targetX] = 0;
-            while (step < array.GetLength(0) * array.GetLength(1))
+
+            while (step < Width * Heigth)
             {
-                add = false;
-                for (y = 0; y < array.GetLength(1); y++)
-                    for (x = 0; x < array.GetLength(0); x++)
+                for (y = 0; y < Heigth; y++) 
+                {
+                    for (x = 0; x < Width; x++)
                     {
                         if (cMap[x, y] == step)
                         {
-
-                            if (y - 1 >= 0  && cMap[x - 1, y] != -2 && cMap[x - 1, y] == -1)
+                            if ((y - 1 >= 0  && cMap[x - 1, y] != -2 && cMap[x - 1, y] == -1))
+                            {
                                 cMap[x - 1, y] = step + 1;
-                            if (x - 1 >= 0 && cMap[x, y - 1] != -2 && cMap[x, y - 1] == -1)
+                            }
+                            if ((x - 1 >= 0 && cMap[x, y - 1] != -2 && cMap[x, y - 1] == -1))
+                            {
                                 cMap[x, y - 1] = step + 1;
-                            if (y + 1 < array.GetLength(1) && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1)
+                            }
+                            if ((y + 1 < Heigth && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1))
+                            {
                                 cMap[x + 1, y] = step + 1;
-                            if (x + 1 < array.GetLength(0) && cMap[x, y + 1] != -2 && cMap[x, y + 1] == -1)
+                            }
+
+                            if ((x + 1 < Width && cMap[x, y + 1] != -2 && cMap[x, y + 1] == -1))
+                            {
                                 cMap[x, y + 1] = step + 1;
+                            }                            
                         }
                     }
+                }
+                    
                 step++;
-                add = true;
-
             }
 
+            //int[,] result = new int[Width, Heigth];
+            //for (y = 0; y < Width; y++)
+            //{
+            //    for (x = 0; x < Heigth; x++)
+            //    {
+            //        if (array[y, x] == 1)
+            //        {
+            //            result[y, x] = -2;
+            //        }
+            //        else
+            //        {
+            //            result[y, x] = cMap[y, x];
+            //        }
+            //    }
+            //}
+            //return result;
+
+            return cMap;
         }
-       
     }
 
         

@@ -7,56 +7,98 @@ using System.IO;
 
 namespace Pacman.GameEngine
 {
+    public enum GameStatus
+    {
+        ReadyToStart,
+        InProgress,
+        Completed
+    }
     public class Game 
     {
-        
-        public Map Map;
-        
-        public Pacman myPacman;
-        public Inky myInky;
-        public Pinky myPinky;
+        private GameStatus _status;
+        private Map _map;
+        private Pacman _pacman;
+        private Inky _inky;
+        private Pinky _pinky;
+        public GameStatus Status
+        {
+            get { return this._status; }
+        }
+        public Map Map
+        {
+            get { return this._map; }
+        }
+        public Pacman myPacman
+        {
+            get { return this._pacman; }
+        }
+        public Inky myInky
+        {
+            get { return this._inky; }
+        }
+        public Pinky myPinky
+        {
+            get { return this._pinky; }
+        }
 
         public static int Scores { get; set; }
        
         public Game() 
         {
+            _status = GameStatus.ReadyToStart;
             int[,] array = Game.LoadMap(@"../../Map\Map.txt", 28, 32);
-            Map = new Map(array);
+            _map = new Map(array);
             
-            myPacman = new Pacman(13, 26);
-            myInky = new Inky(13, 12);
-            myPinky = new Pinky(14, 12);
+            _pacman = new Pacman(13, 26);
+            _inky = new Inky(13, 12);
+            _pinky = new Pinky(14, 12);
 
             
 
         }
 
-        
-        //public bool GameOver()
-        //{
-        //    if ((myPinky.X != myPacman.X | myPinky.Y != myPacman.Y) |
-        //        (myInky.X != myPacman.X | myInky.Y != myPacman.Y))
-        //    {
-        //        return true;
-        //    }
-        //    else 
-        //    {
-        //        return false;
-        //    }
-        //}
+        public void Start()
+        {
+            #region Validation
+
+            if (this._status != GameStatus.ReadyToStart)
+            {
+                throw new InvalidOperationException("Only game with status 'ReadyToStart' can be started");
+            }
+
+            #endregion
+
+            this._status = GameStatus.InProgress;
+        }
+
+        public void Stop()
+        {
+            #region Validation
+
+            if (this._status != GameStatus.InProgress)
+            {
+                throw new InvalidOperationException("Only game with status 'InProgress' can be stopped");
+            }
+
+            #endregion
+
+            this._status = GameStatus.Completed;
+        }
 
 
 
 
         public bool GameOver() 
         {
-            if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y) 
-                |(myPinky.X == myPacman.X & myPinky.Y == myPacman.Y))
+            if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y) )
             {
                 return true;
             }
-            
-            else 
+            if (myPinky.X == myPacman.X & myPinky.Y == myPacman.Y)
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }
@@ -80,6 +122,7 @@ namespace Pacman.GameEngine
                     }
                     switch (array[i])
                     {
+                        case ',': continue;
                         case '0':
                             {
                                 result[X, Y] = 0;

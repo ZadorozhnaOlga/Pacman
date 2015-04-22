@@ -7,9 +7,59 @@ namespace Pacman.GameEngine.Test
     [TestClass]
     public class GameTest
     {
-        
-        
 
+
+        #region Game Lifecycle
+
+        [TestMethod]
+        public void TestUsualLifecycle()
+        {
+            Game game = new Game();
+            Assert.AreEqual(GameStatus.ReadyToStart, game.Status);
+            game.Start();
+            Assert.AreEqual(GameStatus.InProgress, game.Status);
+            game.Stop();
+            Assert.AreEqual(GameStatus.Completed, game.Status);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TestStart_WrongStatus_1()
+        {
+            Game game = new Game();
+            game.Start();
+            game.Start();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TestStart_WrongStatus_2()
+        {
+            Game game = new Game();
+            game.Start();
+            game.Stop();
+            game.Start();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TestStop_WrongStatus_1()
+        {
+            Game game = new Game();
+            game.Stop();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TestStop_WrongStatus_2()
+        {
+            Game game = new Game();
+            game.Start();
+            game.Stop();
+            game.Stop();
+        }
+
+        #endregion
         [TestMethod]
         public void GameOver()
         {
@@ -28,76 +78,8 @@ namespace Pacman.GameEngine.Test
             Assert.IsTrue(game1.GameOver());
         }
 
-        //[TestMethod]
-        //public void MovePacmanDown()
-        //{
-        //    Pacman myPacman = new Pacman(1, 1);
-        //    int[,] array = new int[3, 3];
-        //    for (int i = 0; i < 3; i++)
-        //    {
-        //        for (int j = 0; j < 3; j++)
-        //        {
-        //            array[j, i] = 0;
-        //        }
-        //    }
+      
 
-        //    GameEngine.Game game = new GameEngine.Game();
-
-        //    game.MovePacmanDown(myPacman, array);
-        //    Assert.AreEqual(myPacman.Y, 2);
-
-        //    Pacman myPacman1 = new Pacman(1, 1);
-        //    array[2, 1] = 1;
-        //    game.MovePacmanDown(myPacman1, array);
-        //    Assert.AreEqual(myPacman1.Y, 1);
-
-        //    Pacman myPacman2 = new Pacman(1, 1);
-        //    array[2, 1] = 2;
-        //    game.MovePacmanDown(myPacman2, array);
-        //    Assert.AreEqual(myPacman2.Y, 2);
-        //}
-
-        //[TestMethod]
-        //public void MovePacman()
-        //{
-        //    Random rnd = new Random();
-        //    int[,] arraymove = new int[3, 3];
-        //    for (int i = 0; i < 3; i++)
-        //    {
-        //        for (int j = 0; j < 3; j++)
-        //        {
-        //            arraymove[j, i] = 0;
-        //        }
-        //    }
-
-        //    Pacman myPacman = new Pacman(1, 1);
-
-        //    GameEngine.Game game = new GameEngine.Game();
-
-        //    game.MovePacman(myPacman, arraymove, 0);
-        //    Assert.AreEqual(myPacman.X, 0);
-
-        //    Pacman myPacman1 = new Pacman(1, 1);
-        //    game.MovePacman(myPacman1, arraymove, 1);
-        //    Assert.AreEqual(myPacman1.X, 2);
-
-        //    Pacman myPacman2 = new Pacman(1, 1);
-        //    game.MovePacman(myPacman2, arraymove, 2);
-        //    Assert.AreEqual(myPacman2.Y, 0);
-
-        //    Pacman myPacman3 = new Pacman(1, 1);
-        //    game.MovePacman(myPacman3, arraymove, 3);
-        //    Assert.AreEqual(myPacman3.Y, 2);
-
-        //    Pacman myPacman4 = new Pacman(1, 1);
-        //    game.MovePacman(myPacman4, arraymove, 4);
-        //    Assert.AreEqual(myPacman4.Y, 1);
-
-
-
-
-           
-        //}
 
     }
 }
