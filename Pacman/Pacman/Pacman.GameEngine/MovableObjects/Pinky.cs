@@ -9,11 +9,16 @@ namespace Pacman.GameEngine
 {
     public class Pinky : Ghost
     {
+        #region Constructor
         public Pinky(int x, int y) : base(x, y) 
         {
 
         }
 
+        #endregion
+
+        #region Methods
+        //Вибір цільової клітинки
         public override void ChooseTarget(Game game, out int targetX, out int targetY) 
         {
             targetX = game.myPacman.X;
@@ -23,7 +28,6 @@ namespace Pacman.GameEngine
 
                 case Direction.Left: 
                     {
-
                         if (game.myPacman.X > 4)
                         {
                             targetX = game.myPacman.X - 4;
@@ -32,12 +36,9 @@ namespace Pacman.GameEngine
                         {
                             targetX = game.myPacman.X;
                         }
-                        break;
-                        
-                        
-                        
-                      
+                        break;                      
                     }
+
                 case Direction.Right:
                     {
                         if (game.myPacman.X < game.Map.myMap.GetLength(1) - 5)
@@ -50,6 +51,7 @@ namespace Pacman.GameEngine
                         }
                         break;
                     }
+
                 case Direction.Up:
                     {
                         if (game.myPacman.Y > 4 && game.myPacman.X > 4)
@@ -63,6 +65,7 @@ namespace Pacman.GameEngine
                         }
                         break;
                     }
+
                 case Direction.Down:
                     {
                         if (game.myPacman.Y < game.Map.myMap.GetLength(0) - 5)
@@ -74,15 +77,12 @@ namespace Pacman.GameEngine
                         {
                             targetY = game.myPacman.Y;
                         }
-                        break;
-                        
-                        
+                        break;                     
                     }
             }
         }
-        
-   
 
+        #endregion
 
     }
 }

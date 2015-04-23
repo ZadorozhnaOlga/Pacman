@@ -10,33 +10,29 @@ namespace Pacman.GameEngine
 {
 
 
-    public class Pacman : Person
+    public class Pacman : Player
     {
-       
-        public Pacman(int x, int y)
-            : base(x, y)
+
+        #region Constructor
+        public Pacman(int x, int y) : base(x, y)
         {
 
         }
-        
 
-        //public abstract bool Move()
-        //{
-        //    return false;
-        //}
+        #endregion
 
+        #region Methods
+        //Перевірка того, чи на даній позиції Пакман отримав очки
         public void EatApples(ref Apples app)
         {
-            if (app.Dots[Y, X] == 1)
+            if (app.Dots[this.Y, this.X])
             {
-                app.Dots[Y, X] = 0;
-                Game.Scores += 1;
-                
-            }
-
-            
+                app.Dots[this.Y, this.X] = false;
+                Game.Scores += 1;   
+            }           
         }
 
+        //Рух Пакмана на клітинку вліво
         public bool MoveAndEatLeft(Game game) 
         {
             Apples currentApples = game.Map.GetApples();
@@ -48,6 +44,7 @@ namespace Pacman.GameEngine
             else return false;
         }
 
+        //Рух Пакмана на клітинку вправо
         public bool MoveAndEatRight(Game game)
         {
             Apples currentApples = game.Map.GetApples();
@@ -59,6 +56,7 @@ namespace Pacman.GameEngine
             else return false;
         }
 
+        //Рух Пакмана на клітинку вгору
         public bool MoveAndEatUp(Game game)
         {
             Apples currentApples = game.Map.GetApples();
@@ -70,6 +68,7 @@ namespace Pacman.GameEngine
             else return false;
         }
 
+        //Рух Пакмана на клітинку вниз
         public bool MoveAndEatDown(Game game)
         {
             Apples currentApples = game.Map.GetApples();
@@ -80,60 +79,43 @@ namespace Pacman.GameEngine
             }
             else return false;
         }
-        //public void LeftMove extends Move()
-        //{
-
-        //}
 
 
-
+        //Рух Пакмана на одну клітинку
         public bool Move(Game game, Direction direction)
         {
             Apples currentApples = game.Map.GetApples();
             
             this.direction = direction;
-            
+
             switch (direction)
             {
-                   
+
                 case Direction.Left:
                     {
                         return MoveAndEatLeft(game);
-                        
-                       
                     }
 
                 case Direction.Right:
                     {
                         return MoveAndEatRight(game);
-                        
-                       
                     }
 
                 case Direction.Up:
                     {
                         return MoveAndEatUp(game);
-                        
-                        
                     }
 
                 case Direction.Down:
                     {
                         return MoveAndEatDown(game);
-                       
-                        
                     }
+
                 default: throw new ArgumentException();
-                   
-                   // EatApples(ref currentApples);
             }
-
-           
-
         }
-        
 
-   
+        #endregion
 
     }
 }

@@ -19,7 +19,8 @@ namespace Pacman.GameEngine.Test.AbstractClasses
             array[2] = -2;
             array[3] = 4;
 
-            Assert.AreEqual(Ghost.MinValue(array), 0);
+            Ghost myInky = new Inky(1, 1);
+            Assert.AreEqual(myInky.MinValue(array), 0);
         }
 
         [TestMethod]

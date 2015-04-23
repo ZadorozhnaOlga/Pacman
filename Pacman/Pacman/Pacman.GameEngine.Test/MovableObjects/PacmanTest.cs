@@ -21,7 +21,7 @@ namespace Pacman.GameEngine.Test.MovableObjects
 
             Pacman myPacman = new Pacman(1, 1);
             myPacman.EatApples(ref app);
-            Assert.AreEqual(app.Dots[myPacman.X, myPacman.Y], 0);
+            Assert.AreEqual(app.Dots[myPacman.X, myPacman.Y], false);
 
             int[,] arraynoteat = new int[3, 3];
             for (int i = 0; i < 3; i++)
@@ -35,7 +35,7 @@ namespace Pacman.GameEngine.Test.MovableObjects
 
             Pacman myPacman1 = new Pacman(1, 1);
             myPacman.EatApples(ref app1);
-            Assert.AreEqual(app.Dots[myPacman1.X, myPacman1.Y], 0);
+            Assert.AreEqual(app.Dots[myPacman1.X, myPacman1.Y], false);
         }
 
         [TestMethod]

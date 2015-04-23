@@ -9,57 +9,26 @@ using System.Threading.Tasks;
 namespace Pacman.GameEngine
 {
 
-    public class Ghost : Person
+    public class Ghost : Player
     {
 
+        #region Constructor
         public Ghost(int x, int y) : base(x, y)
         {
            
         }
 
+        #endregion
 
-        public bool CheckApplesLeft(ref Apples app)
-        {
-            return app.IfExistApple(X - 1, Y);
-            
-            
-        }
-        public bool CheckApplesRight(ref Apples app)
-        {
-            return app.IfExistApple(X + 1, Y);
-
-            
-        }
-        public bool CheckApplesUp(ref Apples app)
-        {
-            return app.IfExistApple(X, Y - 1);
-            
-        }
-        public bool CheckApplesDown(ref Apples app)
-        {
-            return app.IfExistApple(X, Y + 1);
-            
-        }
-
-
-
-        public static int MinValue(int[] x)
-        {
-            int [] copyx = (int []) x.Clone();
-            Array.Sort(x);
-
-            int k = Array.LastIndexOf(x, -2) + 1;
-            int c = Array.IndexOf(copyx, x[k]);
-            return c;
-           
-        }
-
+        #region Methods
+        //Вибір цільової клітинки
         public virtual void ChooseTarget(Game game, out int targetX, out int targetY)
         {
             targetX = 0;
             targetY = 0;
         }
 
+        //Рух на одну клітинку
         public Direction MoveOneStep(Game game, Direction direction) 
         {
             Apples currentApples = game.Map.GetApples();
@@ -115,18 +84,13 @@ namespace Pacman.GameEngine
             }
         }
 
-
+        //Рух привида до цільової клітинки
         public Direction Move(Game game)
         {
-
             int targetX, targetY;
-
             this.ChooseTarget(game, out targetX, out targetY);
-
             int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
-
-            int[] direction = { cMap[Y, X - 1], cMap[Y, X + 1], cMap[Y - 1, X], cMap[this.Y + 1, this.X] };
-
+            int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
             Direction k = (Direction)MinValue(direction);
             if (!game.GameOver())
             {
@@ -138,7 +102,44 @@ namespace Pacman.GameEngine
             }
 
         }
-    }
-       
-    
+
+        #endregion
+
+        #region Helpers
+        //Перевірка того, чи зліва від привида є їжа
+        public bool CheckApplesLeft(ref Apples app)
+        {
+            return app.IfExistApple(this.X - 1, this.Y);
+        }
+
+        //Перевірка того, чи справа від привида є їжа
+        public bool CheckApplesRight(ref Apples app)
+        {
+            return app.IfExistApple(this.X + 1, this.Y);
+        }
+
+        //Перевірка того, чи зверху від привида є їжа
+        public bool CheckApplesUp(ref Apples app)
+        {
+            return app.IfExistApple(this.X, this.Y - 1);
+        }
+
+        //Перевірка того, чи знизу від привида є їжа
+        public bool CheckApplesDown(ref Apples app)
+        {
+            return app.IfExistApple(this.X, this.Y + 1);
+        }
+
+        //Пошук клітинки з найменшою "вагою" (для алгоритму пошуку оптимального шляху)
+        public int MinValue(int[] x)
+        {
+            int[] copyx = (int[])x.Clone();
+            Array.Sort(x);
+            int k = Array.LastIndexOf(x, -2) + 1;
+            int c = Array.IndexOf(copyx, x[k]);
+            return c;
+        }
+
+        #endregion
+    }   
 }

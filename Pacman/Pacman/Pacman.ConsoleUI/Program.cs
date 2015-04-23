@@ -14,7 +14,7 @@ namespace Pacman.ConsoleUI
   
     class Program
     {
-     public static void DrawOneApple(Person person, Direction direction)
+     public static void DrawOneApple(Player person, Direction direction)
      {
          Drawing Draw = new Drawing();
          switch (direction)

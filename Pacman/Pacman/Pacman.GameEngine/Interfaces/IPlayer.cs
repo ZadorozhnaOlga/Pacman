@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameEngine
 {
-    interface IPerson
+    interface IPlayer
     {
         bool MoveLeft(int[,] array);
         bool MoveRight(int[,] array);
         bool MoveUp(int[,] array);
-        bool MoveDown(int[,] array);
-
-        
-
-        
+        bool MoveDown(int[,] array);    
     }
 }

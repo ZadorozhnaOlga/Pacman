@@ -40,12 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
-    <Compile Include="Interfaces\IMoving.cs" />
-    <Compile Include="Interfaces\IPerson.cs" />
-    <Compile Include="AbstractClasses\Person.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="AbstractClasses\Player.cs" />
     <Compile Include="GameMap\Apples.cs" />
     <Compile Include="GameMap\Map.cs" />
-    <Compile Include="AbstractClasses\Ghost.cs" />
+    <Compile Include="MovableObjects\Ghost.cs" />
     <Compile Include="MovableObjects\Inky.cs" />
     <Compile Include="MovableObjects\Pacman.cs" />
     <Compile Include="MovableObjects\Pinky.cs" />

@@ -10,8 +10,8 @@ namespace Pacman.GameEngine.Test.GameMap
         public void IfExistApple()
         {
             Game game = new Game();
-            Assert.IsTrue(game.Map.apples.IfExistApple(1, 1));
-            Assert.IsFalse(game.Map.apples.IfExistApple(13, 12));
+            Assert.IsTrue(game.Map.GetApples().IfExistApple(1, 1));
+            Assert.IsFalse(game.Map.GetApples().IfExistApple(13, 12));
 
         }
     }

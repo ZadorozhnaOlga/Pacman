@@ -3,3 +3,5 @@
 *.suo
 *.user
 *.dbmdl
+*.v12.suo
+**/TestResults/

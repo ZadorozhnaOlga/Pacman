@@ -6,46 +6,44 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameEngine
 {
-    
-
-    public class Apples 
+    public class Apples
     {
-        public int Count { get; set; }
-        public int[,] Dots; 
-        
+
+        #region Properties & Fields
+        private int _count;
+
+        public bool [,] Dots;
+        #endregion
+
+        #region Constructor
         public Apples(int[,] array)
         {
             int X = array.GetLength(0);
             int Y = array.GetLength(1);
-            Dots = new int[X, Y];
+            Dots = new bool [X, Y];
             for (int i = 0; i < X; i++)
             {
                 for (int j = 0; j < Y; j++)
                 {
                     if (array[i, j] == 0)
                     {
-                        Dots[i, j] = 1;
-                        Count += 1;
+                        Dots[i, j] = true;
+                        _count += 1;
                     }
                 }
             }
         }
 
+        #endregion
 
+        #region Methods
+        //Перевірка того, чи в клітинці [X, Y] є їжа 
         public bool IfExistApple(int X, int Y) 
         {
-            if (Dots[Y, X] == 1)
-            {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (Dots[Y, X]);
         }
 
+        #endregion
     }
-
 }
 

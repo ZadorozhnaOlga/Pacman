@@ -78,7 +78,7 @@ namespace Pacman.ConsoleUI
            // Console.SetCursorPosition(game.myInky.X, game.myInky.Y);
         }
 
-        public void HidePerson(Person person)
+        public void HidePerson(Player person)
         {
             
             Console.SetCursorPosition(person.X, person.Y);

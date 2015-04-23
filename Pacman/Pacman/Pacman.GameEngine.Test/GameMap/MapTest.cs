@@ -18,6 +18,8 @@ namespace Pacman.GameEngine.Test.GameMap
 
     [TestClass]
     public class MapTest
+
+        
     {
         public int [,] LoadPath(string path)
         {
@@ -59,7 +61,15 @@ namespace Pacman.GameEngine.Test.GameMap
         [TestMethod]
         public void Map()
         {
-            Assert.IsNotNull(new Map());
+            int[,] array = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    array[j, i] = 0;
+                }
+            }
+            Assert.IsNotNull(new Map(array));
         }
 
         [TestMethod]
@@ -101,9 +111,6 @@ namespace Pacman.GameEngine.Test.GameMap
         {
             int[,] result = LoadPath(@"../../Map\PathArrayToUpRightCorner.txt");
             Game game = new Game();
-
-
-
             CollectionAssert.AreEqual(game.Map.FindPaths(game, 26, 1), result);
 
         }
@@ -111,24 +118,7 @@ namespace Pacman.GameEngine.Test.GameMap
 
 
 
-        //[TestMethod]
-        //public void FindPathsToUnreachableCell()
-        //{
-        //    int[,] result = LoadPath(@"../../Map\PathArrayToUnreachableCell.txt");
-        //    Game game = new Game();
-
-        //    //for (int i = 0; i < 28; i++) 
-        //    //{
-        //    //    for (int j = 0; j < 32; j++) 
-        //    //    {
-        //    //        Console.Write(game.Map.FindPaths(game, 13, 9)[j, i]+ " ");
-        //    //    }
-        //    //    Console.WriteLine();
-        //    //}
-                
-        //   // CollectionAssert.AreEqual(game.Map.FindPaths(game, 13, 9), result);
-
-        //}
+        
 
         
     }

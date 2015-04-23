@@ -15,20 +15,86 @@ namespace Pacman.GameEngine
         Down = 3,
         None = 4
     }
-    public abstract class Person : IPerson
+    public abstract class Player : IPlayer
     {
+        #region Properties
         public int X { get; set; }
         public int Y { get; set; }
-
         public Direction direction { get; set; }
-     
 
-        public Person(int x, int y)
+        #endregion
+
+        #region Constructor
+        public Player(int x, int y)
         {
             X = x;
             Y = y;
         }
+        #endregion
 
+        #region Methods
+        
+        //Рух на одну клітинку вліво
+        public bool MoveLeft(int [,] array)
+        {
+            if (CheckPosition(array, -1, 0))
+            {           
+                X--;
+                return true;
+            }
+            else
+            {            
+                return false;
+            }
+        }
+
+        //Рух на одну клітинку вправо
+        public bool MoveRight(int[,] array)
+        {
+            if (CheckPosition(array, 1, 0))
+            {               
+                X++;
+                return true;
+            }
+            else
+            {               
+                return false;
+            }
+        }
+
+        //Рух на одну клітинку вгору
+        public bool MoveUp(int[,] array)
+        {
+            if (CheckPosition(array, 0, -1))
+            {               
+                Y--;
+                return true;
+            }
+            else
+            {                
+                return false;
+            }
+        }
+
+        //Рух на одну клітинку вниз
+        public bool MoveDown(int[,] array)
+        {
+            if (CheckPosition(array, 0, 1))
+            {             
+                Y++;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Helpers
+
+        //Перевірка того, чи можна зміститись на x та на y клітинок у відповідних напрямках
         public bool CheckPosition(int[,] array, int x, int y)
         {
             if (array[Y + y, X + x] == 1)
@@ -37,84 +103,11 @@ namespace Pacman.GameEngine
             }
             else
             {
-
                 return true;
             }
         }
 
-        public bool MoveLeft(int [,] array)
-        {
-            //direction = Direction.Left;
-            if (CheckPosition(array, -1, 0))
-            {
-                
-                X--;
-                return true;
-            }
-            else
-            {
-               
-                return false;
-            }
-        }
-
-        public bool MoveRight(int[,] array)
-        {
-            //direction = Direction.Right; 
-            if (CheckPosition(array, 1, 0))
-            {
-               
-                X++;
-                return true;
-            }
-            else
-            {
-                
-                return false;
-            }
-        }
-
-        public bool MoveUp(int[,] array)
-        {
-            //direction = Direction.Up;
-            if (CheckPosition(array, 0, -1))
-            {
-                
-                Y--;
-                return true;
-            }
-            else
-            {
-                
-                return false;
-            }
-        }
-
-        public bool MoveDown(int[,] array)
-        {
-            //direction = Direction.Down;
-            if (CheckPosition(array, 0, 1))
-            {
-                
-                Y++;
-                return true;
-            }
-            else
-            {
-                
-                return false;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
+        #endregion
     }
 }
 
