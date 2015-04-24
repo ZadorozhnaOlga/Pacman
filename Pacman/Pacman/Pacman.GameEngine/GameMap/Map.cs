@@ -90,73 +90,7 @@ namespace Pacman.GameEngine
                 step++;
             }
 
-            //int[,] result = new int[Width, Heigth];
-            //for (y = 0; y < Width; y++)
-            //{
-            //    for (x = 0; x < Heigth; x++)
-            //    {
-            //        if (array[y, x] == 1)
-            //        {
-            //            result[y, x] = -2;
-            //        }
-            //        else
-            //        {
-            //            result[y, x] = cMap[y, x];
-            //        }
-            //    }
-            //}
-            //return result;
 
-
-            //cMap[targetY, targetX] = 0;
-
-            //while (step < Width * Heigth)
-            //{
-            //    for (y = 0; y < Heigth; y++)
-            //    {
-            //        for (x = 0; x < Width; x++)
-            //        {
-            //            if (cMap[x, y] == step)
-            //            {
-            //                if ((y - 1 >= 0 && cMap[x - 1, y] == -1))
-            //                {
-            //                    cMap[x - 1, y] = step + 1;
-            //                }
-            //                if ((x - 1 >= 0 && cMap[x, y - 1] == -1))
-            //                {
-            //                    cMap[x, y - 1] = step + 1;
-            //                }
-            //                if ((y + 1 < Heigth && cMap[x + 1, y] == -1))
-            //                {
-            //                    cMap[x + 1, y] = step + 1;
-            //                }
-
-            //                if ((x + 1 < Width && cMap[x, y + 1] == -1))
-            //                {
-            //                    cMap[x, y + 1] = step + 1;
-            //                }
-            //            }
-            //        }
-            //    }
-
-            //    step++;
-            //}
-            //int[,] result = new int[Width, Heigth];
-            //for (y = 0; y < Width; y++)
-            //{
-            //    for (x = 0; x < Heigth; x++)
-            //    {
-            //        if (array[y, x] == 1)
-            //        {
-            //            result[y, x] = -2;
-            //        }
-            //        else
-            //        {
-            //            result[y, x] = cMap[y, x];
-            //        }
-            //    }
-            //}
-            //return result;
 
             return cMap;
         }

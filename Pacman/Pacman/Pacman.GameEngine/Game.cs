@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Timers;
 
 namespace Pacman.GameEngine
 {
@@ -15,6 +16,7 @@ namespace Pacman.GameEngine
     }
     public class Game 
     {
+        //public Timer myTimer = new Timer(500);
         private GameStatus _status;
         private Map _map;
         private Pacman _pacman;
@@ -42,6 +44,11 @@ namespace Pacman.GameEngine
         }
 
         public static int Scores { get; set; }
+
+        //private void OnTimeInkyEvent(object source, ElapsedEventArgs e)
+        //{
+        //    myInky.Move(this);
+        //}
        
         public Game() 
         {
@@ -52,7 +59,7 @@ namespace Pacman.GameEngine
             _pacman = new Pacman(13, 26);
             _inky = new Inky(13, 12);
             _pinky = new Pinky(14, 12);
-
+            //myTimer.Elapsed += new ElapsedEventHandler(OnTimeInkyEvent);
             
 
         }
@@ -86,22 +93,32 @@ namespace Pacman.GameEngine
         }
 
 
-
+        public bool CheckLives() 
+        {
+            if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y))
+            {
+                myPacman.lives--;
+                return true;
+            }
+            else if (myPinky.X == myPacman.X & myPinky.Y == myPacman.Y)
+            {
+                myPacman.lives--;
+                return true;
+            }
+            else return false;
+        }
 
         public bool GameOver() 
         {
-            if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y) )
+            if (myPacman.lives == 0)
             {
                 return true;
             }
-            if (myPinky.X == myPacman.X & myPinky.Y == myPacman.Y)
-            {
-                return true;
-            }
-            else
+            else 
             {
                 return false;
             }
+            
         }
     
 
@@ -152,9 +169,9 @@ namespace Pacman.GameEngine
             }
         }
 
-        
-
-       
+         
+   
+    
 
         //public int GetScores(int x, int y)
         //{

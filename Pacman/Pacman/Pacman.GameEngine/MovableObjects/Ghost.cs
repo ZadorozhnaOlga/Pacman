@@ -92,7 +92,8 @@ namespace Pacman.GameEngine
             int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
             int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
             Direction k = (Direction)MinValue(direction);
-            if (!game.GameOver())
+            if (!(game.myInky.X == game.myPacman.X & game.myInky.Y == game.myPacman.Y) &
+                !(game.myPinky.X == game.myPacman.X & game.myPinky.Y == game.myPacman.Y))
             {
                 return MoveOneStep(game, k);
             }

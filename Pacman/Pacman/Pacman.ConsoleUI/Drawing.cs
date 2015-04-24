@@ -12,6 +12,7 @@ namespace Pacman.ConsoleUI
         public void DrawMap(int[,] array) 
         {
             Console.SetCursorPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
@@ -29,20 +30,20 @@ namespace Pacman.ConsoleUI
             }
         }
 
-        public void DrawApples(int[,] array)
+        public void DrawApples(ref Apples app)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < app.Dots.GetLength(0); i++)
             {
-                for (int j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < app.Dots.GetLength(1); j++)
                 {
-                    if (array[i, j] != 0)
+                    if (app.Dots[i, j] != true)
                     {           
                         continue;
                     }
                     else
                     {
-                        if (array[i, j] == 0)
+                        if (app.Dots[i, j] == true)
                         {
                             Console.SetCursorPosition(j, i);
                             Console.Write((char)8729);

@@ -12,11 +12,12 @@ namespace Pacman.GameEngine
 
     public class Pacman : Player
     {
+        public int lives { get; set; }
 
         #region Constructor
         public Pacman(int x, int y) : base(x, y)
         {
-
+            this.lives = 3;
         }
 
         #endregion
