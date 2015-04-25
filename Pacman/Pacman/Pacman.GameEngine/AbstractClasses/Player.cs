@@ -37,57 +37,48 @@ namespace Pacman.GameEngine
         //Рух на одну клітинку вліво
         public bool MoveLeft(int [,] array)
         {
-            if (CheckPosition(array, -1, 0))
-            {           
+            return Move(array, -1, 0, () =>
+            {
                 X--;
-                return true;
-            }
-            else
-            {            
-                return false;
-            }
+            });
         }
 
         //Рух на одну клітинку вправо
         public bool MoveRight(int[,] array)
         {
-            if (CheckPosition(array, 1, 0))
-            {               
+            return Move(array, 1, 0, () =>
+            {
                 X++;
-                return true;
-            }
-            else
-            {               
-                return false;
-            }
+            });
         }
 
         //Рух на одну клітинку вгору
         public bool MoveUp(int[,] array)
         {
-            if (CheckPosition(array, 0, -1))
-            {               
+            return Move(array, 0, -1, () =>
+            {
                 Y--;
-                return true;
-            }
-            else
-            {                
-                return false;
-            }
+            });
         }
 
         //Рух на одну клітинку вниз
         public bool MoveDown(int[,] array)
         {
-            if (CheckPosition(array, 0, 1))
-            {             
+            return Move(array, 0, 1, () =>
+            {
                 Y++;
+            });
+        }
+
+        private bool Move(int[,] array, int x, int y, Action action)
+        {
+            if (CheckPosition(array, x, y))
+            {
+                action();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         #endregion

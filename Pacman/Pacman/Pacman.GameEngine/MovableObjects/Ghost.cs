@@ -36,50 +36,23 @@ namespace Pacman.GameEngine
             {
                 case Direction.Left:
                     MoveLeft(game.Map.myMap);
-                    if (CheckApplesRight(ref currentApples))
-                    {
-                        return Direction.Right;
-                    }
-                    else
-                    {
-                        return Direction.None;
-                    }
+                    return CheckApplesRight(ref currentApples);
 
                 case Direction.Right:
                     MoveRight(game.Map.myMap);
-
-                    if (CheckApplesLeft(ref currentApples))
-                    {
-                        return Direction.Left;
-                    }
-                    else
-                    {
-                        return Direction.None;
-                    }
-
+                    return CheckApplesLeft(ref currentApples);
+                    
 
                 case Direction.Up:
                     MoveUp(game.Map.myMap);
-                    if (CheckApplesDown(ref currentApples))
-                    {
-                        return Direction.Down;
-                    }
-                    else
-                    {
-                        return Direction.None;
-                    }
+                    return CheckApplesDown(ref currentApples);
 
 
                 case Direction.Down:
                     MoveDown(game.Map.myMap);
-                    if (CheckApplesUp(ref currentApples))
-                    {
-                        return Direction.Up;
-                    }
-                    else
-                    {
-                        return Direction.None;
-                    }
+                   return CheckApplesUp(ref currentApples);
+                   
+
                 default: return Direction.None;
             }
         }
@@ -92,8 +65,7 @@ namespace Pacman.GameEngine
             int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
             int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
             Direction k = (Direction)MinValue(direction);
-            if (!(game.myInky.X == game.myPacman.X & game.myInky.Y == game.myPacman.Y) &
-                !(game.myPinky.X == game.myPacman.X & game.myPinky.Y == game.myPacman.Y))
+            if (game.IfPacmanNotEated())
             {
                 return MoveOneStep(game, k);
             }
@@ -108,29 +80,59 @@ namespace Pacman.GameEngine
 
         #region Helpers
         //Перевірка того, чи зліва від привида є їжа
-        public bool CheckApplesLeft(ref Apples app)
+        public Direction CheckApplesLeft(ref Apples app)
         {
-            return app.IfExistApple(this.X - 1, this.Y);
+            if (app.IfExistApple(this.X - 1, this.Y))
+            {
+                return Direction.Left;
+            }
+            else 
+            {
+                return Direction.None;
+            }
         }
 
         //Перевірка того, чи справа від привида є їжа
-        public bool CheckApplesRight(ref Apples app)
+        public Direction CheckApplesRight(ref Apples app)
         {
-            return app.IfExistApple(this.X + 1, this.Y);
+            if (app.IfExistApple(this.X + 1, this.Y))
+            {
+                return Direction.Right;
+            }
+            else
+            {
+                return Direction.None;
+            }
         }
 
         //Перевірка того, чи зверху від привида є їжа
-        public bool CheckApplesUp(ref Apples app)
+        public Direction CheckApplesUp(ref Apples app)
         {
-            return app.IfExistApple(this.X, this.Y - 1);
+            if (app.IfExistApple(this.X, this.Y - 1))
+            {
+                return Direction.Up;
+            }
+            else
+            {
+                return Direction.None;
+            }
         }
 
         //Перевірка того, чи знизу від привида є їжа
-        public bool CheckApplesDown(ref Apples app)
+        public Direction CheckApplesDown(ref Apples app)
         {
-            return app.IfExistApple(this.X, this.Y + 1);
+            if (app.IfExistApple(this.X, this.Y + 1))
+            {
+                return Direction.Down;
+            }
+            else
+            {
+                return Direction.None;
+            }
+
         }
 
+       
         //Пошук клітинки з найменшою "вагою" (для алгоритму пошуку оптимального шляху)
         public int MinValue(int[] x)
         {

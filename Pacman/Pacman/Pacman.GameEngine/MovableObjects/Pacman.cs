@@ -33,6 +33,8 @@ namespace Pacman.GameEngine
             }           
         }
 
+        
+
         //Рух Пакмана на клітинку вліво
         public bool MoveAndEatLeft(Game game) 
         {
@@ -42,7 +44,10 @@ namespace Pacman.GameEngine
                 EatApples(ref currentApples);
                 return true;
             }
-            else return false;
+            else
+            {
+                return false;
+            } 
         }
 
         //Рух Пакмана на клітинку вправо
@@ -94,25 +99,39 @@ namespace Pacman.GameEngine
 
                 case Direction.Left:
                     {
-                        return MoveAndEatLeft(game);
+                        return CheckedMove(game, MoveAndEatLeft);
                     }
 
                 case Direction.Right:
                     {
-                        return MoveAndEatRight(game);
+                       return CheckedMove(game, MoveAndEatRight);
                     }
 
                 case Direction.Up:
                     {
-                        return MoveAndEatUp(game);
+                        return CheckedMove(game, MoveAndEatUp);
                     }
 
                 case Direction.Down:
                     {
-                        return MoveAndEatDown(game);
+                       return CheckedMove(game, MoveAndEatDown);
                     }
 
                 default: throw new ArgumentException();
+            }
+        }
+
+        private bool CheckedMove(Game game, Func<Game, bool> func)
+        {
+            if (game.IfPacmanNotEated())
+            {
+                return func(game);
+            }
+            else
+            {
+                //
+                game.MinusLive();
+                return false;
             }
         }
 

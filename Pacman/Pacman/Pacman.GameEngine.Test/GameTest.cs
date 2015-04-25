@@ -88,29 +88,29 @@ namespace Pacman.GameEngine.Test
             //Assert.IsTrue(game1.GameOver());
         }
 
-        [TestMethod]
-        public void CheckLives()
-        {
-            Game game = new Game();
-            game.myPinky.X = 13;
-            Assert.IsFalse(game.CheckLives());
-            Assert.AreEqual(game.myPacman.lives, 3);
-            game.myPinky.Y = 26;
-            Assert.IsTrue(game.CheckLives());
+        //[TestMethod]
+        //public void CheckLives()
+        //{
+        //    Game game = new Game();
+        //    game.myPinky.X = 13;
+        //    Assert.IsFalse(game.CheckLives());
+        //    Assert.AreEqual(game.myPacman.lives, 3);
+        //    game.myPinky.Y = 26;
+        //    Assert.IsTrue(game.CheckLives());
 
-            Assert.AreEqual(game.myPacman.lives, 2);
+        //    Assert.AreEqual(game.myPacman.lives, 2);
 
-            game.myInky.Y = 26;
-            Assert.IsTrue(game.CheckLives());
-            Assert.AreEqual(game.myPacman.lives, 1);
+        //    game.myInky.Y = 26;
+        //    Assert.IsTrue(game.CheckLives());
+        //    Assert.AreEqual(game.myPacman.lives, 1);
 
-            game.myInky.Y = 26;
-            Assert.IsTrue(game.CheckLives());
-            Assert.AreEqual(game.myPacman.lives, 0);
+        //    game.myInky.Y = 26;
+        //    Assert.IsTrue(game.CheckLives());
+        //    Assert.AreEqual(game.myPacman.lives, 0);
 
-            Assert.IsTrue(game.GameOver());
+        //    Assert.IsTrue(game.GameOver());
 
-        }
+        //}
 
       
 

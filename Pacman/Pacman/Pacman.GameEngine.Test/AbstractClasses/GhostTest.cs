@@ -27,7 +27,7 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void CheckApplesLeft()
         {
             Apples currentapples = game.Map.GetApples();
-            Assert.IsTrue(myInky.CheckApplesLeft(ref currentapples));
+            Assert.AreEqual(myInky.CheckApplesLeft(ref currentapples), Direction.Left);
             
         }
 
@@ -37,7 +37,7 @@ namespace Pacman.GameEngine.Test.AbstractClasses
             
             Apples currentapples = game.Map.GetApples();
             
-            Assert.IsTrue(myInky.CheckApplesRight(ref currentapples));
+            Assert.AreEqual(myInky.CheckApplesRight(ref currentapples), Direction.Right);
            
         }
 
@@ -47,7 +47,7 @@ namespace Pacman.GameEngine.Test.AbstractClasses
             
             Apples currentapples = game.Map.GetApples();
             
-            Assert.IsTrue(myInky.CheckApplesUp(ref currentapples));
+            Assert.AreEqual(myInky.CheckApplesUp(ref currentapples), Direction.Up);
            
         }
 
@@ -57,7 +57,7 @@ namespace Pacman.GameEngine.Test.AbstractClasses
             
             Apples currentapples = game.Map.GetApples();
             
-            Assert.IsTrue(myInky.CheckApplesDown(ref currentapples));
+            Assert.AreEqual(myInky.CheckApplesDown(ref currentapples), Direction.Down);
         }
 
         [TestMethod]

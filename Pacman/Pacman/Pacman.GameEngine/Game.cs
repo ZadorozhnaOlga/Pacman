@@ -93,20 +93,21 @@ namespace Pacman.GameEngine
         }
 
 
-        public bool CheckLives() 
-        {
-            if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y))
-            {
-                myPacman.lives--;
-                return true;
-            }
-            else if (myPinky.X == myPacman.X & myPinky.Y == myPacman.Y)
-            {
-                myPacman.lives--;
-                return true;
-            }
-            else return false;
-        }
+        //public void MinusLive() 
+        //{
+        //    myPacman.lives--;
+        //    //if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y))
+        //    //{
+        //    //    myPacman.lives--;
+        //    //    return true;
+        //    //}
+        //    //else if (myPinky.X == myPacman.X & myPinky.Y == myPacman.Y)
+        //    //{
+        //    //    myPacman.lives--;
+        //    //    return true;
+        //    //}
+        //    //else return false;
+        //}
 
         public bool GameOver() 
         {
@@ -120,7 +121,24 @@ namespace Pacman.GameEngine
             }
             
         }
-    
+
+        public  void MinusLive()
+        {
+            myPacman.lives--;
+        }
+        public bool IfPacmanNotEated() 
+        {
+            if (!(myInky.X == myPacman.X & myInky.Y == myPacman.Y) &
+                !(myPinky.X == myPacman.X & myPinky.Y == myPacman.Y))
+            {
+                return true;
+            }
+            else 
+            {
+                
+                return false;
+            }
+        }
 
         public static int[,] LoadMap(string path, int mapX, int mapY)
         {
