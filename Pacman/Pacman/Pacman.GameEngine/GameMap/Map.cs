@@ -10,7 +10,7 @@ namespace Pacman.GameEngine
     public class Map
     {
         #region Properties & Fields
-        public int[,] myMap { get; set; }
+        public int[,] MyMap { get; set; }
         private Apples _apples;
 
         #endregion
@@ -18,7 +18,7 @@ namespace Pacman.GameEngine
         #region Constructor
         public Map(int[,] array)
         {
-            this.myMap = array;
+            this.MyMap = array;
             this._apples = new Apples(array);
         }
 
@@ -30,10 +30,10 @@ namespace Pacman.GameEngine
             return this._apples;
         }
 
-        //Пошук оптимального шляху до кілтинки targetX, int targetY
+        
         public int[,] FindPaths(Game game, int targetX, int targetY)
         {
-            int[,] array = game.Map.myMap;
+            int[,] array = game.Map.MyMap;
             int Width = array.GetLength(0);
             int Heigth = array.GetLength(1);
             int[,] cMap = new int[Width, Heigth];
@@ -51,8 +51,6 @@ namespace Pacman.GameEngine
                     {
                         cMap[y, x] = -1;
                     }
-
-                    //cMap[y, x] = -1;
                 }
             }
 
@@ -89,8 +87,6 @@ namespace Pacman.GameEngine
 
                 step++;
             }
-
-
 
             return cMap;
         }

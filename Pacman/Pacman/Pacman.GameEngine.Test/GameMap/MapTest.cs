@@ -11,14 +11,12 @@ using System.IO;
 
 namespace Pacman.GameEngine.Test.GameMap
 {
-  
-
 
     [TestClass]
     public class MapTest
-
-        
     {
+
+        #region LoadingPath
         public int [,] LoadPath(string path)
         {
             int[,] result = new int[32, 28];
@@ -36,33 +34,23 @@ namespace Pacman.GameEngine.Test.GameMap
                         X++;
                     }
                     
-                    result[X, Y] = Int32.Parse((array[i]));
-
-
-                    //if (i == 29) 
-                    //{
-                    //    Console.WriteLine(array[29]);
-                    //    Console.WriteLine("{0}, {1}", X, Y);
-                    //}
-                   
+                    result[X, Y] = Int32.Parse((array[i]));           
                     Y++;
-                }
-                
+                }               
             }
             
-            return result;
-
-            
+            return result;            
         }
 
+        #endregion
 
         [TestMethod]
         public void Map()
         {
-            int[,] array = new int[3, 3];
-            for (int i = 0; i < 3; i++)
+            int[,] array = new int[28, 32];
+            for (int i = 0; i < 32; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 28; j++)
                 {
                     array[j, i] = 0;
                 }
@@ -73,52 +61,36 @@ namespace Pacman.GameEngine.Test.GameMap
         [TestMethod]
         public void FindPaths()
         {
+           
             int[,] result = LoadPath(@"../../Map\PathArrayToPacman.txt");
             Game game = new Game();
 
-            //for (int i = 0; i < 28; i++)
-            //{
-            //    for (int j = 0; j < 32; j++)
-            //    {
-            //        Console.Write(game.Map.FindPaths(game, 13, 9)[j, i] + " ");
-            //    }
-            //    Console.WriteLine();
-            //}
-
-            CollectionAssert.AreEqual(game.Map.FindPaths(game, 13, 26), result);
-           
+            CollectionAssert.AreEqual(game.Map.FindPaths(game, 13, 26), result);        
         }
-
-       
+     
 
         [TestMethod]
         public void FindPathsToDownLeftCorner()
         {
+           
             int[,] result = LoadPath(@"../../Map\PathArrayToDownLeftCorner.txt");
+           
             Game game = new Game();
-
-            
-            
-           CollectionAssert.AreEqual(game.Map.FindPaths(game, 1, 30), result);
-
+          
+            CollectionAssert.AreEqual(game.Map.FindPaths(game, 1, 30), result);
         }
 
 
         [TestMethod]
         public void FindPathsToUpRightCorner()
         {
+
             int[,] result = LoadPath(@"../../Map\PathArrayToUpRightCorner.txt");
             Game game = new Game();
+
             CollectionAssert.AreEqual(game.Map.FindPaths(game, 26, 1), result);
-
         }
-
-
-
-
-        
-
-        
+       
     }
 }
 

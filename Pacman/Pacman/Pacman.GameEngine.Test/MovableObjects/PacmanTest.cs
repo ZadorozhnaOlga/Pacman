@@ -6,68 +6,34 @@ namespace Pacman.GameEngine.Test.MovableObjects
     [TestClass]
     public class PacmanTest
     {
-        [TestMethod]
-        public void EatApples()
-        {
-            int [,] arrayeat = new int [3, 3];
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    arrayeat[i, j] = 1;
-                }
-            }
-            Apples app = new Apples(arrayeat);
-
-            Pacman myPacman = new Pacman(1, 1);
-            myPacman.EatApples(ref app);
-            Assert.AreEqual(app.Dots[myPacman.X, myPacman.Y], false);
-
-            int[,] arraynoteat = new int[3, 3];
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    arraynoteat[i, j] = 0;
-                }
-            }
-            Apples app1 = new Apples(arraynoteat);
-
-            Pacman myPacman1 = new Pacman(1, 1);
-            myPacman.EatApples(ref app1);
-            Assert.AreEqual(app.Dots[myPacman1.X, myPacman1.Y], false);
-        }
-
+        
         [TestMethod]
         public void Move()
-        {
-            //int[,] array = new int[3, 3];
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    for (int j = 0; j < 3; j++)
-            //    {
-            //        array[i, j] = 0;
-            //    }
-            //}
-            Game game = new Game();
+        {        
+            Game game = new Game();           
 
+            game.myPacman.X = 6;
+            game.myPacman.Y = 27;
+            Assert.IsTrue(game.myPacman.Move(game, Direction.Left));
+            Assert.IsTrue(game.myPacman.Move(game, Direction.Right));
+            Assert.IsTrue(game.myPacman.Move(game, Direction.Up));
+            Assert.IsTrue(game.myPacman.Move(game, Direction.Down));
 
-            Pacman myPacman = new Pacman(6, 27);
-            Assert.IsTrue(myPacman.Move(game, Direction.Left));
-            Assert.IsTrue(myPacman.Move(game, Direction.Right));
-            Assert.IsTrue(myPacman.Move(game, Direction.Up));
-            Assert.IsTrue(myPacman.Move(game, Direction.Down));
+            game.myPacman.X = 6;
+            game.myPacman.Y = 26;
+            Assert.IsFalse(game.myPacman.Move(game, Direction.Left));
+            Assert.IsFalse(game.myPacman.Move(game, Direction.Right));
 
-            Pacman myPacman1 = new Pacman(6, 26);
-            Assert.IsFalse(myPacman1.Move(game, Direction.Left));
-            Assert.IsFalse(myPacman1.Move(game, Direction.Right));
+            game.myPacman.X = 13;
+            game.myPacman.Y = 26;
+            Assert.IsFalse(game.myPacman.Move(game, Direction.Up));
+            Assert.IsFalse(game.myPacman.Move(game, Direction.Down));
 
-            Pacman myPacman2 = new Pacman(13, 26);
-            Assert.IsFalse(myPacman2.Move(game, Direction.Up));
-            Assert.IsFalse(myPacman2.Move(game, Direction.Down));
-
-            
-
+            game.myPacman.X = 6;
+            game.myPacman.Y = 27;
+            game.myPinky.X = 6;
+            game.myPinky.Y = 27;
+            Assert.IsFalse(game.myPacman.Move(game, Direction.Left));
         }
 
 
@@ -78,6 +44,6 @@ namespace Pacman.GameEngine.Test.MovableObjects
             Game game = new Game();
             game.myPacman.Move(game, Direction.None);
         }
-        
+      
     }
 }

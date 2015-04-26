@@ -60,60 +60,55 @@ namespace Pacman.GameEngine.Test
         }
 
         #endregion
+       
+        
         [TestMethod]
         public void GameOver()
         {
-            Game game = new Game();
-            //game.myPinky.X = 13;
-            //Assert.IsFalse(game.GameOver());
+            Game game = new Game();           
 
-            game.myPacman.lives = 0;
+            game.myPacman.Lives = 0;
             Assert.IsTrue(game.GameOver());
+            Assert.AreEqual(game.Status, GameStatus.Completed);
 
-
-            game.myPacman.lives = 1;
+            game.myPacman.Lives = 1;
             Assert.IsFalse(game.GameOver());
 
-            game.myPacman.lives = 2;
+            game.myPacman.Lives = 2;
             Assert.IsFalse(game.GameOver());
 
-            game.myPacman.lives = 3;
+            game.myPacman.Lives = 3;
             Assert.IsFalse(game.GameOver());
 
-            //Game game1 = new Game();
-            //game1.myInky.X = 13;
-            //Assert.IsFalse(game1.GameOver());
-
-            //game1.myInky.Y = 26;
-            //Assert.IsTrue(game1.GameOver());
+            
         }
 
-        //[TestMethod]
-        //public void CheckLives()
-        //{
-        //    Game game = new Game();
-        //    game.myPinky.X = 13;
-        //    Assert.IsFalse(game.CheckLives());
-        //    Assert.AreEqual(game.myPacman.lives, 3);
-        //    game.myPinky.Y = 26;
-        //    Assert.IsTrue(game.CheckLives());
 
-        //    Assert.AreEqual(game.myPacman.lives, 2);
+        [TestMethod]
+        public void MinusLive()
+        {
+            Game game = new Game();
+            game.MinusLive();
 
-        //    game.myInky.Y = 26;
-        //    Assert.IsTrue(game.CheckLives());
-        //    Assert.AreEqual(game.myPacman.lives, 1);
+            Assert.AreEqual(game.myPacman.Lives, 2);
+        }
 
-        //    game.myInky.Y = 26;
-        //    Assert.IsTrue(game.CheckLives());
-        //    Assert.AreEqual(game.myPacman.lives, 0);
+        [TestMethod]
+        public void IfPacmanNotEated()
+        {
+            Game game = new Game();
+            game.myPinky.X = 13;
+            Assert.IsTrue(game.IfPacmanNotEated());
 
-        //    Assert.IsTrue(game.GameOver());
+            game.myPinky.Y = 26;
+            Assert.IsFalse(game.IfPacmanNotEated());
 
-        //}
+            game.myInky.Y = 26;
+            Assert.IsFalse(game.IfPacmanNotEated());          
 
-      
-
+            game.myInky.Y = 26;
+            Assert.IsFalse(game.IfPacmanNotEated());
+        }
 
     }
 }

@@ -60,7 +60,6 @@ namespace Pacman.ConsoleUI
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(game.myPacman.X, game.myPacman.Y);
             Console.Write((char) 9786);
-            Console.SetCursorPosition(game.myPacman.X, game.myPacman.Y); 
         }
 
         public void DrawInky(Game game)
@@ -68,35 +67,57 @@ namespace Pacman.ConsoleUI
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(game.myInky.X, game.myInky.Y);
             Console.Write((char)9786);
-            //Console.SetCursorPosition(game.myInky.X, game.myInky.Y);
         }
 
         public void DrawPinky(Game game)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.SetCursorPosition(game.myPinky.X, game.myPinky.Y);
-            Console.Write((char)9786);
-           // Console.SetCursorPosition(game.myInky.X, game.myInky.Y);
+            Console.Write((char)9786);       
         }
 
         public void HidePerson(Player person)
-        {
-            
+        {   
             Console.SetCursorPosition(person.X, person.Y);
             Console.Write(" ");
             Console.SetCursorPosition(person.X, person.Y);
         }
         
-
         public void DrawOneApple(int x, int y)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(x, y);
             Console.Write((char)8729);
-           // Console.SetCursorPosition(game.myPacman.X, game.myPacman.Y);
         }
 
-        
-    
+        public void DrawOneApple(Player person, Direction direction)
+        {
+
+            switch (direction)
+            {
+                case Direction.Left:
+                    {
+                        DrawOneApple(person.X - 1, person.Y);
+
+                        break;
+                    }
+                case Direction.Right:
+                    {
+                        DrawOneApple(person.X + 1, person.Y);
+                        break;
+                    }
+                case Direction.Up:
+                    {
+                        DrawOneApple(person.X, person.Y - 1);
+                        break;
+                    }
+                case Direction.Down:
+                    {
+                        DrawOneApple(person.X, person.Y + 1);
+                        break;
+                    }
+            }
+
+        }  
     }
 }

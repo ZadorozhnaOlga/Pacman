@@ -20,21 +20,20 @@ namespace Pacman.GameEngine
         #region Properties
         public int X { get; set; }
         public int Y { get; set; }
-        public Direction direction { get; set; }
+        public Direction Direction { get; set; }
 
         #endregion
 
         #region Constructor
         public Player(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.X = x;
+            this.Y = y;
         }
         #endregion
 
         #region Methods
         
-        //Рух на одну клітинку вліво
         public bool MoveLeft(int [,] array)
         {
             return Move(array, -1, 0, () =>
@@ -43,7 +42,6 @@ namespace Pacman.GameEngine
             });
         }
 
-        //Рух на одну клітинку вправо
         public bool MoveRight(int[,] array)
         {
             return Move(array, 1, 0, () =>
@@ -52,7 +50,6 @@ namespace Pacman.GameEngine
             });
         }
 
-        //Рух на одну клітинку вгору
         public bool MoveUp(int[,] array)
         {
             return Move(array, 0, -1, () =>
@@ -61,7 +58,6 @@ namespace Pacman.GameEngine
             });
         }
 
-        //Рух на одну клітинку вниз
         public bool MoveDown(int[,] array)
         {
             return Move(array, 0, 1, () =>
@@ -69,6 +65,10 @@ namespace Pacman.GameEngine
                 Y++;
             });
         }
+
+        #endregion
+
+        #region Helpers
 
         private bool Move(int[,] array, int x, int y, Action action)
         {
@@ -81,11 +81,6 @@ namespace Pacman.GameEngine
             return false;
         }
 
-        #endregion
-
-        #region Helpers
-
-        //Перевірка того, чи можна зміститись на x та на y клітинок у відповідних напрямках
         public bool CheckPosition(int[,] array, int x, int y)
         {
             if (array[Y + y, X + x] == 1)

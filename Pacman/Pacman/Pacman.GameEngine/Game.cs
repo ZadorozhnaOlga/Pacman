@@ -14,14 +14,21 @@ namespace Pacman.GameEngine
         InProgress,
         Completed
     }
-    public class Game 
+    public class Game
     {
-        //public Timer myTimer = new Timer(500);
+
+        #region Fields
+
         private GameStatus _status;
         private Map _map;
         private Pacman _pacman;
         private Inky _inky;
         private Pinky _pinky;
+
+        #endregion
+
+
+        #region Properties
         public GameStatus Status
         {
             get { return this._status; }
@@ -45,24 +52,25 @@ namespace Pacman.GameEngine
 
         public static int Scores { get; set; }
 
-        //private void OnTimeInkyEvent(object source, ElapsedEventArgs e)
-        //{
-        //    myInky.Move(this);
-        //}
-       
+        #endregion
+
+
+        #region Constructor
+
         public Game() 
         {
             _status = GameStatus.ReadyToStart;
             int[,] array = Game.LoadMap(@"../../Map\Map.txt", 28, 32);
-            _map = new Map(array);
-            
+            _map = new Map(array);           
             _pacman = new Pacman(13, 26);
             _inky = new Inky(13, 12);
             _pinky = new Pinky(14, 12);
-            //myTimer.Elapsed += new ElapsedEventHandler(OnTimeInkyEvent);
-            
-
         }
+
+        #endregion
+
+
+        #region Methods
 
         public void Start()
         {
@@ -92,27 +100,11 @@ namespace Pacman.GameEngine
             this._status = GameStatus.Completed;
         }
 
-
-        //public void MinusLive() 
-        //{
-        //    myPacman.lives--;
-        //    //if ((myInky.X == myPacman.X & myInky.Y == myPacman.Y))
-        //    //{
-        //    //    myPacman.lives--;
-        //    //    return true;
-        //    //}
-        //    //else if (myPinky.X == myPacman.X & myPinky.Y == myPacman.Y)
-        //    //{
-        //    //    myPacman.lives--;
-        //    //    return true;
-        //    //}
-        //    //else return false;
-        //}
-
         public bool GameOver() 
         {
-            if (myPacman.lives == 0)
+            if (myPacman.Lives == 0)
             {
+                _status = GameStatus.Completed;
                 return true;
             }
             else 
@@ -124,8 +116,9 @@ namespace Pacman.GameEngine
 
         public  void MinusLive()
         {
-            myPacman.lives--;
+            myPacman.Lives--;
         }
+        
         public bool IfPacmanNotEated() 
         {
             if (!(myInky.X == myPacman.X & myInky.Y == myPacman.Y) &
@@ -134,8 +127,7 @@ namespace Pacman.GameEngine
                 return true;
             }
             else 
-            {
-                
+            {          
                 return false;
             }
         }
@@ -176,25 +168,14 @@ namespace Pacman.GameEngine
                                 Y++;
                                 break;
                             }
-
-                        
-
                     }
-
-
                 }
+
                 return result;
             }
         }
 
-         
-   
-    
+        #endregion
 
-        //public int GetScores(int x, int y)
-        //{
-        //    return Game.Scores;
-        //}
-        
     }
 }

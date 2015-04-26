@@ -7,12 +7,11 @@ namespace Pacman.GameEngine.Test.MovableObjects
     public class PinkyTest
     {
         
-
         [TestMethod]
         public void ChooseTarget_Left()
         {
             Game game = new Game();
-            game.myPacman.direction = Direction.Left;
+            game.myPacman.Direction = Direction.Left;
             int targetX = game.myPacman.X;
             int targetY = game.myPacman.Y;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
@@ -22,16 +21,17 @@ namespace Pacman.GameEngine.Test.MovableObjects
 
             game.myPacman.X = 1;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
+
             Assert.AreEqual(targetX, 1);
             Assert.AreEqual(targetY, 26);
-
         }
+
 
         [TestMethod]
         public void ChooseTarget_Right()
         {
             Game game = new Game();
-            game.myPacman.direction = Direction.Right;
+            game.myPacman.Direction = Direction.Right;
             int targetX = game.myPacman.X;
             int targetY = game.myPacman.Y;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
@@ -41,16 +41,17 @@ namespace Pacman.GameEngine.Test.MovableObjects
 
             game.myPacman.X = 27;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
+
             Assert.AreEqual(targetX, 27);
             Assert.AreEqual(targetY, 26);
-
         }
+
 
         [TestMethod]
         public void ChooseTarget_Up()
         {
             Game game = new Game();
-            game.myPacman.direction = Direction.Up;
+            game.myPacman.Direction = Direction.Up;
             int targetX = game.myPacman.X;
             int targetY = game.myPacman.Y;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
@@ -60,16 +61,17 @@ namespace Pacman.GameEngine.Test.MovableObjects
 
             game.myPacman.Y = 2;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
+
             Assert.AreEqual(targetY, 2);
             Assert.AreEqual(targetX, 13);
-
         }
+
 
         [TestMethod]
         public void ChooseTarget_Down()
         {
             Game game = new Game();
-            game.myPacman.direction = Direction.Down;
+            game.myPacman.Direction = Direction.Down;
             int targetX = game.myPacman.X;
             int targetY = game.myPacman.Y;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
@@ -79,17 +81,11 @@ namespace Pacman.GameEngine.Test.MovableObjects
 
             game.myPacman.Y = 30;
             game.myPinky.ChooseTarget(game, out targetX, out targetY);
+
             Assert.AreEqual(targetY, 30);
             Assert.AreEqual(targetX, 13);
-
         }
 
-        [TestMethod]
-        public void Move()
-        {
-            Game game = new Game();
-            
 
-        }
     }
 }

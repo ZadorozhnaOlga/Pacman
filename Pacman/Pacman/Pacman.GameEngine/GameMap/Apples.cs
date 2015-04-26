@@ -11,8 +11,7 @@ namespace Pacman.GameEngine
 
         #region Properties & Fields
         private int _count;
-
-        public bool [,] Dots;
+        public bool[,] Dots { get; set; }
         #endregion
 
         #region Constructor
@@ -32,12 +31,13 @@ namespace Pacman.GameEngine
                     }
                 }
             }
+            Dots[26, 13] = false;
         }
 
         #endregion
 
         #region Methods
-        //Перевірка того, чи в клітинці [X, Y] є їжа 
+        
         public bool IfExistApple(int X, int Y) 
         {
             return (Dots[Y, X]);

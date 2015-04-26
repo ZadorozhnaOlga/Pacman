@@ -18,12 +18,12 @@ namespace Pacman.GameEngine
         #endregion
 
         #region Methods
-        //Вибір цільової клітинки
+        
         public override void ChooseTarget(Game game, out int targetX, out int targetY) 
         {
             targetX = game.myPacman.X;
             targetY = game.myPacman.Y;
-            switch (game.myPacman.direction) 
+            switch (game.myPacman.Direction) 
             {
 
                 case Direction.Left: 
@@ -41,7 +41,7 @@ namespace Pacman.GameEngine
 
                 case Direction.Right:
                     {
-                        if (game.myPacman.X < game.Map.myMap.GetLength(1) - 5)
+                        if (game.myPacman.X < game.Map.MyMap.GetLength(1) - 5)
                         {
                             targetX = game.myPacman.X + 4;
                         }
@@ -68,7 +68,7 @@ namespace Pacman.GameEngine
 
                 case Direction.Down:
                     {
-                        if (game.myPacman.Y < game.Map.myMap.GetLength(0) - 5)
+                        if (game.myPacman.Y < game.Map.MyMap.GetLength(0) - 5)
                         {
                             targetY = game.myPacman.Y + 4;
                         }

@@ -12,7 +12,6 @@ namespace Pacman.GameEngine.Test.GameMap
             Game game = new Game();
             Assert.IsTrue(game.Map.GetApples().IfExistApple(1, 1));
             Assert.IsFalse(game.Map.GetApples().IfExistApple(13, 12));
-
         }
     }
 }
