@@ -49,7 +49,7 @@ namespace Pacman.GameEngine
         {
             get { return this._pinky; }
         }
-
+        // private setter
         public static int Scores { get; set; }
 
         #endregion
@@ -60,6 +60,8 @@ namespace Pacman.GameEngine
         public Game() 
         {
             _status = GameStatus.ReadyToStart;
+            
+            // Завантаження карти доцільніше було б зробити в ConsoleUI
             int[,] array = Game.LoadMap(@"../../Map\Map.txt", 28, 32);
             _map = new Map(array);           
             _pacman = new Pacman(13, 26);
@@ -121,6 +123,7 @@ namespace Pacman.GameEngine
         
         public bool IfPacmanNotEated() 
         {
+            // для збільшення продуктивності бажано використовувати &&
             if (!(myInky.X == myPacman.X & myInky.Y == myPacman.Y) &
                 !(myPinky.X == myPacman.X & myPinky.Y == myPacman.Y))
             {

@@ -10,6 +10,7 @@ namespace Pacman.GameEngine
     public class Map
     {
         #region Properties & Fields
+        //private setter
         public int[,] MyMap { get; set; }
         private Apples _apples;
 

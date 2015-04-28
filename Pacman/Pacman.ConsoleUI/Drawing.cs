@@ -37,18 +37,18 @@ namespace Pacman.ConsoleUI
             {
                 for (int j = 0; j < app.Dots.GetLength(1); j++)
                 {
-                    if (app.Dots[i, j] != true)
-                    {           
-                        continue;
-                    }
-                    else
-                    {
+                    //if (app.Dots[i, j] != true)
+                    //{           
+                    //    continue;
+                    //}
+                    //else
+                    //{
                         if (app.Dots[i, j] == true)
                         {
                             Console.SetCursorPosition(j, i);
                             Console.Write((char)8729);
                         }
-                    }
+                    //}
                 }
             }
 

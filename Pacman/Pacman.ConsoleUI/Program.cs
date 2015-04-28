@@ -52,6 +52,7 @@ namespace Pacman.ConsoleUI
             Console.Clear();
             game.Start();
             Draw.DrawMap(game.Map.MyMap);
+            // Для чого тут ref параметр?
             Draw.DrawApples(ref currentApples);
             Draw.DrawPacman(game);
             Draw.DrawInky(game);
@@ -81,7 +82,7 @@ namespace Pacman.ConsoleUI
 
 
         #region Helpers
-
+        // з якою метою всюди використовуються ref параметри?
         private static void MainCycle(ref ConsoleKeyInfo key, ref Apples currentApples, ref Direction direction, Timer inkyTimer, Timer pinkyTimer)
         {
 

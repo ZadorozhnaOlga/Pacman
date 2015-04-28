@@ -10,6 +10,7 @@ namespace Pacman.GameEngine
     {
 
         #region Properties & Fields
+        // Для чого цей лічильник?)
         private int _count;
         public bool[,] Dots { get; set; }
         #endregion

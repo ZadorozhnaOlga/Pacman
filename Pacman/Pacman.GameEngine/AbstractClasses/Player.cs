@@ -18,6 +18,7 @@ namespace Pacman.GameEngine
     public abstract class Player : IPlayer
     {
         #region Properties
+        // Private setters
         public int X { get; set; }
         public int Y { get; set; }
         public Direction Direction { get; set; }
@@ -34,6 +35,7 @@ namespace Pacman.GameEngine
 
         #region Methods
         
+        // з якою метою цей метод повертає значення? 
         public bool MoveLeft(int [,] array)
         {
             return Move(array, -1, 0, () =>
