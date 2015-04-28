@@ -36,7 +36,7 @@ namespace Pacman.GameEngine
                 case Direction.Right: 
                     {
                         MoveRight(game.Map.MyMap);
-                        return CheckApplesLeft(ref currentApples);
+                        return CheckApplesLeft(currentApples);
                     }
 
                 case Direction.Up: 
@@ -60,7 +60,8 @@ namespace Pacman.GameEngine
             int targetX, targetY;
             ChooseTarget(game, out targetX, out targetY);
             int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
-            int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
+            int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], 
+                                  cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
             Direction k = (Direction)MinValue(direction);
             if (game.IfPacmanNotEated())
             {
@@ -82,7 +83,8 @@ namespace Pacman.GameEngine
             targetY = 0;
         }
 
-        private Direction CheckApplesLeft(ref Apples app)
+        // Для чого використовується передача ссилочного типу з параметром ref?
+        private Direction CheckApplesLeft( Apples app)
         {
             if (app.IfExistApple(this.X - 1, this.Y))
             {

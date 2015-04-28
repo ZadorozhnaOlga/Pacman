@@ -73,7 +73,8 @@ namespace Pacman.ConsoleUI
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.SetCursorPosition(game.myPinky.X, game.myPinky.Y);
-            Console.Write((char)9786);       
+            //Console.Write((char)9786);    
+            Console.Write("\x263A"); 
         }
 
         public void HidePerson(Player person)

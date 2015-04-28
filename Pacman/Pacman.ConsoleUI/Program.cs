@@ -8,26 +8,22 @@ using System.Timers;
 using Pacman.GameEngine;
 using System.IO;
 
-
 namespace Pacman.ConsoleUI
 {
-
-
     class Program
     {
-
         #region Fields
 
-
+        // Можна задуматися над використанням статичного конструктора
         private static object _sync = new object();
 
+        // Приватне поле має починатися з _
         private static Drawing Draw = new Drawing();
 
         private static Game game = new Game();
 
 
         #endregion
-
 
         #region Main
 
@@ -70,9 +66,7 @@ namespace Pacman.ConsoleUI
             pinkyTimer.Elapsed += PinkyMove;
             pinkyTimer.Start();
 
-
             MainCycle(ref key, ref currentApples, ref direction, inkyTimer, pinkyTimer);
-
             Console.WriteLine("Press Enter to Exit");
             Console.ReadLine();
             

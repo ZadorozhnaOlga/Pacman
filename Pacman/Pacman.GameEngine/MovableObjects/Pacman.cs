@@ -67,6 +67,7 @@ namespace Pacman.GameEngine
 #endregion
 
         #region Helpers
+        // для чого тут ref?
         private void EatApples(ref Apples app)
         {
             if (app.Dots[this.Y, this.X])
@@ -109,7 +110,10 @@ namespace Pacman.GameEngine
                 EatApples(ref currentApples);
                 return true;
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
 
         private bool MoveAndEatDown(Game game)
@@ -120,7 +124,10 @@ namespace Pacman.GameEngine
                 EatApples(ref currentApples);
                 return true;
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
      
         private bool CheckedMove(Game game, Func<Game, bool> func)
