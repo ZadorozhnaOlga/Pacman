@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+// // Коректний в даному випадку namespace буде Pacman.GameEngine.Interfaces
 namespace Pacman.GameEngine
 {
     interface IPlayer

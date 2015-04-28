@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+// Коректний в даному випадку namespace буде Pacman.GameEngine.GameMap
 namespace Pacman.GameEngine
 {
     public class Map
     {
         #region Properties & Fields
-        public int[,] MyMap { get; set; }
+        // Дану властивість варто зробити доступною лише для читання.
+        public int[,] MyMap { get; private set; }
         private Apples _apples;
 
         #endregion
@@ -34,6 +36,7 @@ namespace Pacman.GameEngine
         public int[,] FindPaths(Game game, int targetX, int targetY)
         {
             int[,] array = game.Map.MyMap;
+            // Локальні змінні - з маленької букви
             int Width = array.GetLength(0);
             int Heigth = array.GetLength(1);
             int[,] cMap = new int[Width, Heigth];

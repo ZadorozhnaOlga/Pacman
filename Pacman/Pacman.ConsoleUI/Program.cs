@@ -8,26 +8,22 @@ using System.Timers;
 using Pacman.GameEngine;
 using System.IO;
 
-
 namespace Pacman.ConsoleUI
 {
-
-
     class Program
     {
-
         #region Fields
 
-
+        // Можна задуматися над використанням статичного конструктора
         private static object _sync = new object();
 
+        // Приватне поле має починатися з _
         private static Drawing Draw = new Drawing();
 
         private static Game game = new Game();
 
 
         #endregion
-
 
         #region Main
 
@@ -52,6 +48,7 @@ namespace Pacman.ConsoleUI
             Console.Clear();
             game.Start();
             Draw.DrawMap(game.Map.MyMap);
+            // Для чого тут ref параметр?
             Draw.DrawApples(ref currentApples);
             Draw.DrawPacman(game);
             Draw.DrawInky(game);
@@ -69,9 +66,7 @@ namespace Pacman.ConsoleUI
             pinkyTimer.Elapsed += PinkyMove;
             pinkyTimer.Start();
 
-
             MainCycle(ref key, ref currentApples, ref direction, inkyTimer, pinkyTimer);
-
             Console.WriteLine("Press Enter to Exit");
             Console.ReadLine();
             
@@ -81,7 +76,7 @@ namespace Pacman.ConsoleUI
 
 
         #region Helpers
-
+        // з якою метою всюди використовуються ref параметри?
         private static void MainCycle(ref ConsoleKeyInfo key, ref Apples currentApples, ref Direction direction, Timer inkyTimer, Timer pinkyTimer)
         {
 

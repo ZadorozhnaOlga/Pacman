@@ -25,7 +25,6 @@ namespace Pacman.GameEngine
             targetY = game.myPacman.Y;
             switch (game.myPacman.Direction) 
             {
-
                 case Direction.Left: 
                     {
                         if (game.myPacman.X > 4)

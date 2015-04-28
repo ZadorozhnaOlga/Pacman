@@ -37,18 +37,18 @@ namespace Pacman.ConsoleUI
             {
                 for (int j = 0; j < app.Dots.GetLength(1); j++)
                 {
-                    if (app.Dots[i, j] != true)
-                    {           
-                        continue;
-                    }
-                    else
-                    {
+                    //if (app.Dots[i, j] != true)
+                    //{           
+                    //    continue;
+                    //}
+                    //else
+                    //{
                         if (app.Dots[i, j] == true)
                         {
                             Console.SetCursorPosition(j, i);
                             Console.Write((char)8729);
                         }
-                    }
+                    //}
                 }
             }
 
@@ -73,7 +73,8 @@ namespace Pacman.ConsoleUI
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.SetCursorPosition(game.myPinky.X, game.myPinky.Y);
-            Console.Write((char)9786);       
+            //Console.Write((char)9786);    
+            Console.Write("\x263A"); 
         }
 
         public void HidePerson(Player person)

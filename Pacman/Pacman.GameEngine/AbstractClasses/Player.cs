@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameEngine
 {
+    // за замовчуванням першому енумератору присвоюється значення 0.
+    // Значення кожного наступного збільшкється на 1. В даному випадку явно вказувати значення не потрібно.
     public enum Direction
     {
         Left = 0,
@@ -17,7 +19,7 @@ namespace Pacman.GameEngine
     }
     public abstract class Player : IPlayer
     {
-        #region Properties
+        #region Properties        
         public int X { get; set; }
         public int Y { get; set; }
         public Direction Direction { get; set; }
@@ -25,7 +27,8 @@ namespace Pacman.GameEngine
         #endregion
 
         #region Constructor
-        public Player(int x, int y)
+        // В даному випадку, варто відкрити конструктор лише для нащадків.
+        protected Player(int x, int y)
         {
             this.X = x;
             this.Y = y;
@@ -34,6 +37,7 @@ namespace Pacman.GameEngine
 
         #region Methods
         
+        // З якою метою цей метод повертає значення bool? 
         public bool MoveLeft(int [,] array)
         {
             return Move(array, -1, 0, () =>
@@ -83,7 +87,8 @@ namespace Pacman.GameEngine
 
         public bool CheckPosition(int[,] array, int x, int y)
         {
-            if (array[Y + y, X + x] == 1)
+            // Для підвищення читабельності коду варто використовувати this
+            if (array[this.Y + y, this.X + x] == 1)
             {
                 return false;
             }
