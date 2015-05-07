@@ -13,16 +13,17 @@ namespace Pacman.GameEngine
     {
 
         #region Constructor
-        public Ghost(int x, int y) : base(x, y)
+        public Ghost(int x, int y)
+            : base(x, y)
         {
-           
+
         }
 
         #endregion
 
         #region Methods
-       
-        public Direction MoveOneStep(Game game, Direction direction) 
+
+        public Direction MoveOneStep(Game game, Direction direction)
         {
             Apples currentApples = game.Map.GetApples();
             switch (direction)
@@ -33,26 +34,26 @@ namespace Pacman.GameEngine
                         return CheckApplesRight(ref currentApples);
                     }
 
-                case Direction.Right: 
+                case Direction.Right:
                     {
                         MoveRight(game.Map.MyMap);
                         return CheckApplesLeft(ref currentApples);
                     }
 
-                case Direction.Up: 
+                case Direction.Up:
                     {
                         MoveUp(game.Map.MyMap);
                         return CheckApplesDown(ref currentApples);
                     }
 
-                case Direction.Down: 
+                case Direction.Down:
                     {
                         MoveDown(game.Map.MyMap);
                         return CheckApplesUp(ref currentApples);
                     }
 
-                default: return Direction.None;            
-            }           
+                default: return Direction.None;
+            }
         }
 
         public Direction Move(Game game)
@@ -62,14 +63,17 @@ namespace Pacman.GameEngine
             int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
             int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
             Direction k = (Direction)MinValue(direction);
-            if (game.IfPacmanNotEated())
-            {
-                return MoveOneStep(game, k);
-            }
-            else
-            {
-                return Direction.None;
-            }
+            //if (game.IfPacmanNotEated())
+            //{
+            //    return MoveOneStep(game, k);
+            //}
+            //else
+            //{
+            //    return Direction.None;
+            //}
+
+            // Review remark from IP:
+            return game.IfPacmanNotEated() ? MoveOneStep(game, k) : Direction.None;
         }
 
         #endregion
@@ -88,7 +92,7 @@ namespace Pacman.GameEngine
             {
                 return Direction.Left;
             }
-            else 
+            else
             {
                 return Direction.None;
             }
@@ -129,16 +133,20 @@ namespace Pacman.GameEngine
                 return Direction.None;
             }
         }
-       
+
         private int MinValue(int[] x)
         {
             int[] copyx = (int[])x.Clone();
             Array.Sort(x);
+
+            // Review remark from IP:
+            // "k" i "c" - явно не найкращі імені навіть для локальних змінних ...
             int k = Array.LastIndexOf(x, -2) + 1;
             int c = Array.IndexOf(copyx, x[k]);
+
             return c;
         }
 
         #endregion
-    }   
+    }
 }

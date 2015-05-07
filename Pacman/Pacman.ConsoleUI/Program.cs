@@ -21,6 +21,8 @@ namespace Pacman.ConsoleUI
 
         private static object _sync = new object();
 
+        // Review remark from IP:
+        // а чому тут - з великої, а рядком нижче - з малої .....
         private static Drawing Draw = new Drawing();
 
         private static Game game = new Game();
@@ -34,12 +36,12 @@ namespace Pacman.ConsoleUI
         static void Main(string[] args)
         {
 
-            
+
             Console.CursorVisible = false;
             WriteMessage(35, 0, "Press Enter to start the game");
 
             ConsoleKeyInfo key = Console.ReadKey();
-            
+
             while (key.Key != ConsoleKey.Enter)
             {
                 Console.Clear();
@@ -74,7 +76,7 @@ namespace Pacman.ConsoleUI
 
             Console.WriteLine("Press Enter to Exit");
             Console.ReadLine();
-            
+
         }
 
         #endregion
@@ -92,7 +94,7 @@ namespace Pacman.ConsoleUI
                     Console.Clear();
                     Console.WriteLine("Congratulations. You win!");
                     return;
-                } 
+                }
 
                 WriteScores(35, 0, Game.Scores);
                 WriteLives(35, 1, game.myPacman.Lives);
@@ -121,16 +123,16 @@ namespace Pacman.ConsoleUI
                             if (key.Key == ConsoleKey.Enter)
                             {
                                 DrawLevel(ref currentApples, inkyTimer, pinkyTimer, 13, 12, 14, 12, 13, 26);
-                            }                
+                            }
                         }
                     }
                 }
 
-                PacmanMove(ref currentApples, Draw, game, ref key, ref direction, inkyTimer, pinkyTimer);                             
+                PacmanMove(ref currentApples, Draw, game, ref key, ref direction, inkyTimer, pinkyTimer);
             }
         }
 
-        private static void DrawLevel( ref Apples currentApples, Timer inkyTimer, Timer pinkyTimer,
+        private static void DrawLevel(ref Apples currentApples, Timer inkyTimer, Timer pinkyTimer,
             int inkyX, int inkyY, int pinkyX, int pinkyY, int pacmanX, int pacmanY)
         {
             Draw.HidePerson(game.myInky);
@@ -156,7 +158,7 @@ namespace Pacman.ConsoleUI
 
             inkyTimer.Start();
             pinkyTimer.Start();
-            
+
         }
 
         private static void PacmanMove(ref Apples currentApples, Drawing Draw, Game game, ref ConsoleKeyInfo key, ref Direction direction, Timer inkyTimer, Timer pinkyTimer)
@@ -165,7 +167,7 @@ namespace Pacman.ConsoleUI
             switch (key.Key)
             {
 
-                case ConsoleKey.Spacebar: 
+                case ConsoleKey.Spacebar:
                     {
                         inkyTimer.Stop();
                         pinkyTimer.Stop();
@@ -182,7 +184,7 @@ namespace Pacman.ConsoleUI
                             DrawLevel(ref currentApples, inkyTimer, pinkyTimer, game.myInky.X, game.myInky.Y,
                                 game.myPinky.X, game.myPinky.Y, game.myPacman.X, game.myPacman.Y);
                         }
-                        
+
                     }
                     break;
 
@@ -226,15 +228,6 @@ namespace Pacman.ConsoleUI
                     }
                     break;
             }
-
-
-
-
-
-
-
-
-
         }
 
         private static void InkyMove(Object source, ElapsedEventArgs e)
@@ -266,7 +259,7 @@ namespace Pacman.ConsoleUI
                 WriteMessage(0, 0, "Oops, you've been eated");
                 WriteScores(0, 1, Game.Scores);
                 WriteLives(0, 2, game.myPacman.Lives);
-                WriteMessage(0, 3, "Press Enter to continue");              
+                WriteMessage(0, 3, "Press Enter to continue");
             }
 
             else
@@ -320,6 +313,6 @@ namespace Pacman.ConsoleUI
 
         #endregion
 
-    }  
+    }
 }
 

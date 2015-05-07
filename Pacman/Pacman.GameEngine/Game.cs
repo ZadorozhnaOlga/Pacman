@@ -8,6 +8,8 @@ using System.Timers;
 
 namespace Pacman.GameEngine
 {
+    // Review remark from IP:
+    // чому б не винести "enum" в окремий файл ?
     public enum GameStatus
     {
         ReadyToStart,
@@ -57,11 +59,18 @@ namespace Pacman.GameEngine
 
         #region Constructor
 
-        public Game() 
+        public Game()
         {
             _status = GameStatus.ReadyToStart;
+
+            // Review remark from IP:
+            // найкращий варіант - використати конфіг-файл для зберігання шляхів до допоміжних файлів
             int[,] array = Game.LoadMap(@"../../Map\Map.txt", 28, 32);
-            _map = new Map(array);           
+
+            _map = new Map(array);
+
+            // Review remark from IP:
+            // звідки беруться ці "магічні числа" ? 
             _pacman = new Pacman(13, 26);
             _inky = new Inky(13, 12);
             _pinky = new Pinky(14, 12);
@@ -100,34 +109,49 @@ namespace Pacman.GameEngine
             this._status = GameStatus.Completed;
         }
 
-        public bool GameOver() 
+        public bool GameOver()
         {
-            if (myPacman.Lives == 0)
+            //if (myPacman.Lives == 0)
+            //{
+            //    _status = GameStatus.Completed;
+            //    return true;
+            //}
+            //else 
+            //{
+            //    return false;
+            //}
+
+            // Review remark from IP:
+            // по-моєму, виглядає лаконічніше і прозоріше ...
+            bool hasNoMoreLives = myPacman.Lives == 0;
+            if (hasNoMoreLives)
             {
                 _status = GameStatus.Completed;
-                return true;
             }
-            else 
-            {
-                return false;
-            }
-            
+
+            return hasNoMoreLives;
         }
 
-        public  void MinusLive()
+        public void MinusLive()
         {
+            // Review remark from IP:
+            // впринципі, в автономному атомарному о-рі інкременту/декременту 
+            // доцільніше використовувати префіксну форму (при нагоді - поясню чому ...)
+
             myPacman.Lives--;
         }
-        
-        public bool IfPacmanNotEated() 
+
+        public bool IfPacmanNotEated()
         {
+            // Review remark from IP:
+            // дуже бажано, аби в методах була одна точка виходу ....
             if (!(myInky.X == myPacman.X & myInky.Y == myPacman.Y) &
                 !(myPinky.X == myPacman.X & myPinky.Y == myPacman.Y))
             {
                 return true;
             }
-            else 
-            {          
+            else
+            {
                 return false;
             }
         }
