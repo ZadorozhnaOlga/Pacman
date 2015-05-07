@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameEngine
 {
+    // Review remark from IP:
+    // можливо, варто було винести в окремий клас ...
     public enum Direction
     {
         Left = 0,
@@ -33,8 +35,8 @@ namespace Pacman.GameEngine
         #endregion
 
         #region Methods
-        
-        public bool MoveLeft(int [,] array)
+
+        public bool MoveLeft(int[,] array)
         {
             return Move(array, -1, 0, () =>
             {

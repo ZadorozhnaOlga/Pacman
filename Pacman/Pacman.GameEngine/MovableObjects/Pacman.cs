@@ -12,13 +12,14 @@ namespace Pacman.GameEngine
 
     public class Pacman : Player
     {
-        #region Properties&Fields
+        #region Properties & Fields
         public int Lives { get; set; }
 
         #endregion
 
         #region Constructor
-        public Pacman(int x, int y) : base(x, y)
+        public Pacman(int x, int y)
+            : base(x, y)
         {
             this.Lives = 3;
         }
@@ -64,7 +65,7 @@ namespace Pacman.GameEngine
             }
         }
 
-#endregion
+        #endregion
 
         #region Helpers
         private void EatApples(ref Apples app)
@@ -72,11 +73,11 @@ namespace Pacman.GameEngine
             if (app.Dots[this.Y, this.X])
             {
                 app.Dots[this.Y, this.X] = false;
-                Game.Scores += 1;   
-            }           
+                Game.Scores += 1;
+            }
         }
-        
-        private bool MoveAndEatLeft(Game game) 
+
+        private bool MoveAndEatLeft(Game game)
         {
             Apples currentApples = game.Map.GetApples();
             if (MoveLeft(game.Map.MyMap))
@@ -87,7 +88,7 @@ namespace Pacman.GameEngine
             else
             {
                 return false;
-            } 
+            }
         }
 
         private bool MoveAndEatRight(Game game)
@@ -122,7 +123,7 @@ namespace Pacman.GameEngine
             }
             else return false;
         }
-     
+
         private bool CheckedMove(Game game, Func<Game, bool> func)
         {
             Apples currentApples = game.Map.GetApples();
@@ -144,12 +145,12 @@ namespace Pacman.GameEngine
 
 
 
-        
-    
-
-            
 
 
-        
-    
+
+
+
+
+
+
 
