@@ -10,7 +10,8 @@ namespace Pacman.GameEngine
     public class Pinky : Ghost
     {
         #region Constructor
-        public Pinky(int x, int y) : base(x, y) 
+        public Pinky(int x, int y) 
+            : base(x, y) 
         {
 
         }
@@ -21,61 +22,61 @@ namespace Pacman.GameEngine
         
         public override void ChooseTarget(Game game, out int targetX, out int targetY) 
         {
-            targetX = game.myPacman.X;
-            targetY = game.myPacman.Y;
-            switch (game.myPacman.Direction) 
+            targetX = game.MyPacman.X;
+            targetY = game.MyPacman.Y;
+            switch (game.MyPacman.Direction) 
             {
 
                 case Direction.Left: 
                     {
-                        if (game.myPacman.X > 4)
+                        if (game.MyPacman.X > 4)
                         {
-                            targetX = game.myPacman.X - 4;
+                            targetX = game.MyPacman.X - 4;
                         }
                         else
                         {
-                            targetX = game.myPacman.X;
+                            targetX = game.MyPacman.X;
                         }
                         break;                      
                     }
 
                 case Direction.Right:
                     {
-                        if (game.myPacman.X < game.Map.MyMap.GetLength(1) - 5)
+                        if (game.MyPacman.X < game.Map.MyMap.GetLength(1) - 5)
                         {
-                            targetX = game.myPacman.X + 4;
+                            targetX = game.MyPacman.X + 4;
                         }
                         else
                         {
-                            targetX = game.myPacman.X;
+                            targetX = game.MyPacman.X;
                         }
                         break;
                     }
 
                 case Direction.Up:
                     {
-                        if (game.myPacman.Y > 4 && game.myPacman.X > 4)
+                        if (game.MyPacman.Y > 4 && game.MyPacman.X > 4)
                         {
-                            targetY = game.myPacman.Y - 4;
-                            targetX = game.myPacman.X - 4;
+                            targetY = game.MyPacman.Y - 4;
+                            targetX = game.MyPacman.X - 4;
                         }
                         else
                         {
-                            targetY = game.myPacman.Y;
+                            targetY = game.MyPacman.Y;
                         }
                         break;
                     }
 
                 case Direction.Down:
                     {
-                        if (game.myPacman.Y < game.Map.MyMap.GetLength(0) - 5)
+                        if (game.MyPacman.Y < game.Map.MyMap.GetLength(0) - 5)
                         {
-                            targetY = game.myPacman.Y + 4;
+                            targetY = game.MyPacman.Y + 4;
                         }
 
                         else
                         {
-                            targetY = game.myPacman.Y;
+                            targetY = game.MyPacman.Y;
                         }
                         break;                     
                     }

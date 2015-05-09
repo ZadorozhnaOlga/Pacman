@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameEngine
 {
-    interface IPlayer
+    public interface IPlayer
     {
         bool MoveLeft(int[,] array);
         bool MoveRight(int[,] array);

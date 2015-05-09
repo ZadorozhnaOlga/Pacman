@@ -7,34 +7,52 @@ using System.Drawing;
 using System.Timers;
 using Pacman.GameEngine;
 using System.IO;
+using System.Configuration;
 
 
 namespace Pacman.ConsoleUI
 {
-
-
     class Program
     {
 
         #region Fields
-
-
-        private static object _sync = new object();
-
-        private static Drawing Draw = new Drawing();
-
-        private static Game game = new Game();
-
+        
+        private static object _sync;
+        private static Drawing _draw;
+        private static Game _game;
 
         #endregion
 
+
+        static Program() 
+        {
+            _sync = new object();
+            _draw = new Drawing();
+
+            var mapPath = ConfigurationManager.AppSettings["MapPath"];
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string path = string.Concat(projectPath, mapPath);
+
+
+            var width = Int32.Parse(ConfigurationManager.AppSettings["Width"]);
+            var heigth = Int32.Parse(ConfigurationManager.AppSettings["Heigth"]);
+            int pacmanX = Int32.Parse(ConfigurationManager.AppSettings["PacmanX"]);
+            int pacmanY = Int32.Parse(ConfigurationManager.AppSettings["PacmanY"]);
+            int inkyX = Int32.Parse(ConfigurationManager.AppSettings["InkyX"]);
+            int inkyY = Int32.Parse(ConfigurationManager.AppSettings["InkyY"]);
+            int pinkyX = Int32.Parse(ConfigurationManager.AppSettings["PinkyX"]);
+            int pinkyY = Int32.Parse(ConfigurationManager.AppSettings["PinkyY"]);
+
+            int[,] array = Game.LoadMap(path, width, heigth);
+
+            _game = new Game(width, heigth, array, pacmanX, pacmanY, inkyX, inkyY, pinkyX, pinkyY);
+        }
 
         #region Main
 
         static void Main(string[] args)
         {
 
-            
             Console.CursorVisible = false;
             WriteMessage(35, 0, "Press Enter to start the game");
 
@@ -48,16 +66,16 @@ namespace Pacman.ConsoleUI
                 key = Console.ReadKey();
             }
 
-            Apples currentApples = game.Map.GetApples();
+            Apples currentApples = _game.Map.GetApples();
             Console.Clear();
-            game.Start();
-            Draw.DrawMap(game.Map.MyMap);
-            Draw.DrawApples(ref currentApples);
-            Draw.DrawPacman(game);
-            Draw.DrawInky(game);
-            Draw.DrawPinky(game);
+            _game.Start();
+            _draw.DrawMap(_game.Map.MyMap);
+            _draw.DrawApples(currentApples);
+            _draw.DrawPacman(_game);
+            _draw.DrawInky(_game);
+            _draw.DrawPinky(_game);
             WriteScores(35, 0, Game.Scores);
-            WriteLives(35, 1, game.myPacman.Lives);
+            WriteLives(35, 1, _game.MyPacman.Lives);
 
             Direction direction = Direction.Left;
 
@@ -70,7 +88,7 @@ namespace Pacman.ConsoleUI
             pinkyTimer.Start();
 
 
-            MainCycle(ref key, ref currentApples, ref direction, inkyTimer, pinkyTimer);
+            MainCycle(ref key, currentApples, direction, inkyTimer, pinkyTimer);
 
             Console.WriteLine("Press Enter to Exit");
             Console.ReadLine();
@@ -82,77 +100,79 @@ namespace Pacman.ConsoleUI
 
         #region Helpers
 
-        private static void MainCycle(ref ConsoleKeyInfo key, ref Apples currentApples, ref Direction direction, Timer inkyTimer, Timer pinkyTimer)
+        private static void MainCycle(ref ConsoleKeyInfo key, Apples currentApples, Direction direction, Timer inkyTimer, Timer pinkyTimer)
         {
 
-            while (!game.GameOver())
+            while (!_game.GameOver())
             {
                 if (Game.Scores == 325)
                 {
+                    inkyTimer.Stop();
+                    pinkyTimer.Stop();
                     Console.Clear();
                     Console.WriteLine("Congratulations. You win!");
                     return;
                 } 
 
                 WriteScores(35, 0, Game.Scores);
-                WriteLives(35, 1, game.myPacman.Lives);
+                WriteLives(35, 1, _game.MyPacman.Lives);
                 WriteMessage(35, 3, "Press Space to pause");
 
-                if (!game.IfPacmanNotEated())
+                if (!_game.IfPacmanNotEated())
                 {
                     inkyTimer.Stop();
                     pinkyTimer.Stop();
 
-                    game.MinusLive();
-                    WriteResume(game);
+                    _game.MinusLive();
+                    WriteResume(_game);
 
-                    if (!game.GameOver())
+                    if (!_game.GameOver())
                     {
                         Console.Clear();
-                        WriteResume(game);
+                        WriteResume(_game);
 
                         while (key.Key != ConsoleKey.Enter)
                         {
                             Console.Clear();
-                            WriteResume(game);
+                            WriteResume(_game);
                             key = Console.ReadKey();
 
 
                             if (key.Key == ConsoleKey.Enter)
                             {
-                                DrawLevel(ref currentApples, inkyTimer, pinkyTimer, 13, 12, 14, 12, 13, 26);
+                                DrawLevel(currentApples, inkyTimer, pinkyTimer, 13, 12, 14, 12, 13, 26);
                             }                
                         }
                     }
                 }
 
-                PacmanMove(ref currentApples, Draw, game, ref key, ref direction, inkyTimer, pinkyTimer);                             
+                PacmanMove(ref currentApples, _draw, _game, ref key, ref direction, inkyTimer, pinkyTimer);                             
             }
         }
 
-        private static void DrawLevel( ref Apples currentApples, Timer inkyTimer, Timer pinkyTimer,
+        private static void DrawLevel(Apples currentApples, Timer inkyTimer, Timer pinkyTimer,
             int inkyX, int inkyY, int pinkyX, int pinkyY, int pacmanX, int pacmanY)
         {
-            Draw.HidePerson(game.myInky);
-            game.myInky.X = inkyX;
-            game.myInky.Y = inkyY;
+            _draw.HidePerson(_game.MyInky);
+            _game.MyInky.X = inkyX;
+            _game.MyInky.Y = inkyY;
 
-            Draw.HidePerson(game.myPinky);
-            game.myPinky.X = pinkyX;
-            game.myPinky.Y = pinkyY;
+            _draw.HidePerson(_game.MyPinky);
+            _game.MyPinky.X = pinkyX;
+            _game.MyPinky.Y = pinkyY;
 
-            Draw.HidePerson(game.myPacman);
-            game.myPacman.X = pacmanX;
-            game.myPacman.Y = pacmanY;
+            _draw.HidePerson(_game.MyPacman);
+            _game.MyPacman.X = pacmanX;
+            _game.MyPacman.Y = pacmanY;
 
-            Draw.DrawMap(game.Map.MyMap);
-            Draw.DrawApples(ref currentApples);
-            Draw.DrawPacman(game);
-            Draw.DrawInky(game);
-            Draw.DrawPinky(game);
+            _draw.DrawMap(_game.Map.MyMap);
+            _draw.DrawApples(currentApples);
+            _draw.DrawPacman(_game);
+            _draw.DrawInky(_game);
+            _draw.DrawPinky(_game);
 
             WriteScores(35, 0, Game.Scores);
-            WriteLives(35, 1, game.myPacman.Lives);
+            WriteLives(35, 1, _game.MyPacman.Lives);
 
             inkyTimer.Start();
             pinkyTimer.Start();
@@ -167,20 +187,25 @@ namespace Pacman.ConsoleUI
 
                 case ConsoleKey.Spacebar: 
                     {
+                        
                         inkyTimer.Stop();
                         pinkyTimer.Stop();
-                        while (key.Key != ConsoleKey.Enter)
+                        Console.Clear();
+                        WriteMessage(0, 2, "The game is paused");
+                        WriteMessage(0, 3, "Press Enter to continue");
+                        ConsoleKeyInfo key1 = new ConsoleKeyInfo();
+                        while (key1.Key != ConsoleKey.Spacebar)
                         {
                             Console.Clear();
                             WriteMessage(0, 2, "The game is paused");
-                            WriteMessage(0, 3, "Press Enter to continue");
-                            key = Console.ReadKey();
+                            WriteMessage(0, 3, "Press Space to continue");
+                            key1 = Console.ReadKey();
                         }
 
-                        if (key.Key == ConsoleKey.Enter)
+                        if (key.Key == ConsoleKey.Spacebar)
                         {
-                            DrawLevel(ref currentApples, inkyTimer, pinkyTimer, game.myInky.X, game.myInky.Y,
-                                game.myPinky.X, game.myPinky.Y, game.myPacman.X, game.myPacman.Y);
+                            DrawLevel(currentApples, inkyTimer, pinkyTimer, game.MyInky.X, game.MyInky.Y,
+                                game.MyPinky.X, game.MyPinky.Y, game.MyPacman.X, game.MyPacman.Y);
                         }
                         
                     }
@@ -189,9 +214,9 @@ namespace Pacman.ConsoleUI
                 case ConsoleKey.LeftArrow:
                     {
 
-                        if (game.myPacman.CheckPosition(game.Map.MyMap, -1, 0) & game.IfPacmanNotEated())
+                        if (game.MyPacman.CheckPosition(game.Map.MyMap, -1, 0) & game.IfPacmanNotEated())
                         {
-                            DrawPacman(game.myPacman.X, game.myPacman.Y, Direction.Left);
+                            DrawPacman(game.MyPacman.X, game.MyPacman.Y, Direction.Left);
                         }
 
                     }
@@ -200,9 +225,9 @@ namespace Pacman.ConsoleUI
                 case ConsoleKey.RightArrow:
                     {
 
-                        if (game.myPacman.CheckPosition(game.Map.MyMap, 1, 0) & game.IfPacmanNotEated())
+                        if (game.MyPacman.CheckPosition(game.Map.MyMap, 1, 0) & game.IfPacmanNotEated())
                         {
-                            DrawPacman(game.myPacman.X, game.myPacman.Y, Direction.Right);
+                            DrawPacman(game.MyPacman.X, game.MyPacman.Y, Direction.Right);
                         }
 
 
@@ -210,41 +235,32 @@ namespace Pacman.ConsoleUI
                     break;
                 case ConsoleKey.UpArrow:
                     {
-                        if (game.myPacman.CheckPosition(game.Map.MyMap, 0, -1) & game.IfPacmanNotEated())
+                        if (game.MyPacman.CheckPosition(game.Map.MyMap, 0, -1) & game.IfPacmanNotEated())
                         {
-                            DrawPacman(game.myPacman.X, game.myPacman.Y, Direction.Up);
+                            DrawPacman(game.MyPacman.X, game.MyPacman.Y, Direction.Up);
                         }
                     }
                     break;
 
                 case ConsoleKey.DownArrow:
                     {
-                        if (game.myPacman.CheckPosition(game.Map.MyMap, 0, 1) & game.IfPacmanNotEated())
+                        if (game.MyPacman.CheckPosition(game.Map.MyMap, 0, 1) & game.IfPacmanNotEated())
                         {
-                            DrawPacman(game.myPacman.X, game.myPacman.Y, Direction.Down);
+                            DrawPacman(game.MyPacman.X, game.MyPacman.Y, Direction.Down);
                         }
                     }
                     break;
             }
-
-
-
-
-
-
-
-
-
         }
 
         private static void InkyMove(Object source, ElapsedEventArgs e)
         {
             lock (_sync)
             {
-                Draw.HidePerson(game.myInky);
-                Direction InkyEatApple = game.myInky.Move(game);
-                Draw.DrawInky(game);
-                Draw.DrawOneApple(game.myInky, InkyEatApple);
+                _draw.HidePerson(_game.MyInky);
+                Direction InkyEatApple = _game.MyInky.Move(_game);
+                _draw.DrawInky(_game);
+                _draw.DrawOneApple(_game.MyInky, InkyEatApple);
             }
         }
 
@@ -252,10 +268,10 @@ namespace Pacman.ConsoleUI
         {
             lock (_sync)
             {
-                Draw.HidePerson(game.myPinky);
-                Direction PinkyEatApple = game.myPinky.Move(game);
-                Draw.DrawPinky(game);
-                Draw.DrawOneApple(game.myPinky, PinkyEatApple);
+                _draw.HidePerson(_game.MyPinky);
+                Direction PinkyEatApple = _game.MyPinky.Move(_game);
+                _draw.DrawPinky(_game);
+                _draw.DrawOneApple(_game.MyPinky, PinkyEatApple);
             }
         }
 
@@ -265,7 +281,7 @@ namespace Pacman.ConsoleUI
             {
                 WriteMessage(0, 0, "Oops, you've been eated");
                 WriteScores(0, 1, Game.Scores);
-                WriteLives(0, 2, game.myPacman.Lives);
+                WriteLives(0, 2, game.MyPacman.Lives);
                 WriteMessage(0, 3, "Press Enter to continue");              
             }
 
@@ -312,9 +328,9 @@ namespace Pacman.ConsoleUI
         {
             lock (_sync)
             {
-                Draw.HidePerson(game.myPacman);
-                game.myPacman.Move(game, direction);
-                Draw.DrawPacman(game);
+                _draw.HidePerson(_game.MyPacman);
+                _game.MyPacman.Move(_game, direction);
+                _draw.DrawPacman(_game);
             }
         }
 

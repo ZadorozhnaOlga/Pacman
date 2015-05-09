@@ -17,62 +17,49 @@ namespace Pacman.ConsoleUI
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if (array[i, j] == 1)
-                    {
-                        Console.Write("+");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
+                    string s = " ";
+                    s = (array[i, j] == 1) ? "+" : " ";
+                    Console.Write(s);
                 }
                 Console.WriteLine("");
             }
         }
 
-        public void DrawApples(ref Apples app)
+        public void DrawApples(Apples app)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             for (int i = 0; i < app.Dots.GetLength(0); i++)
             {
                 for (int j = 0; j < app.Dots.GetLength(1); j++)
                 {
-                    if (app.Dots[i, j] != true)
-                    {           
-                        continue;
-                    }
-                    else
-                    {
-                        if (app.Dots[i, j] == true)
+                    if (app.Dots[i, j])
                         {
                             Console.SetCursorPosition(j, i);
                             Console.Write((char)8729);
                         }
-                    }
                 }
             }
-
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void DrawPacman(Game game) 
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(game.myPacman.X, game.myPacman.Y);
+            Console.SetCursorPosition(game.MyPacman.X, game.MyPacman.Y);
             Console.Write((char) 9786);
         }
 
         public void DrawInky(Game game)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(game.myInky.X, game.myInky.Y);
+            Console.SetCursorPosition(game.MyInky.X, game.MyInky.Y);
             Console.Write((char)9786);
         }
 
         public void DrawPinky(Game game)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.SetCursorPosition(game.myPinky.X, game.myPinky.Y);
+            Console.SetCursorPosition(game.MyPinky.X, game.MyPinky.Y);
             Console.Write((char)9786);       
         }
 

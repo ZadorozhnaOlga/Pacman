@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Reflection;
+using System.IO;
 
 namespace Pacman.GameEngine.Test.MovableObjects
 {
@@ -10,30 +12,46 @@ namespace Pacman.GameEngine.Test.MovableObjects
         [TestMethod]
         public void Move()
         {        
-            Game game = new Game();           
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            var mapFile = @"\Map\Map.txt";
+            string mapPath = string.Concat(projectPath, mapFile);
 
-            game.myPacman.X = 6;
-            game.myPacman.Y = 27;
-            Assert.IsTrue(game.myPacman.Move(game, Direction.Left));
-            Assert.IsTrue(game.myPacman.Move(game, Direction.Right));
-            Assert.IsTrue(game.myPacman.Move(game, Direction.Up));
-            Assert.IsTrue(game.myPacman.Move(game, Direction.Down));
+            Game game = new Game(28, 32, Game.LoadMap(mapPath, 28, 32), 13, 26, 13, 12, 14, 12);
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 27;
+            Assert.IsTrue(game.MyPacman.Move(game, Direction.Left));
 
-            game.myPacman.X = 6;
-            game.myPacman.Y = 26;
-            Assert.IsFalse(game.myPacman.Move(game, Direction.Left));
-            Assert.IsFalse(game.myPacman.Move(game, Direction.Right));
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 27;
+            Assert.IsTrue(game.MyPacman.Move(game, Direction.Right));
 
-            game.myPacman.X = 13;
-            game.myPacman.Y = 26;
-            Assert.IsFalse(game.myPacman.Move(game, Direction.Up));
-            Assert.IsFalse(game.myPacman.Move(game, Direction.Down));
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 27;
+            Assert.IsTrue(game.MyPacman.Move(game, Direction.Up));
 
-            game.myPacman.X = 6;
-            game.myPacman.Y = 27;
-            game.myPinky.X = 6;
-            game.myPinky.Y = 27;
-            Assert.IsFalse(game.myPacman.Move(game, Direction.Left));
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 27;
+            Assert.IsTrue(game.MyPacman.Move(game, Direction.Down));
+
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 26;
+            Assert.IsFalse(game.MyPacman.Move(game, Direction.Left));
+            Assert.IsFalse(game.MyPacman.Move(game, Direction.Right));
+
+            game.MyPacman.X = 13;
+            game.MyPacman.Y = 26;
+            Assert.IsFalse(game.MyPacman.Move(game, Direction.Up));
+            Assert.IsFalse(game.MyPacman.Move(game, Direction.Down));
+
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 27;
+            game.MyPinky.X = 6;
+            game.MyPinky.Y = 27;
+            Assert.IsFalse(game.MyPacman.Move(game, Direction.Left));
+
+            game.MyPacman.X = 13;
+            game.MyPacman.Y = 12;
+            Assert.IsFalse(game.MyPacman.Move(game, Direction.Left));
         }
 
 
@@ -41,8 +59,12 @@ namespace Pacman.GameEngine.Test.MovableObjects
         [ExpectedException(typeof(ArgumentException))]
         public void ExceptionMove()
         {
-            Game game = new Game();
-            game.myPacman.Move(game, Direction.None);
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            var mapFile = @"\Map\Map.txt";
+            string mapPath = string.Concat(projectPath, mapFile);
+
+            Game game = new Game(28, 32, Game.LoadMap(mapPath, 28, 32), 13, 26, 13, 12, 14, 12);
+            game.MyPacman.Move(game, Direction.None);
         }
       
     }

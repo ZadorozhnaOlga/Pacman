@@ -13,7 +13,8 @@ namespace Pacman.GameEngine
     {
 
         #region Constructor
-        public Ghost(int x, int y) : base(x, y)
+        public Ghost(int x, int y) 
+            : base(x, y)
         {
            
         }
@@ -24,52 +25,45 @@ namespace Pacman.GameEngine
        
         public Direction MoveOneStep(Game game, Direction direction) 
         {
-            Apples currentApples = game.Map.GetApples();
             switch (direction)
             {
                 case Direction.Left:
                     {
-                        MoveLeft(game.Map.MyMap);
-                        return CheckApplesRight(ref currentApples);
+                       MoveLeft(game.Map.MyMap);
+                       return CheckApplesRight(game.Map.GetApples());
                     }
 
                 case Direction.Right: 
                     {
                         MoveRight(game.Map.MyMap);
-                        return CheckApplesLeft(ref currentApples);
+                        return CheckApplesLeft(game.Map.GetApples());
                     }
 
                 case Direction.Up: 
                     {
                         MoveUp(game.Map.MyMap);
-                        return CheckApplesDown(ref currentApples);
+                        return CheckApplesDown(game.Map.GetApples());
                     }
 
                 case Direction.Down: 
                     {
                         MoveDown(game.Map.MyMap);
-                        return CheckApplesUp(ref currentApples);
+                        return CheckApplesUp(game.Map.GetApples());
                     }
 
                 default: return Direction.None;            
             }           
         }
-
+       
         public Direction Move(Game game)
         {
             int targetX, targetY;
             ChooseTarget(game, out targetX, out targetY);
-            int[,] cMap = game.Map.FindPaths(game, targetX, targetY);
-            int[] direction = { cMap[this.Y, this.X - 1], cMap[this.Y, this.X + 1], cMap[this.Y - 1, this.X], cMap[this.Y + 1, this.X] };
+            int[,] pathToTarget = game.Map.FindPaths(game, targetX, targetY);
+            int[] direction = { pathToTarget[this.Y, this.X - 1], pathToTarget[this.Y, this.X + 1], pathToTarget[this.Y - 1, this.X], pathToTarget[this.Y + 1, this.X] };
             Direction k = (Direction)MinValue(direction);
-            if (game.IfPacmanNotEated())
-            {
-                return MoveOneStep(game, k);
-            }
-            else
-            {
-                return Direction.None;
-            }
+
+            return game.IfPacmanNotEated() ? MoveOneStep(game, k) : Direction.None;
         }
 
         #endregion
@@ -82,61 +76,33 @@ namespace Pacman.GameEngine
             targetY = 0;
         }
 
-        private Direction CheckApplesLeft(ref Apples app)
+        private Direction CheckApplesLeft(Apples app)
         {
-            if (app.IfExistApple(this.X - 1, this.Y))
-            {
-                return Direction.Left;
-            }
-            else 
-            {
-                return Direction.None;
-            }
+            return app.IfExistApple(this.X - 1, this.Y) ? Direction.Left : Direction.None;
         }
 
-        private Direction CheckApplesRight(ref Apples app)
+        private Direction CheckApplesRight(Apples app)
         {
-            if (app.IfExistApple(this.X + 1, this.Y))
-            {
-                return Direction.Right;
-            }
-            else
-            {
-                return Direction.None;
-            }
+            return app.IfExistApple(this.X + 1, this.Y) ? Direction.Right : Direction.None;
         }
 
-        private Direction CheckApplesUp(ref Apples app)
+        private Direction CheckApplesUp(Apples app)
         {
-            if (app.IfExistApple(this.X, this.Y - 1))
-            {
-                return Direction.Up;
-            }
-            else
-            {
-                return Direction.None;
-            }
+            return app.IfExistApple(this.X, this.Y - 1) ? Direction.Up : Direction.None;
         }
 
-        private Direction CheckApplesDown(ref Apples app)
+        private Direction CheckApplesDown(Apples app)
         {
-            if (app.IfExistApple(this.X, this.Y + 1))
-            {
-                return Direction.Down;
-            }
-            else
-            {
-                return Direction.None;
-            }
+            return app.IfExistApple(this.X, this.Y + 1) ? Direction.Down : Direction.None;
         }
        
         private int MinValue(int[] x)
         {
             int[] copyx = (int[])x.Clone();
             Array.Sort(x);
-            int k = Array.LastIndexOf(x, -2) + 1;
-            int c = Array.IndexOf(copyx, x[k]);
-            return c;
+            int lastIndexOfUnreachableCell = Array.LastIndexOf(x, -2) + 1;
+            int propperDirection = Array.IndexOf(copyx, x[lastIndexOfUnreachableCell]);
+            return propperDirection;
         }
 
         #endregion

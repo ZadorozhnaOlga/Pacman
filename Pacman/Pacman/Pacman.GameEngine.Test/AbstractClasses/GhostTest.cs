@@ -1,24 +1,33 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace Pacman.GameEngine.Test.AbstractClasses
 {
     [TestClass]
     public class GhostTest
     {
-        Game game = new Game();
+        private static Game game;
+        static GhostTest() 
+        {
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            var mapFile = @"\Map\Map.txt";
+            string mapPath = string.Concat(projectPath, mapFile);
 
+            game = new Game(28, 32, Game.LoadMap(mapPath, 28, 32), 13, 26, 13, 12, 14, 12);
+        }
+        
 
         [TestMethod]
         public void MoveOneStep_Left_Eat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 6;
-            game.myInky.Y = 27;
+            game.MyInky.X = 6;
+            game.MyInky.Y = 27;
 
-            game.myPacman.X = 4;
-            game.myPacman.Y = 27;
-            Direction AppleDirection = game.myInky.Move(game);
+            game.MyPacman.X = 4;
+            game.MyPacman.Y = 27;
+            Direction AppleDirection = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection, Direction.Right);
         }
@@ -28,12 +37,12 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Right_Eat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 6;
-            game.myInky.Y = 27;
+            game.MyInky.X = 6;
+            game.MyInky.Y = 27;
 
-            game.myPacman.X = 7;
-            game.myPacman.Y = 27;
-            Direction AppleDirection = game.myInky.Move(game);
+            game.MyPacman.X = 7;
+            game.MyPacman.Y = 27;
+            Direction AppleDirection = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection, Direction.Left);
         }
@@ -43,12 +52,12 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Up_Eat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 6;
-            game.myInky.Y = 27;
+            game.MyInky.X = 6;
+            game.MyInky.Y = 27;
 
-            game.myPacman.X = 6;
-            game.myPacman.Y = 25;
-            Direction AppleDirection = game.myInky.Move(game);
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 25;
+            Direction AppleDirection = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection, Direction.Down);
         }
@@ -58,12 +67,12 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Down_Eat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 6;
-            game.myInky.Y = 27;
+            game.MyInky.X = 6;
+            game.MyInky.Y = 27;
 
-            game.myPacman.X = 6;
-            game.myPacman.Y = 29;
-            Direction AppleDirection = game.myInky.Move(game);
+            game.MyPacman.X = 6;
+            game.MyPacman.Y = 29;
+            Direction AppleDirection = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection, Direction.Up);
         }
@@ -73,12 +82,12 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Left_NotEat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 14;
-            game.myInky.Y = 12;
+            game.MyInky.X = 14;
+            game.MyInky.Y = 12;
 
-            game.myPacman.X = 12;
-            game.myPacman.Y = 12;
-            Direction AppleDirection = game.myInky.Move(game);
+            game.MyPacman.X = 12;
+            game.MyPacman.Y = 12;
+            Direction AppleDirection = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection, Direction.None); 
         }
@@ -88,13 +97,13 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Right_NotEat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 14;
-            game.myInky.Y = 12;
+            game.MyInky.X = 14;
+            game.MyInky.Y = 12;
 
-            game.myPacman.X = 16;
-            game.myPacman.Y = 12;
+            game.MyPacman.X = 16;
+            game.MyPacman.Y = 12;
 
-            Direction AppleDirection1 = game.myInky.Move(game);
+            Direction AppleDirection1 = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection1, Direction.None);
         }
@@ -104,13 +113,13 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Up_NotEat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 14;
-            game.myInky.Y = 12;
+            game.MyInky.X = 14;
+            game.MyInky.Y = 12;
 
-            game.myPacman.X = 14;
-            game.myPacman.Y = 11;
+            game.MyPacman.X = 14;
+            game.MyPacman.Y = 11;
 
-            Direction AppleDirection1 = game.myInky.Move(game);
+            Direction AppleDirection1 = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection1, Direction.None);
 
@@ -121,13 +130,13 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Down_NotEat()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 14;
-            game.myInky.Y = 11;
+            game.MyInky.X = 14;
+            game.MyInky.Y = 11;
 
-            game.myPacman.X = 14;
-            game.myPacman.Y = 12;
+            game.MyPacman.X = 14;
+            game.MyPacman.Y = 12;
 
-            Direction AppleDirection1 = game.myInky.Move(game);
+            Direction AppleDirection1 = game.MyInky.Move(game);
 
             Assert.AreEqual(AppleDirection1, Direction.None);
 
@@ -138,13 +147,14 @@ namespace Pacman.GameEngine.Test.AbstractClasses
         public void MoveOneStep_Default()
         {
             Apples currentapples = game.Map.GetApples();
-            game.myInky.X = 14;
-            game.myInky.Y = 12;
+            game.MyInky.X = 14;
+            game.MyInky.Y = 12;
 
-            Direction AppleDirection = game.myInky.MoveOneStep(game, Direction.None);
+            Direction AppleDirection = game.MyInky.MoveOneStep(game, Direction.None);
 
             Assert.AreEqual(AppleDirection, Direction.None);
         }
+
 
          [TestMethod]
          public void ChooseTarget()
@@ -160,22 +170,27 @@ namespace Pacman.GameEngine.Test.AbstractClasses
          [TestMethod]
          public void Move()
          {
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
+             game.MyPacman.X = 13;
+             game.MyPacman.Y = 26;
+             game.MyInky.X = 13;
+             game.MyInky.Y = 12;
+  
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
 
-             Assert.AreEqual(game.myInky.Move(game), Direction.Right);
-             Assert.AreEqual(game.myInky.Move(game), Direction.Up);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.Right);
+             Assert.AreEqual(game.MyInky.Move(game), Direction.Up);
 
-             game.myInky.X = 10;
-             game.myInky.Y = 10;
-             game.myPacman.X = 10;
-             game.myPacman.Y = 10;
-             Assert.AreEqual(game.myInky.Move(game), Direction.None);
+             game.MyInky.X = 10;
+             game.MyInky.Y = 10;
+             game.MyPacman.X = 10;
+             game.MyPacman.Y = 10;
+             Assert.AreEqual(game.MyInky.Move(game), Direction.None);
          }
  
     }

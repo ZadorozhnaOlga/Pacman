@@ -55,7 +55,7 @@
     <Compile Include="GameMap\ApplesTest.cs" />
     <Compile Include="GameMap\MapTest.cs" />
     <Compile Include="MovableObjects\PacmanTest.cs" />
-    <Compile Include="GameTest.cs" />
+    <Compile Include="Game\GameTest.cs" />
     <Compile Include="MovableObjects\PinkyTest.cs" />
     <Compile Include="MovableObjects\InkyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

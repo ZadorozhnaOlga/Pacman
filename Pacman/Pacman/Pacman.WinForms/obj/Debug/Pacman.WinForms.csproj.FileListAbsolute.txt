@@ -1,16 +1,7 @@
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.exe.config
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.exe
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.pdb
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.csprojResolveAssemblyReference.cache
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.Properties.Resources.resources
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.csproj.GenerateResource.Cache
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.exe
-D:\visual_studio\IT Lab\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.pdb
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.exe.config
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.exe
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.pdb
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.csprojResolveAssemblyReference.cache
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.Properties.Resources.resources
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.csproj.GenerateResource.Cache
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.exe
-D:\visual_studio\IT Lab\Pacman2\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.pdb
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.exe.config
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.exe
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\bin\Debug\Pacman.WinForms.pdb
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.Properties.Resources.resources
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.csproj.GenerateResource.Cache
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.exe
+D:\visual_studio\Pacman-master_Igor\Pacman-master\Pacman\Pacman.WinForms\obj\Debug\Pacman.WinForms.pdb

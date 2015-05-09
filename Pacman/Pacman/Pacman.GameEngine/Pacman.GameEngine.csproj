@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
+    <Compile Include="Game\Enums.cs" />
+    <Compile Include="Game\Game.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="AbstractClasses\Player.cs" />
     <Compile Include="GameMap\Apples.cs" />

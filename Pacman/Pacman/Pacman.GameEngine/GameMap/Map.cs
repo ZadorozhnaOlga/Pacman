@@ -16,10 +16,10 @@ namespace Pacman.GameEngine
         #endregion
 
         #region Constructor
-        public Map(int[,] array)
+        public Map(int[,] array, int pacmanX, int pacmanY)
         {
             this.MyMap = array;
-            this._apples = new Apples(array);
+            this._apples = new Apples(array, pacmanX, pacmanY);
         }
 
         #endregion
@@ -29,57 +29,49 @@ namespace Pacman.GameEngine
         {
             return this._apples;
         }
-
-        
+    
         public int[,] FindPaths(Game game, int targetX, int targetY)
         {
             int[,] array = game.Map.MyMap;
-            int Width = array.GetLength(0);
-            int Heigth = array.GetLength(1);
-            int[,] cMap = new int[Width, Heigth];
+            int width = array.GetLength(0);
+            int heigth = array.GetLength(1);
+            int[,] pathToTarget = new int[width, heigth];
             int x, y, step = 0;
 
-            for (y = 0; y < Width; y++)
+            for (y = 0; y < width; y++)
             {
-                for (x = 0; x < Heigth; x++)
+                for (x = 0; x < heigth; x++)
                 {
-                    if (array[y, x] == 1)
-                    {
-                        cMap[y, x] = -2;
-                    }
-                    else
-                    {
-                        cMap[y, x] = -1;
-                    }
+                    pathToTarget[y, x] = (array[y, x] == 1) ? -2 : -1;
                 }
             }
 
-            cMap[targetY, targetX] = 0;
+            pathToTarget[targetY, targetX] = 0;
 
-            while (step < Width * Heigth)
+            while (step < width * heigth)
             {
-                for (y = 0; y < Heigth; y++)
+                for (y = 0; y < heigth; y++)
                 {
-                    for (x = 0; x < Width; x++)
+                    for (x = 0; x < width; x++)
                     {
-                        if (cMap[x, y] == step)
+                        if (pathToTarget[x, y] == step)
                         {
-                            if ((y - 1 >= 0 && x-1>=0 && cMap[x - 1, y] != -2 && cMap[x - 1, y] == -1))
+                            if ((y - 1 >= 0 && x-1>=0 && pathToTarget[x - 1, y] != -2 && pathToTarget[x - 1, y] == -1))
                             {
-                                cMap[x - 1, y] = step + 1;
+                                pathToTarget[x - 1, y] = step + 1;
                             }
-                            if ((x - 1 >= 0 && y-1>=0 && cMap[x, y - 1] != -2 && cMap[x, y - 1] == -1))
+                            if ((x - 1 >= 0 && y-1>=0 && pathToTarget[x, y - 1] != -2 && pathToTarget[x, y - 1] == -1))
                             {
-                                cMap[x, y - 1] = step + 1;
+                                pathToTarget[x, y - 1] = step + 1;
                             }
-                            if ((y + 1 < Heigth && x + 1 < Width && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1))
+                            if ((y + 1 < heigth && x + 1 < width && pathToTarget[x + 1, y] != -2 && pathToTarget[x + 1, y] == -1))
                             {
-                                cMap[x + 1, y] = step + 1;
+                                pathToTarget[x + 1, y] = step + 1;
                             }
 
-                            if ((x + 1 < Width && y + 1 < Heigth && cMap[x, y + 1] != -2 && cMap[x, y + 1] == -1))
+                            if ((x + 1 < width && y + 1 < heigth && pathToTarget[x, y + 1] != -2 && pathToTarget[x, y + 1] == -1))
                             {
-                                cMap[x, y + 1] = step + 1;
+                                pathToTarget[x, y + 1] = step + 1;
                             }
                         }
                     }
@@ -88,7 +80,7 @@ namespace Pacman.GameEngine
                 step++;
             }
 
-            return cMap;
+            return pathToTarget;
         }
 
         #endregion

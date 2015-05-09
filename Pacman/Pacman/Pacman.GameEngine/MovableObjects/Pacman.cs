@@ -12,13 +12,14 @@ namespace Pacman.GameEngine
 
     public class Pacman : Player
     {
-        #region Properties&Fields
+        #region Properties & Fields
         public int Lives { get; set; }
 
         #endregion
 
         #region Constructor
-        public Pacman(int x, int y) : base(x, y)
+        public Pacman(int x, int y) 
+            : base(x, y)
         {
             this.Lives = 3;
         }
@@ -29,8 +30,6 @@ namespace Pacman.GameEngine
 
         public bool Move(Game game, Direction direction)
         {
-            Apples currentApples = game.Map.GetApples();
-
             this.Direction = direction;
 
             switch (direction)
@@ -38,25 +37,25 @@ namespace Pacman.GameEngine
 
                 case Direction.Left:
                     {
-                        game.myPacman.Direction = Direction.Left;
+                        game.MyPacman.Direction = Direction.Left;
                         return CheckedMove(game, MoveAndEatLeft);
                     }
 
                 case Direction.Right:
                     {
-                        game.myPacman.Direction = Direction.Right;
+                        game.MyPacman.Direction = Direction.Right;
                         return CheckedMove(game, MoveAndEatRight);
                     }
 
                 case Direction.Up:
                     {
-                        game.myPacman.Direction = Direction.Up;
+                        game.MyPacman.Direction = Direction.Up;
                         return CheckedMove(game, MoveAndEatUp);
                     }
 
                 case Direction.Down:
                     {
-                        game.myPacman.Direction = Direction.Down;
+                        game.MyPacman.Direction = Direction.Down;
                         return CheckedMove(game, MoveAndEatDown);
                     }
 
@@ -67,72 +66,46 @@ namespace Pacman.GameEngine
 #endregion
 
         #region Helpers
-        private void EatApples(ref Apples app)
+        private bool EatApples(Apples app)
         {
             if (app.Dots[this.Y, this.X])
             {
                 app.Dots[this.Y, this.X] = false;
-                Game.Scores += 1;   
-            }           
-        }
-        
-        private bool MoveAndEatLeft(Game game) 
-        {
-            Apples currentApples = game.Map.GetApples();
-            if (MoveLeft(game.Map.MyMap))
-            {
-                EatApples(ref currentApples);
+                Game.Scores += 1;
                 return true;
             }
-            else
-            {
-                return false;
-            } 
+            return false;
+        }
+
+        private bool MoveAndEatLeft(Game game)
+        {
+            return (MoveLeft(game.Map.MyMap)) ? EatApples(game.Map.GetApples()) : false;
         }
 
         private bool MoveAndEatRight(Game game)
         {
-            Apples currentApples = game.Map.GetApples();
-            if (MoveRight(game.Map.MyMap))
-            {
-                EatApples(ref currentApples);
-                return true;
-            }
-            else return false;
+            return (MoveRight(game.Map.MyMap)) ? EatApples(game.Map.GetApples()) : false;
         }
 
         private bool MoveAndEatUp(Game game)
         {
-            Apples currentApples = game.Map.GetApples();
-            if (MoveUp(game.Map.MyMap))
-            {
-                EatApples(ref currentApples);
-                return true;
-            }
-            else return false;
+            return (MoveUp(game.Map.MyMap)) ? EatApples(game.Map.GetApples()) : false;
         }
 
         private bool MoveAndEatDown(Game game)
         {
-            Apples currentApples = game.Map.GetApples();
-            if (MoveDown(game.Map.MyMap))
-            {
-                EatApples(ref currentApples);
-                return true;
-            }
-            else return false;
+            return (MoveDown(game.Map.MyMap)) ? EatApples(game.Map.GetApples()) : false;
         }
      
         private bool CheckedMove(Game game, Func<Game, bool> func)
         {
-            Apples currentApples = game.Map.GetApples();
             if (game.IfPacmanNotEated())
             {
                 return func(game);
             }
             else
             {
-                game.myPacman.EatApples(ref currentApples);
+                game.MyPacman.EatApples(game.Map.GetApples());
                 return false;
             }
         }

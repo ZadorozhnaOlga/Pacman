@@ -7,14 +7,6 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameEngine
 {
-    public enum Direction
-    {
-        Left = 0,
-        Right = 1,
-        Up = 2,
-        Down = 3,
-        None = 4
-    }
     public abstract class Player : IPlayer
     {
         #region Properties
@@ -34,11 +26,11 @@ namespace Pacman.GameEngine
 
         #region Methods
         
-        public bool MoveLeft(int [,] array)
+        public bool MoveLeft(int[,] array)
         {
             return Move(array, -1, 0, () =>
             {
-                X--;
+                this.X--;
             });
         }
 
@@ -46,7 +38,7 @@ namespace Pacman.GameEngine
         {
             return Move(array, 1, 0, () =>
             {
-                X++;
+                this.X++;
             });
         }
 
@@ -54,7 +46,7 @@ namespace Pacman.GameEngine
         {
             return Move(array, 0, -1, () =>
             {
-                Y--;
+                this.Y--;
             });
         }
 
@@ -62,7 +54,7 @@ namespace Pacman.GameEngine
         {
             return Move(array, 0, 1, () =>
             {
-                Y++;
+                this.Y++;
             });
         }
 
@@ -77,20 +69,12 @@ namespace Pacman.GameEngine
                 action();
                 return true;
             }
-
             return false;
         }
 
         public bool CheckPosition(int[,] array, int x, int y)
         {
-            if (array[Y + y, X + x] == 1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return (!(array[this.Y + y, this.X + x] == 1));     
         }
 
         #endregion
