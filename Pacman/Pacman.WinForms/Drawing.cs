@@ -97,7 +97,7 @@ namespace Pacman.WinForms
             DrawMap(game.Map.MyMap, sender, e);
             DrawApples(currentApples, sender, e);
             DrawInky(game.MyInky, sender, e);
-            DrawPinky(sender, e);
+            DrawPinky(game.MyPinky, sender, e);
             DrawPacman(game.MyPacman, sender, e);
             
             
@@ -119,14 +119,14 @@ namespace Pacman.WinForms
             e.Graphics.DrawImage(image, inky.X*23, inky.Y*23, 22, 22);
         }
 
-        private static void DrawPinky(object sender, PaintEventArgs e)
+        private static void DrawPinky(Pinky pinky, object sender, PaintEventArgs e)
         {
             var imagesPath = ConfigurationManager.AppSettings["ImagesPathPinky"];
             var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             string path = string.Concat(projectPath, imagesPath);
             Image image = Image.FromFile(path);
 
-            e.Graphics.DrawImage(image, 14 * 23, 12 * 23, 22, 22);
+            e.Graphics.DrawImage(image, pinky.X * 23, pinky.Y * 23, 22, 22);
         }
 
         public static void DrawPacman(Pacman.GameEngine.Pacman pacman, object sender, PaintEventArgs e)

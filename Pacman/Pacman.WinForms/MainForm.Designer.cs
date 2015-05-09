@@ -3,6 +3,7 @@ using Pacman.GameEngine;
 using System.Configuration;
 using System.IO;
 using System.Timers;
+using System;
 
 namespace Pacman.WinForms
 {
@@ -29,7 +30,7 @@ namespace Pacman.WinForms
 
         #region Windows Form Designer generated code
 
-
+       
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -44,12 +45,14 @@ namespace Pacman.WinForms
             this.lblScores = new System.Windows.Forms.Label();
             this.lblGetScores = new System.Windows.Forms.Label();
             this.inkyTimer = new System.Windows.Forms.Timer(this.components);
+            this.pinkyTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.SuspendLayout();
             // 
             // eventLog1
             // 
             this.eventLog1.SynchronizingObject = this;
+            this.eventLog1.EntryWritten += new System.Diagnostics.EntryWrittenEventHandler(this.eventLog1_EntryWritten);
             // 
             // lblScores
             // 
@@ -68,14 +71,19 @@ namespace Pacman.WinForms
             this.lblGetScores.Location = new System.Drawing.Point(799, 46);
             this.lblGetScores.Name = "lblGetScores";
             this.lblGetScores.Size = new System.Drawing.Size(60, 23);
-            lblGetScores.Text = Game.Scores.ToString();
             this.lblGetScores.TabIndex = 1;
+            this.lblGetScores.Text = "0";
             // 
-
-            //
-
+            // inkyTimer
+            // 
             this.inkyTimer.Interval = 500;
             this.inkyTimer.Tick += new System.EventHandler(this.inkyTimer_Tick);
+            // 
+            // pinkyTimer
+            // 
+            this.pinkyTimer.Interval = 250;
+            this.pinkyTimer.Tick += new System.EventHandler(this.pinkyTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -90,14 +98,14 @@ namespace Pacman.WinForms
             this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.GameLoad);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            pinkyTimer.Start();
+            inkyTimer.Start();
 
-            this.Move += new System.EventHandler(this.MainForm_MoveInky);
+            this.Move += new System.EventHandler(this.PinkyStep);
+            this.Move += new System.EventHandler(this.InkyStep);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             this.ResumeLayout(false);
 
-
-
-           
         }
 
 
@@ -112,8 +120,9 @@ namespace Pacman.WinForms
         private Label lblGetScores;
         private Label lblScores;
         private System.Windows.Forms.Timer inkyTimer;
-        
-        
+        private System.Windows.Forms.Timer pinkyTimer;
+
+      
     }
 }
 

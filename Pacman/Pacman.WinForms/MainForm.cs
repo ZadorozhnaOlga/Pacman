@@ -15,9 +15,22 @@ namespace Pacman.WinForms
 {
     public partial class MainForm : Form
     {
-        //public Form gameForm;
-        private Game _game;
+       
+        private static Game _game;
         private static object _sync = new object();
+
+       
+
+        static MainForm() 
+        {
+            var mapPath = ConfigurationManager.AppSettings["Path"];
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string path = string.Concat(projectPath, mapPath);
+            _game = new Game(28, 32, Game.LoadMap(path, 28, 32), 13, 26, 13, 12, 14, 12);
+            
+        }
+
+      
 
         public MainForm()
         {
@@ -39,37 +52,34 @@ namespace Pacman.WinForms
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            var mapPath = ConfigurationManager.AppSettings["Path"];
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            string path = string.Concat(projectPath, mapPath);
-            _game = new Game(28, 32, Game.LoadMap(path, 28, 32), 13, 26, 13, 12, 14, 12);
-            Paint += Draw;
             
+            Paint += Draw;
+       
             
         }
 
-        private void GameProcess(object sender, EventArgs e) 
-        {
-            Paint += Draw;
-        }
+
 
         private void Draw(object sender, PaintEventArgs e)
         {
             Drawing.DrawGame(_game, sender, e);
-            //Drawing.DrawInkyMove(_game, sender, e);
+           
         }
 
 
-        public void MainForm_MoveInky(object sender, EventArgs e)
+        public void InkyStep(object sender, EventArgs e)
         {
-            //System.Windows.Forms.Timer inkyTimer = new System.Windows.Forms.Timer();
-            inkyTimer.Interval = 500;
             inkyTimer.Tick += InkyMove; 
-            inkyTimer.Start();
-            Refresh();
+            //inkyTimer.Start();
+            //Refresh();
         }
 
-
+        public void PinkyStep(object sender, EventArgs e)
+        {
+            pinkyTimer.Tick += PinkyMove;
+            
+           // Refresh();
+        }
 
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -125,50 +135,43 @@ namespace Pacman.WinForms
                     }
                     break;
 
-                //case Keys.Space: _game.OnPauseGame();
-                //    break;
-                //case Keys.R: OnRestart(this, EventArgs.Empty);
-                //    break;
+       
             }
 
         }
 
         
        
-            
-
-            //System.Windows.Forms.Timer pinkyTimer = new System.Windows.Forms.Timer();
-            //inkyTimer.Interval = 400;
-            //pinkyTimer.Elapsed += PinkyMove;
-            //pinkyTimer.Start();
-        
-
+       
 
         private void InkyMove(Object source, EventArgs e)
         {
-            //lock (_sync)
-            {
-
+           
+   
                 Direction InkyEatApple = _game.MyInky.Move(_game);
-                
-                //Draw.DrawOneApple(game.myInky, InkyEatApple);
-            }
+    
         }
 
-        private void PinkyMove(Game game, Object source, EventArgs e)
+        private void PinkyMove(Object source, EventArgs e)
         {
-            //lock (_sync)
-            {
+    
+                Direction PinkyEatApple = _game.MyPinky.Move(_game);
 
-                Direction PinkyEatApple = game.MyPinky.Move(game);
-
-                //Draw.DrawOneApple(game.myPinky, PinkyEatApple);
-            }
         }
 
         private void inkyTimer_Tick(object sender, EventArgs e)
         {
             Refresh();
+        }
+
+        private void pinkyTimer_Tick(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void eventLog1_EntryWritten(object sender, System.Diagnostics.EntryWrittenEventArgs e)
+        {
+
         }
         
 
