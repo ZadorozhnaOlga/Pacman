@@ -96,12 +96,14 @@ namespace Pacman.WinForms
             Apples currentApples = game.Map.GetApples();
             DrawMap(game.Map.MyMap, sender, e);
             DrawApples(currentApples, sender, e);
+            
+            DrawPacman(game.MyPacman, sender, e);
             DrawInky(game.MyInky, sender, e);
             DrawPinky(game.MyPinky, sender, e);
-            DrawPacman(game.MyPacman, sender, e);
-            
             
         }
+
+        
 
         //private static void EraseApple(Game game, object sender, PaintEventArgs e)
         //{
@@ -111,9 +113,7 @@ namespace Pacman.WinForms
 
         private static void DrawInky(Inky inky, object sender, PaintEventArgs e)
         {
-            var imagesPath = ConfigurationManager.AppSettings["ImagesPathInky"];
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            string path = string.Concat(projectPath, imagesPath);
+            string path = GetPath("ImagesPathInky");
             Image image = Image.FromFile(path);
             
             e.Graphics.DrawImage(image, inky.X*23, inky.Y*23, 22, 22);
@@ -121,9 +121,7 @@ namespace Pacman.WinForms
 
         private static void DrawPinky(Pinky pinky, object sender, PaintEventArgs e)
         {
-            var imagesPath = ConfigurationManager.AppSettings["ImagesPathPinky"];
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            string path = string.Concat(projectPath, imagesPath);
+            string path = GetPath("ImagesPathPinky");
             Image image = Image.FromFile(path);
 
             e.Graphics.DrawImage(image, pinky.X * 23, pinky.Y * 23, 22, 22);
@@ -131,9 +129,8 @@ namespace Pacman.WinForms
 
         public static void DrawPacman(Pacman.GameEngine.Pacman pacman, object sender, PaintEventArgs e)
         {
-            var imagesPath = ConfigurationManager.AppSettings["ImagesPathPacman"];
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            string path = string.Concat(projectPath, imagesPath);
+           
+            string path = GetPath("ImagesPathPacman");
             Image image = Image.FromFile(path);
 
             switch (pacman.Direction)
@@ -150,6 +147,24 @@ namespace Pacman.WinForms
         }
 
 
+        public static void DrawPicture(string str, int positionX, int positionY, int width, int height, object sender, PaintEventArgs e)
+        {
+
+            string path = GetPath(str);
+            Image image = Image.FromFile(path);
+            e.Graphics.DrawImage(image, positionX, positionY, width, height);
+        }
+
+
+       public static string GetPath(string str)
+       {
+            var imagesPath = ConfigurationManager.AppSettings[str];
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string path = string.Concat(projectPath, imagesPath);
+            return path;
+       }
+    
+  
 
     }
 }

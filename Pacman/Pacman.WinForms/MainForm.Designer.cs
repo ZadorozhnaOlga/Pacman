@@ -46,6 +46,8 @@ namespace Pacman.WinForms
             this.lblGetScores = new System.Windows.Forms.Label();
             this.inkyTimer = new System.Windows.Forms.Timer(this.components);
             this.pinkyTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblLives = new System.Windows.Forms.Label();
+            this.lblGetLives = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,13 +78,34 @@ namespace Pacman.WinForms
             // 
             // inkyTimer
             // 
+            this.inkyTimer.Enabled = true;
             this.inkyTimer.Interval = 500;
             this.inkyTimer.Tick += new System.EventHandler(this.inkyTimer_Tick);
             // 
             // pinkyTimer
             // 
+            this.pinkyTimer.Enabled = true;
             this.pinkyTimer.Interval = 250;
             this.pinkyTimer.Tick += new System.EventHandler(this.pinkyTimer_Tick);
+            // 
+            // lblLives
+            // 
+            this.lblLives.Font = new System.Drawing.Font("Jokerman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLives.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblLives.Location = new System.Drawing.Point(693, 106);
+            this.lblLives.Name = "lblLives";
+            this.lblLives.Size = new System.Drawing.Size(100, 23);
+            this.lblLives.TabIndex = 2;
+            this.lblLives.Text = "LIVES :";
+            // 
+            // lblGetLives
+            // 
+            this.lblGetLives.Font = new System.Drawing.Font("Jokerman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGetLives.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblGetLives.Location = new System.Drawing.Point(799, 106);
+            this.lblGetLives.Name = "lblGetLives";
+            this.lblGetLives.Size = new System.Drawing.Size(73, 23);
+            this.lblGetLives.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -90,6 +113,8 @@ namespace Pacman.WinForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(884, 732);
+            this.Controls.Add(this.lblGetLives);
+            this.Controls.Add(this.lblLives);
             this.Controls.Add(this.lblGetScores);
             this.Controls.Add(this.lblScores);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -98,11 +123,13 @@ namespace Pacman.WinForms
             this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.GameLoad);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
-            pinkyTimer.Start();
-            inkyTimer.Start();
+
+
 
             this.Move += new System.EventHandler(this.PinkyStep);
             this.Move += new System.EventHandler(this.InkyStep);
+
+
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             this.ResumeLayout(false);
 
@@ -121,6 +148,8 @@ namespace Pacman.WinForms
         private Label lblScores;
         private System.Windows.Forms.Timer inkyTimer;
         private System.Windows.Forms.Timer pinkyTimer;
+        private Label lblGetLives;
+        private Label lblLives;
 
       
     }

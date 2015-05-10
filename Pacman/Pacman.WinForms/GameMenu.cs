@@ -21,8 +21,11 @@ namespace Pacman.WinForms
 
         private void GameMenu_Load(object sender, EventArgs e)
         {
+           // Paint += DrawMenu;
 
         }
+
+
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -30,8 +33,19 @@ namespace Pacman.WinForms
             mainForm.Show();
         }
 
+
         
 
+        private void btnQuite_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnControls_Click(object sender, EventArgs e)
+        {
+            ControlsForm controlsForm = new ControlsForm();
+            controlsForm.Show();
+        }
         
     }
 }

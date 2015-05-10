@@ -63,6 +63,17 @@ namespace Pacman.GameEngine
         #endregion
 
 
+
+        public event EventHandler PacmanEated;
+        
+        public event EventHandler Pause;
+       // public event EventHandler PacmanDied;
+
+       
+
+        public event EventHandler<EventArgs> OnPacmanWin;
+
+
         #region Methods
 
         public void Start()
@@ -99,6 +110,7 @@ namespace Pacman.GameEngine
             if (hasNoMoreLives)
             {
                 _status = GameStatus.Completed;
+               // PacmanDied(this, EventArgs.Empty);
             }
             
             return hasNoMoreLives;    
@@ -110,9 +122,19 @@ namespace Pacman.GameEngine
         }
         
         public bool IfPacmanNotEated() 
-        {
-            return (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
-                !(MyPinky.X == MyPacman.X & MyPinky.Y == MyPacman.Y));
+        {           
+                var result = (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
+                    !(MyPinky.X == MyPacman.X & MyPinky.Y == MyPacman.Y));
+
+                if (!result && (PacmanEated != null))
+                {
+                    --MyPacman.Lives;
+                    PacmanEated(this, EventArgs.Empty);
+                }
+
+            
+
+                return result;
         }
 
         public static int[,] LoadMap(string path, int mapX, int mapY)

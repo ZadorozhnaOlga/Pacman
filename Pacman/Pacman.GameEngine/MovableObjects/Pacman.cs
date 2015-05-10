@@ -26,6 +26,8 @@ namespace Pacman.GameEngine
 
         #endregion
 
+        public event EventHandler PacmanEatApple;
+
         #region Methods
 
         public bool Move(Game game, Direction direction)
@@ -68,10 +70,11 @@ namespace Pacman.GameEngine
         #region Helpers
         private bool EatApples(Apples app)
         {
-            if (app.Dots[this.Y, this.X])
+            if (app.Dots[this.Y, this.X] && (PacmanEatApple != null))
             {
                 app.Dots[this.Y, this.X] = false;
                 Game.Scores += 1;
+                PacmanEatApple(this, EventArgs.Empty);
                 return true;
             }
             return false;
