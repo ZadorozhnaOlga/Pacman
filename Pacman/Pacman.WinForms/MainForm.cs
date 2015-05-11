@@ -41,10 +41,9 @@ namespace Pacman.WinForms
             string path = string.Concat(projectPath, mapPath);
             _game = new Game(28, 32, Game.LoadMap(path, 28, 32), 13, 26, 13, 12, 14, 12);
             Game.Scores = 0;
-            
+           
             InitializeComponent();
-            
-            
+           
         }
 
         public Game GetGame()
@@ -64,12 +63,13 @@ namespace Pacman.WinForms
             MaximizeBox = false;
             lblGetScores.Text = Game.Scores.ToString();
             lblGetLives.Text = _game.MyPacman.Lives.ToString();
-
+            Game.Scores = 0;
             Paint += Draw;
 
-
+            
             GameSubscribe();
 
+            
         }
 
         private void GameSubscribe()
@@ -80,7 +80,7 @@ namespace Pacman.WinForms
             inkyTimer.Start();
             
                 _game.PacmanEated += OnMessagePacmanEated;
-                _game.MyPacman.PacmanEatApple += OnPacmanEatApple;
+                _game.MyPacman.PacmanEatApple += OnPacmanWin;
                // _game.PacmanDied += OnMessagePacmanDied;
          
         }
@@ -89,15 +89,30 @@ namespace Pacman.WinForms
 
         private void GameUnsubscribe()
         {
+
+            
             inkyTimer.Stop();
             pinkyTimer.Stop();
             _game.PacmanEated -= OnMessagePacmanEated;
           
         }
 
-        
 
 
+
+        private void OnPacmanWin(object sender, EventArgs e)
+        {
+            if (Game.Scores == 325)
+                
+            {
+                GameUnsubscribe();
+               
+                if (MessageBox.Show("Congratulations! You Won!") == DialogResult.OK) 
+                {
+                    this.Close();
+                }
+            }
+        }
 
 
         private void OnPacmanEatApple(object sender, EventArgs e) 
@@ -183,17 +198,19 @@ namespace Pacman.WinForms
         }
 
 
-        public void InkyStep(object sender, EventArgs e)
-        {
-            inkyTimer.Tick += InkyMove; 
+        //public void InkyStep(object sender, EventArgs e)
+        //{
+        //    inkyTimer.Tick += InkyMove;
+        //    Refresh();
         
-        }
+        //}
 
-        public void PinkyStep(object sender, EventArgs e)
-        {
-            pinkyTimer.Tick += PinkyMove;
+        //public void PinkyStep(object sender, EventArgs e)
+        //{
+        //    pinkyTimer.Tick += PinkyMove;
+        //    Refresh();
     
-        }
+        //}
 
         private void GetResume() 
         {
@@ -296,11 +313,13 @@ namespace Pacman.WinForms
 
         private void inkyTimer_Tick(object sender, EventArgs e)
         {
+            //pinkyTimer.Tick += InkyMove;
             Refresh();
         }
 
         private void pinkyTimer_Tick(object sender, EventArgs e)
         {
+            //pinkyTimer.Tick += PinkyMove;
             Refresh();
         }
 

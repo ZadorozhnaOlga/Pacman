@@ -79,12 +79,13 @@
             this.btnRules.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnRules.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRules.Font = new System.Drawing.Font("Jokerman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRules.Location = new System.Drawing.Point(231, 224);
+            this.btnRules.Location = new System.Drawing.Point(231, 221);
             this.btnRules.Name = "btnRules";
             this.btnRules.Size = new System.Drawing.Size(185, 75);
             this.btnRules.TabIndex = 3;
             this.btnRules.Text = "RULES";
             this.btnRules.UseVisualStyleBackColor = false;
+            this.btnRules.Click += new System.EventHandler(this.btnRules_Click_1);
             // 
             // GameMenu
             // 

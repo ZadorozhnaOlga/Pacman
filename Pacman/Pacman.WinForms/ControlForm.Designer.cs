@@ -1,6 +1,6 @@
 ﻿namespace Pacman.WinForms
 {
-    partial class ControlsForm
+    partial class ControlForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlForm));
             this.lblLeft = new System.Windows.Forms.Label();
             this.btnLeft = new System.Windows.Forms.Button();
             this.lblExpainLeft = new System.Windows.Forms.Label();
@@ -165,7 +165,7 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Press SPACE to Pause the game";
             // 
-            // ControlsForm
+            // ControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -184,8 +184,9 @@
             this.Controls.Add(this.lblExpainLeft);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.lblLeft);
-            this.Name = "ControlsForm";
-            this.Text = "Controls";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ControlForm";
+            this.Text = "Control";
             this.ResumeLayout(false);
             this.PerformLayout();
 

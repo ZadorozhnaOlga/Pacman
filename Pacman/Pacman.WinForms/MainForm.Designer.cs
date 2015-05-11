@@ -125,14 +125,18 @@ namespace Pacman.WinForms
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
 
 
-
-            this.Move += new System.EventHandler(this.PinkyStep);
-            this.Move += new System.EventHandler(this.InkyStep);
+            pinkyTimer.Tick += PinkyMove;
+            inkyTimer.Tick += InkyMove;
+            inkyTimer.Start();
+            pinkyTimer.Start();
 
 
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             this.ResumeLayout(false);
 
+
+
+            
         }
 
 

@@ -31,6 +31,7 @@ namespace Pacman.WinForms
         {
             MainForm mainForm = new MainForm();
             mainForm.Show();
+            
         }
 
 
@@ -43,9 +44,22 @@ namespace Pacman.WinForms
 
         private void btnControls_Click(object sender, EventArgs e)
         {
-            ControlsForm controlsForm = new ControlsForm();
+            ControlForm controlsForm = new ControlForm();
             controlsForm.Show();
         }
-        
+
+        private void btnRules_Click(object sender, EventArgs e)
+        {
+            RulesForm rulesform = new RulesForm();
+            rulesform.ShowDialog();
+        }
+
+        private void btnRules_Click_1(object sender, EventArgs e)
+        {
+            RulesForm rulesform = new RulesForm();
+            rulesform.Show();
+        }
+
+       
     }
 }
