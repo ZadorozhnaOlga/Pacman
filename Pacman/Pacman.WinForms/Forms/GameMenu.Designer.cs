@@ -99,8 +99,10 @@
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "GameMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameMenu";
             this.Load += new System.EventHandler(this.GameMenu_Load);
             this.ResumeLayout(false);

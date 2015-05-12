@@ -48,7 +48,6 @@ namespace Pacman.WinForms
             this.pinkyTimer = new System.Windows.Forms.Timer(this.components);
             this.lblLives = new System.Windows.Forms.Label();
             this.lblGetLives = new System.Windows.Forms.Label();
-            this.btnPause = new NoSelectButton();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,37 +107,23 @@ namespace Pacman.WinForms
             this.lblGetLives.Size = new System.Drawing.Size(73, 23);
             this.lblGetLives.TabIndex = 3;
             // 
-            // btnPause
-            // 
-            this.btnPause.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPause.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnPause.Font = new System.Drawing.Font("Jokerman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPause.ForeColor = System.Drawing.Color.DarkOrange;
-            this.btnPause.Location = new System.Drawing.Point(698, 204);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(161, 46);
-            this.btnPause.TabIndex = 4;
-            this.btnPause.TabStop = false;
-            this.btnPause.Text = "PAUSE";
-            this.btnPause.UseVisualStyleBackColor = false;
-            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(884, 732);
-            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.lblGetLives);
             this.Controls.Add(this.lblLives);
             this.Controls.Add(this.lblGetScores);
             this.Controls.Add(this.lblScores);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pacman";
             this.TransparencyKey = System.Drawing.Color.White;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_Closed);
             this.Load += new System.EventHandler(this.GameLoad);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
@@ -162,7 +147,6 @@ namespace Pacman.WinForms
         private System.Windows.Forms.Timer pinkyTimer;
         private Label lblGetLives;
         private Label lblLives;
-        private NoSelectButton btnPause;
 
 
        //inkyTimer.Tick += InkyMove;

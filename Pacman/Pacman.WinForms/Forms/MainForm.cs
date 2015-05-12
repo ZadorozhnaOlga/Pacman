@@ -68,6 +68,11 @@ namespace Pacman.WinForms
             
         }
 
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            GameUnsubscribe();
+        }
+
         private void GameLoad(object sender, EventArgs e)
         {
             DoubleBuffered = true;
@@ -90,6 +95,7 @@ namespace Pacman.WinForms
 
         private void GameSubscribe()
         {
+            
 
             lblGetScores.Text = Game.Scores.ToString();
             pinkyTimer.Start();

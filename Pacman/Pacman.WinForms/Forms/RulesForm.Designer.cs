@@ -52,7 +52,9 @@
             this.ClientSize = new System.Drawing.Size(406, 245);
             this.Controls.Add(this.richTxtBoxRules);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RulesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rules";
             this.ResumeLayout(false);
 
