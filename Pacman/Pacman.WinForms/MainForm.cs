@@ -13,14 +13,24 @@ using Pacman.GameEngine;
 
 namespace Pacman.WinForms
 {
+    
+    
     public partial class MainForm : Form
     {
        
         private static Game _game;
         private static object _sync = new object();
 
-        
-       
+        class NoSelectButton : Button
+        {
+
+            public NoSelectButton()
+            {
+
+                SetStyle(ControlStyles.Selectable, false);
+
+            }
+        }
 
         //private MainForm() 
         //{
@@ -46,6 +56,8 @@ namespace Pacman.WinForms
            
         }
 
+
+
         public Game GetGame()
         {
             return _game;
@@ -63,24 +75,29 @@ namespace Pacman.WinForms
             MaximizeBox = false;
             lblGetScores.Text = Game.Scores.ToString();
             lblGetLives.Text = _game.MyPacman.Lives.ToString();
-            Game.Scores = 0;
+            //Game.Scores = 0;
             Paint += Draw;
 
-            
+            inkyTimer.Tick += InkyMove;
+            pinkyTimer.Tick += PinkyMove;
+
             GameSubscribe();
 
             
         }
 
+       
+
         private void GameSubscribe()
         {
 
-
+            lblGetScores.Text = Game.Scores.ToString();
             pinkyTimer.Start();
             inkyTimer.Start();
             
                 _game.PacmanEated += OnMessagePacmanEated;
-                _game.MyPacman.PacmanEatApple += OnPacmanWin;
+                _game.PacmanWin += OnPacmanWin;
+               // _game.PacmanEatApple += OnPacmanEatApple;
                // _game.PacmanDied += OnMessagePacmanDied;
          
         }
@@ -118,6 +135,7 @@ namespace Pacman.WinForms
         private void OnPacmanEatApple(object sender, EventArgs e) 
         {
             lblGetScores.Text = Game.Scores.ToString();
+            Refresh();
         }
 
         private void OnMessagePacmanEated(object sender, EventArgs e)
@@ -221,7 +239,7 @@ namespace Pacman.WinForms
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            this.SetStyle(ControlStyles.Selectable, true);
             switch (e.KeyData)
             {
                 case Keys.Up:
@@ -230,7 +248,12 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 0, -1) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Up;
-                            _game.MyPacman.Move(_game, _game.MyPacman.Direction);
+
+                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
+                            {
+                                lblGetScores.Text = Game.Scores.ToString();
+                            };
+                            
                             
                             Refresh();
                         }
@@ -241,7 +264,13 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 0, 1) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Down;
-                            _game.MyPacman.Move(_game, _game.MyPacman.Direction);
+                            
+
+                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
+                            {
+                                lblGetScores.Text = Game.Scores.ToString();
+                            }
+                            
                             
                             Refresh();
                         }
@@ -252,7 +281,11 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, -1, 0) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Left;
-                            _game.MyPacman.Move(_game, _game.MyPacman.Direction);
+                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
+                                {
+                                lblGetScores.Text = Game.Scores.ToString();
+                            }
+                            
                             
                             Refresh();
                         }
@@ -264,7 +297,11 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 1, 0) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Right;
-                            _game.MyPacman.Move(_game, _game.MyPacman.Direction);
+                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
+                            {
+                                lblGetScores.Text = Game.Scores.ToString();
+                            }
+                            
                            
 
                            
@@ -288,7 +325,11 @@ namespace Pacman.WinForms
                         }
                     }
                     break;
+
+
             }
+
+            
 
         }
 
@@ -319,14 +360,81 @@ namespace Pacman.WinForms
 
         private void pinkyTimer_Tick(object sender, EventArgs e)
         {
-            //pinkyTimer.Tick += PinkyMove;
+           //pinkyTimer.Tick += PinkyMove;
             Refresh();
+        }
+
+        private void btnPauseGame_Click(object sender, EventArgs e)
+        {
+            GameUnsubscribe();
+            DialogResult result;
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+            result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+
+            if (result == DialogResult.OK)
+            {
+                GameSubscribe();
+
+            }
+          
         }
 
         private void eventLog1_EntryWritten(object sender, System.Diagnostics.EntryWrittenEventArgs e)
         {
 
         }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            GameUnsubscribe();
+            DialogResult result;
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+            result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+
+            if (result == DialogResult.OK)
+            {
+                GameSubscribe();
+
+            }
+
+            lblScores.Focus();
+        }
+
+       
+
+        
+
+        //private void btnPause_Click(object sender, EventArgs e)
+        //{
+        //    GameUnsubscribe();
+        //    DialogResult result;
+        //    MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+        //    result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+
+        //    if (result == DialogResult.OK)
+        //    {
+        //        GameSubscribe();
+
+        //    }
+        //}
+
+        //private void btnPause_Click_1(object sender, EventArgs e)
+        //{
+        //    GameUnsubscribe();
+        //    DialogResult result;
+        //    MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+        //    result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+
+        //    if (result == DialogResult.OK)
+        //    {
+        //        GameSubscribe();
+
+        //    }
+        //}
         
 
     }

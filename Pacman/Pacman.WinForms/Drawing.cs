@@ -101,6 +101,7 @@ namespace Pacman.WinForms
             DrawInky(game.MyInky, sender, e);
             DrawPinky(game.MyPinky, sender, e);
             
+            
         }
 
         

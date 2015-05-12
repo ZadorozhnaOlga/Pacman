@@ -53,6 +53,8 @@ namespace Pacman.ConsoleUI
         static void Main(string[] args)
         {
 
+
+            //_game.PacmanEatApple += WriteScores;
             Console.CursorVisible = false;
             WriteMessage(35, 0, "Press Enter to start the game");
 
@@ -301,6 +303,15 @@ namespace Pacman.ConsoleUI
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(message);
+            }
+        }
+        private static void WriteScores(object sender, EventArgs e)
+        {
+            lock (_sync)
+            {
+                Console.SetCursorPosition(35, 0);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(Game.Scores);
             }
         }
 

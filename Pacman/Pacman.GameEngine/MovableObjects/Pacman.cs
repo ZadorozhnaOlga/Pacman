@@ -68,15 +68,26 @@ namespace Pacman.GameEngine
 #endregion
 
         #region Helpers
-        private bool EatApples(Apples app)
+        public bool EatApples(Apples app)
         {
-            if (app.Dots[this.Y, this.X] && (PacmanEatApple != null))
+            if (app.Dots[this.Y, this.X])
             {
+                //if ((PacmanEatApple != null))
+                {
+                   // PacmanEatApple(this, EventArgs.Empty);
+                    Game.Scores += 1;
+                }
                 app.Dots[this.Y, this.X] = false;
-                Game.Scores += 1;
-                PacmanEatApple(this, EventArgs.Empty);
+                //Game.Scores += 1;
+                //Game.Scores += 1;
+
+                
+
                 return true;
+
+
             }
+            
             return false;
         }
 

@@ -69,9 +69,9 @@ namespace Pacman.GameEngine
         public event EventHandler Pause;
        // public event EventHandler PacmanDied;
 
-       
+        public event EventHandler PacmanEatApple;
 
-        public event EventHandler<EventArgs> OnPacmanWin;
+        public event EventHandler<EventArgs> PacmanWin;
 
 
         #region Methods
