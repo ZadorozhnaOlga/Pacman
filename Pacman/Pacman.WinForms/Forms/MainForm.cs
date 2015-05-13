@@ -21,14 +21,19 @@ namespace Pacman.WinForms
         private static Game _game;
         private static object _sync = new object();
 
-        class NoSelectButton : Button
+        class ButtonWithoutFocus : Button
         {
 
-            public NoSelectButton()
+            public ButtonWithoutFocus()
             {
 
                 SetStyle(ControlStyles.Selectable, false);
 
+            }
+
+            public void DeactivateFocus(object sender, EventArgs e)
+            {
+                SetStyle(ControlStyles.Selectable, false);
             }
         }
 
@@ -96,7 +101,7 @@ namespace Pacman.WinForms
         private void GameSubscribe()
         {
             
-
+            
             lblGetScores.Text = Game.Scores.ToString();
             pinkyTimer.Start();
             inkyTimer.Start();

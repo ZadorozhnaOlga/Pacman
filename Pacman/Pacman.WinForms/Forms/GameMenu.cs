@@ -34,12 +34,30 @@ namespace Pacman.WinForms
             
         }
 
+        private void btnStart_MouseEnter(object sender, EventArgs e)
+        {
+            btnStart.BackColor = Color.Yellow;
+        }
 
+        private void btnStart_MouseLeave(object sender, EventArgs e)
+        {
+            btnStart.BackColor = Color.DarkOrange;
+        }
         
 
-        private void btnQuite_Click(object sender, EventArgs e)
+        private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnQuit_MouseEnter(object sender, EventArgs e)
+        {
+            btnQuit.BackColor = Color.Yellow;
+        }
+
+        private void btnQuit_MouseLeave(object sender, EventArgs e)
+        {
+            btnQuit.BackColor = Color.DarkOrange;
         }
 
         private void btnControls_Click(object sender, EventArgs e)
@@ -48,16 +66,31 @@ namespace Pacman.WinForms
             controlsForm.ShowDialog();
         }
 
+        private void btnControl_MouseEnter(object sender, EventArgs e)
+        {
+            btnControl.BackColor = Color.Yellow;
+        }
+
+        private void btnControl_MouseLeave(object sender, EventArgs e)
+        {
+            btnControl.BackColor = Color.DarkOrange;
+        }
+
         private void btnRules_Click(object sender, EventArgs e)
         {
             RulesForm rulesform = new RulesForm();
             rulesform.ShowDialog();
         }
 
-        private void btnRules_Click_1(object sender, EventArgs e)
+
+        private void btnRules_MouseEnter(object sender, EventArgs e)
         {
-            RulesForm rulesform = new RulesForm();
-            rulesform.ShowDialog();
+            btnRules.BackColor = Color.Yellow;
+        }
+
+        private void btnRules_MouseLeave(object sender, EventArgs e)
+        {
+            btnRules.BackColor = Color.DarkOrange;
         }
 
        
