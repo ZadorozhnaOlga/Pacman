@@ -114,12 +114,19 @@ namespace Pacman.GameEngine.Test
             game.MyPinky.Y = 26;
             Assert.IsFalse(game.IfPacmanNotEated());
 
-            game.MyInky.Y = 26;
-            Assert.IsFalse(game.IfPacmanNotEated());          
+            
+            
 
-            game.MyInky.Y = 26;
-            Assert.IsFalse(game.IfPacmanNotEated());
+            //game.MyInky.Y = 26;
+            //Assert.IsFalse(game.IfPacmanNotEated());          
+
+            //game.MyInky.Y = 26;
+            //Assert.IsFalse(game.IfPacmanNotEated());
         }
+
+     
+
+        
 
     }
 }

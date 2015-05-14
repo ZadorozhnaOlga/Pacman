@@ -72,20 +72,9 @@ namespace Pacman.GameEngine
         {
             if (app.Dots[this.Y, this.X])
             {
-                //if ((PacmanEatApple != null))
-                {
-                   // PacmanEatApple(this, EventArgs.Empty);
-                    Game.Scores += 1;
-                }
+                Game.Scores += 1;
                 app.Dots[this.Y, this.X] = false;
-                //Game.Scores += 1;
-                //Game.Scores += 1;
-
-                
-
                 return true;
-
-
             }
             
             return false;

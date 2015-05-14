@@ -7,28 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
+using System.IO;
+
 
 namespace Pacman.WinForms
 {
     public partial class GameMenu : Form
     {
+        
+        SoundPlayer musicStart = new SoundPlayer(Properties.Resources.StartMenuMusic);
+            
         public GameMenu()
         {
             InitializeComponent();
+            
+                
+            
         }
 
        
 
         private void GameMenu_Load(object sender, EventArgs e)
         {
-           // Paint += DrawMenu;
-
+            musicStart.Play();
         }
 
 
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            musicStart.Stop();
             MainForm mainForm = new MainForm();
             mainForm.ShowDialog();
             
@@ -91,6 +100,21 @@ namespace Pacman.WinForms
         private void btnRules_MouseLeave(object sender, EventArgs e)
         {
             btnRules.BackColor = Color.DarkOrange;
+        }
+
+        private void PacmanStarMenuPlay()
+        {
+            SoundPlayer musicStart = new SoundPlayer(@"D:\visual_studio\Pacman_branch\Pacman\Pacman\Pacman.WinForms\Sounds\StartMenu.wav");
+            
+                musicStart.Play();
+            
+        }
+
+        private void MusicStop()
+        {
+            
+            musicStart.Play();
+
         }
 
        

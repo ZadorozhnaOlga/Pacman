@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pacman.WinForms.Properties
-{
-
-
+namespace Pacman.WinForms.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,49 +22,198 @@ namespace Pacman.WinForms.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Pacman.WinForms.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Down {
+            get {
+                object obj = ResourceManager.GetObject("Down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Inky {
+            get {
+                object obj = ResourceManager.GetObject("Inky", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Left {
+            get {
+                object obj = ResourceManager.GetObject("Left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pacman {
+            get {
+                object obj = ResourceManager.GetObject("Pacman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PacmanDown {
+            get {
+                object obj = ResourceManager.GetObject("PacmanDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PacmanEatApple {
+            get {
+                return ResourceManager.GetStream("PacmanEatApple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PacmanEated {
+            get {
+                return ResourceManager.GetStream("PacmanEated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pacmanIcon {
+            get {
+                object obj = ResourceManager.GetObject("pacmanIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PacmanLeft {
+            get {
+                object obj = ResourceManager.GetObject("PacmanLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PacmanRight {
+            get {
+                object obj = ResourceManager.GetObject("PacmanRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PacmanUp {
+            get {
+                object obj = ResourceManager.GetObject("PacmanUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pinky {
+            get {
+                object obj = ResourceManager.GetObject("Pinky", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Right {
+            get {
+                object obj = ResourceManager.GetObject("Right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartMenu {
+            get {
+                object obj = ResourceManager.GetObject("StartMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream StartMenuMusic {
+            get {
+                return ResourceManager.GetStream("StartMenuMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Up {
+            get {
+                object obj = ResourceManager.GetObject("Up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

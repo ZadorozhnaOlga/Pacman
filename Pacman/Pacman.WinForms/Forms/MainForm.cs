@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
 using Pacman.GameEngine;
+using System.Media;
 
 namespace Pacman.WinForms
 {
@@ -19,33 +20,25 @@ namespace Pacman.WinForms
     {
        
         private static Game _game;
-        private static object _sync = new object();
+       
 
-        class ButtonWithoutFocus : Button
-        {
-
-            public ButtonWithoutFocus()
-            {
-
-                SetStyle(ControlStyles.Selectable, false);
-
-            }
-
-            public void DeactivateFocus(object sender, EventArgs e)
-            {
-                SetStyle(ControlStyles.Selectable, false);
-            }
-        }
-
-        //private MainForm() 
+        //class ButtonWithoutFocus : Button
         //{
-        //    var mapPath = ConfigurationManager.AppSettings["Path"];
-        //    var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-        //    string path = string.Concat(projectPath, mapPath);
-        //    _game = new Game(28, 32, Game.LoadMap(path, 28, 32), 13, 26, 13, 12, 14, 12);
 
-            
+        //    public ButtonWithoutFocus()
+        //    {
+
+        //        SetStyle(ControlStyles.Selectable, false);
+
+        //    }
+
+        //    public void DeactivateFocus(object sender, EventArgs e)
+        //    {
+        //        SetStyle(ControlStyles.Selectable, false);
+        //    }
         //}
+
+       
 
       
 
@@ -56,11 +49,11 @@ namespace Pacman.WinForms
             string path = string.Concat(projectPath, mapPath);
             _game = new Game(28, 32, Game.LoadMap(path, 28, 32), 13, 26, 13, 12, 14, 12);
             Game.Scores = 0;
-           
+            
+
             InitializeComponent();
            
         }
-
 
 
         public Game GetGame()
@@ -85,48 +78,49 @@ namespace Pacman.WinForms
             MaximizeBox = false;
             lblGetScores.Text = Game.Scores.ToString();
             lblGetLives.Text = _game.MyPacman.Lives.ToString();
-            //Game.Scores = 0;
+            
             Paint += Draw;
 
             inkyTimer.Tick += InkyMove;
             pinkyTimer.Tick += PinkyMove;
 
-            GameSubscribe();
-
-            
+            GameSubscribe();        
         }
 
        
 
         private void GameSubscribe()
         {
-            
-            
+            _game.PacmanEatApple += OnPacmanEatApple;
             lblGetScores.Text = Game.Scores.ToString();
             pinkyTimer.Start();
-            inkyTimer.Start();
-            
-                _game.PacmanEated += OnMessagePacmanEated;
-                _game.PacmanWin += OnPacmanWin;
-               // _game.PacmanEatApple += OnPacmanEatApple;
-               // _game.PacmanDied += OnMessagePacmanDied;
-         
+            inkyTimer.Start();           
+            _game.PacmanEated += OnMessagePacmanEated;
+            _game.PacmanWin += OnPacmanWin;
         }
 
         
 
         private void GameUnsubscribe()
-        {
-
-            
+        {  
             inkyTimer.Stop();
             pinkyTimer.Stop();
-            _game.PacmanEated -= OnMessagePacmanEated;
-          
+            _game.PacmanEated -= OnMessagePacmanEated;       
         }
 
+        private void CheckScores()
+        {
+            if (Game.Scores == 325)
+            {
+                GameUnsubscribe();
+                MessageBox.Show("Congratulations! You Won!");  //== DialogResult.OK)
+
+                //    this.Close();
 
 
+
+            }
+        }
 
         private void OnPacmanWin(object sender, EventArgs e)
         {
@@ -134,23 +128,27 @@ namespace Pacman.WinForms
                 
             {
                 GameUnsubscribe();
+                MessageBox.Show("Congratulations! You Won!");  //== DialogResult.OK)
+                
+                //    this.Close();
+                
+                
                
-                if (MessageBox.Show("Congratulations! You Won!") == DialogResult.OK) 
-                {
-                    this.Close();
-                }
             }
         }
 
 
         private void OnPacmanEatApple(object sender, EventArgs e) 
         {
+            
             lblGetScores.Text = Game.Scores.ToString();
+            
             Refresh();
         }
 
         private void OnMessagePacmanEated(object sender, EventArgs e)
         {
+            PacmanDied();
             GameUnsubscribe();
 
             lblGetLives.Text = _game.MyPacman.Lives.ToString();            
@@ -160,9 +158,6 @@ namespace Pacman.WinForms
 
             DialogResult result;
             
-
-            
-
             if (_game.MyPacman.Lives > 0) 
             {
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -173,7 +168,6 @@ namespace Pacman.WinForms
                 {
                     Game.Scores = 0;
                     this.Close();
-
                 }
 
                 if (result == DialogResult.Yes)
@@ -200,46 +194,28 @@ namespace Pacman.WinForms
                 if (result == DialogResult.No)
                 {
                     Game.Scores = 0;
+                    
                     this.Close();
-
                 }
 
                 if (result == DialogResult.Yes)
                 {
+                    //inkyTimer.Tick -= new EventHandler(InkyMove);
+                    //pinkyTimer.Tick -= new EventHandler(PinkyMove);
                     this.Close();
                     MainForm mainForm = new MainForm();
                     mainForm.Show();
                 }
-
-
-
-            }
-            
+            }            
         }
 
 
 
         private void Draw(object sender, PaintEventArgs e)
         {
-            Drawing.DrawGame(_game, sender, e);
-
-           
+            Drawing.DrawGame(_game, sender, e);       
         }
 
-
-        //public void InkyStep(object sender, EventArgs e)
-        //{
-        //    inkyTimer.Tick += InkyMove;
-        //    Refresh();
-        
-        //}
-
-        //public void PinkyStep(object sender, EventArgs e)
-        //{
-        //    pinkyTimer.Tick += PinkyMove;
-        //    Refresh();
-    
-        //}
 
         private void GetResume() 
         {
@@ -250,12 +226,12 @@ namespace Pacman.WinForms
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            
             this.SetStyle(ControlStyles.Selectable, true);
             switch (e.KeyData)
             {
                 case Keys.Up:
-                    {
-                        
+                    {  
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 0, -1) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Up;
@@ -263,13 +239,15 @@ namespace Pacman.WinForms
                             if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
                             {
                                 lblGetScores.Text = Game.Scores.ToString();
-                            };
-                            
-                            
+                                
+                                PacmanEatApple();
+                               
+                            }                         
                             Refresh();
                         }
                     }
                     break;
+
                 case Keys.Down:
                     {
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 0, 1) & _game.IfPacmanNotEated())
@@ -280,42 +258,45 @@ namespace Pacman.WinForms
                             if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
                             {
                                 lblGetScores.Text = Game.Scores.ToString();
-                            }
-                            
-                            
+                               
+                                PacmanEatApple();
+                              
+                            }                           
                             Refresh();
                         }
                     }
                     break;
+
                 case Keys.Left:
                     {
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, -1, 0) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Left;
                             if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
-                                {
+                            {
                                 lblGetScores.Text = Game.Scores.ToString();
-                            }
-                            
-                            
+                                
+                                PacmanEatApple();
+                              
+                            }                                                  
                             Refresh();
                         }
                     }
-
                     break;
+
                 case Keys.Right:
                     {
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 1, 0) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Right;
-                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
-                            {
-                                lblGetScores.Text = Game.Scores.ToString();
-                            }
                             
-                           
-
-                           
+                                if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
+                                {
+                                    lblGetScores.Text = Game.Scores.ToString();
+                                    
+                                    PacmanEatApple();
+                                    
+                                } 
                             Refresh();
                         }
                     }
@@ -332,16 +313,10 @@ namespace Pacman.WinForms
                         if (result == DialogResult.OK)
                         {
                             GameSubscribe();
-
                         }
                     }
                     break;
-
-
             }
-
-            
-
         }
 
         
@@ -350,28 +325,21 @@ namespace Pacman.WinForms
 
         private void InkyMove(Object source, EventArgs e)
         {
-           
-   
-                Direction InkyEatApple = _game.MyInky.Move(_game);
-    
+            Direction InkyEatApple = _game.MyInky.Move(_game);
         }
 
         private void PinkyMove(Object source, EventArgs e)
         {
-    
-                Direction PinkyEatApple = _game.MyPinky.Move(_game);
-
+            Direction PinkyEatApple = _game.MyPinky.Move(_game);
         }
 
         private void inkyTimer_Tick(object sender, EventArgs e)
         {
-            //pinkyTimer.Tick += InkyMove;
             Refresh();
         }
 
         private void pinkyTimer_Tick(object sender, EventArgs e)
         {
-           //pinkyTimer.Tick += PinkyMove;
             Refresh();
         }
 
@@ -407,10 +375,7 @@ namespace Pacman.WinForms
             if (result == DialogResult.OK)
             {
                 GameSubscribe();
-
             }
-
-            lblScores.Focus();
         }
 
        
@@ -432,20 +397,26 @@ namespace Pacman.WinForms
         //    }
         //}
 
-        //private void btnPause_Click_1(object sender, EventArgs e)
-        //{
-        //    GameUnsubscribe();
-        //    DialogResult result;
-        //    MessageBoxButtons buttons = MessageBoxButtons.OK;
+      
 
-        //    result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
 
-        //    if (result == DialogResult.OK)
-        //    {
-        //        GameSubscribe();
+        private void PacmanEatApple()
+        {
+            SoundPlayer eatApple = new SoundPlayer(Properties.Resources.PacmanEatApple);
+            
+                eatApple.Play();
+            
+        }
 
-        //    }
-        //}
+
+        private void PacmanDied()
+        {
+            SoundPlayer pacmanEated = new SoundPlayer(Properties.Resources.PacmanEated);
+
+            pacmanEated.Play();
+
+        }
+
         
 
     }

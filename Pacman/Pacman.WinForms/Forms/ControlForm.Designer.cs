@@ -64,7 +64,7 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLeft.BackgroundImage")));
+            this.btnLeft.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Left;
             this.btnLeft.Location = new System.Drawing.Point(122, 47);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 68);
@@ -91,7 +91,7 @@
             // 
             // button1
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Right;
             this.button1.Location = new System.Drawing.Point(122, 186);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 68);
@@ -119,7 +119,7 @@
             // 
             // button2
             // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Up;
             this.button2.Location = new System.Drawing.Point(122, 333);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 68);
@@ -147,7 +147,7 @@
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Down;
             this.button3.Location = new System.Drawing.Point(122, 462);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 68);
@@ -176,7 +176,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImage = global::Pacman.WinForms.Properties.Resources.PacmanLeft;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(638, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -186,7 +186,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImage = global::Pacman.WinForms.Properties.Resources.PacmanRight;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.Location = new System.Drawing.Point(638, 152);
             this.pictureBox2.Name = "pictureBox2";
@@ -196,7 +196,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImage = global::Pacman.WinForms.Properties.Resources.PacmanUp;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox3.Location = new System.Drawing.Point(638, 299);
             this.pictureBox3.Name = "pictureBox3";
@@ -206,7 +206,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.BackgroundImage = global::Pacman.WinForms.Properties.Resources.PacmanDown;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox4.Location = new System.Drawing.Point(638, 447);
             this.pictureBox4.Name = "pictureBox4";

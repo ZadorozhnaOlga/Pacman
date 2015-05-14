@@ -71,7 +71,7 @@ namespace Pacman.GameEngine
 
         public event EventHandler PacmanEatApple;
 
-        public event EventHandler<EventArgs> PacmanWin;
+        public event EventHandler PacmanWin;
 
 
         #region Methods
@@ -126,10 +126,11 @@ namespace Pacman.GameEngine
                 var result = (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
                     !(MyPinky.X == MyPacman.X & MyPinky.Y == MyPacman.Y));
 
+                
                 if (!result && (PacmanEated != null))
                 {
-                    --MyPacman.Lives;
-                    PacmanEated(this, EventArgs.Empty);
+                    MinusLive();
+                    PacmanEated(this, EventArgs.Empty);               
                 }
 
             
