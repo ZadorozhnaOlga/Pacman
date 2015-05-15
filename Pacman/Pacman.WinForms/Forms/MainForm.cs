@@ -134,7 +134,7 @@ namespace Pacman.WinForms
                 GameUnsubscribe();
                 DialogResult result; 
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                string str = "Congratulations! You Won!\r\n Do you want to restart?";
+                string str = "Congratulations! You Won!\r\nDo you want to restart?";
                 string caption = "Resume";
                 
                 result = MessageBox.Show(this, str, caption, buttons);
@@ -178,8 +178,8 @@ namespace Pacman.WinForms
             GameUnsubscribe();
 
             lblGetLives.Text = _game.MyPacman.Lives.ToString();            
-            string eated = "Oops! You've been eated!\r\n Press Yes to continue.\r\n Press No to exit";
-            string died = "You loose! Game Over!\r\n Press Yes to try again.\r\n Press No to exit";
+            string eated = "Oops! You've been eated!\r\nPress Yes to continue.\r\nPress No to exit";
+            string died = "You loose! Game Over!\r\nPress Yes to try again.\r\nPress No to exit";
             string caption = "Resume";
 
             DialogResult result;
@@ -309,7 +309,7 @@ namespace Pacman.WinForms
                         DialogResult result;
                         MessageBoxButtons buttons = MessageBoxButtons.OK;
 
-                        result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+                        result = MessageBox.Show(this, "Game is paused.\r\nPress space to continue.", "Resume", buttons);
 
                         if (result == DialogResult.OK)
                         {
@@ -350,7 +350,7 @@ namespace Pacman.WinForms
             DialogResult result;
             MessageBoxButtons buttons = MessageBoxButtons.OK;
 
-            result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+            result = MessageBox.Show(this, "Game is paused.\r\nPress space to continue.", "Resume", buttons);
 
             if (result == DialogResult.OK)
             {
@@ -371,7 +371,7 @@ namespace Pacman.WinForms
             DialogResult result;
             MessageBoxButtons buttons = MessageBoxButtons.OK;
 
-            result = MessageBox.Show(this, "Game is paused.\r\n Press space to continue.", "Resume", buttons);
+            result = MessageBox.Show(this, "Game is paused.\r\nPress space to continue.", "Resume", buttons);
 
             if (result == DialogResult.OK)
             {
