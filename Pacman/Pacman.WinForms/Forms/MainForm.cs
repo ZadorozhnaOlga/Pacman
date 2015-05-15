@@ -96,7 +96,7 @@ namespace Pacman.WinForms
             pinkyTimer.Tick += PinkyMove;
 
             GameSubscribe();
-            _game.MyPacman.PacmanWin += OnPacmanWin;
+            
         }
 
        
@@ -128,9 +128,9 @@ namespace Pacman.WinForms
 
         private void OnPacmanWin(object sender, EventArgs e)
         {
-            //if (Game.Scores == 325)
-
+           
             {
+                
                 GameUnsubscribe();
                 DialogResult result; 
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -149,13 +149,20 @@ namespace Pacman.WinForms
                     mainForm.ShowDialog();
                 }
 
-                    
-
-
-
             }
         }
 
+
+        private void MovePacman() 
+        {
+            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
+            {
+                lblGetScores.Text = Game.Scores.ToString();
+
+                PacmanEatApple();
+                
+            }   
+        }
 
         private void OnPacmanEatApple(object sender, EventArgs e) 
         {
@@ -200,7 +207,7 @@ namespace Pacman.WinForms
 
                     _game.MyPacman.X = 13;
                     _game.MyPacman.Y = 26;
-
+                    _game.MyPacman.Direction = Direction.Left;
                     inkyTimer.Start();
                     pinkyTimer.Start();
                     GameSubscribe();
@@ -255,14 +262,7 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 0, -1) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Up;
-
-                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
-                            {
-                                lblGetScores.Text = Game.Scores.ToString();
-                                
-                                PacmanEatApple();
-                               
-                            }                         
+                            MovePacman();
                             Refresh();
                         }
                     }
@@ -273,16 +273,9 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 0, 1) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Down;
-                            
-
-                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
-                            {
-                                lblGetScores.Text = Game.Scores.ToString();
-                               
-                                PacmanEatApple();
-                                
-                            }                           
+                            MovePacman();
                             Refresh();
+                            
                         }
                     }
                     break;
@@ -292,13 +285,8 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, -1, 0) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Left;
-                            if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
-                            {
-                                lblGetScores.Text = Game.Scores.ToString();
-                                
-                                PacmanEatApple();
-                                
-                            }                                                  
+
+                            MovePacman();
                             Refresh();
                         }
                     }
@@ -309,14 +297,7 @@ namespace Pacman.WinForms
                         if (_game.MyPacman.CheckPosition(_game.Map.MyMap, 1, 0) & _game.IfPacmanNotEated())
                         {
                             _game.MyPacman.Direction = Direction.Right;
-                            
-                                if (_game.MyPacman.Move(_game, _game.MyPacman.Direction))
-                                {
-                                    lblGetScores.Text = Game.Scores.ToString();
-                                    
-                                    PacmanEatApple();
-                                    
-                                } 
+                            MovePacman();
                             Refresh();
                         }
                     }

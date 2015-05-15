@@ -66,6 +66,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,14 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -162,9 +162,6 @@
     <None Include="Images\Inky.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sounds\StartMenu.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Sounds\PacmanEatApple.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +169,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Sounds\StartMenuMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\PacmanIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Down.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inky.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Left.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pacman.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pinky.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Right.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartMenu.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanEatApple.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacmanEated.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartMenuMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

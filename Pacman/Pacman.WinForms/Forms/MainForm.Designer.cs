@@ -48,6 +48,7 @@ namespace Pacman.WinForms
             this.pinkyTimer = new System.Windows.Forms.Timer(this.components);
             this.lblLives = new System.Windows.Forms.Label();
             this.lblGetLives = new System.Windows.Forms.Label();
+          
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,12 +108,16 @@ namespace Pacman.WinForms
             this.lblGetLives.Size = new System.Drawing.Size(73, 23);
             this.lblGetLives.TabIndex = 3;
             // 
+            // btnPause
+        
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(884, 732);
+            
             this.Controls.Add(this.lblGetLives);
             this.Controls.Add(this.lblLives);
             this.Controls.Add(this.lblGetScores);
@@ -147,6 +152,7 @@ namespace Pacman.WinForms
         private System.Windows.Forms.Timer pinkyTimer;
         private Label lblGetLives;
         private Label lblLives;
+       // private ButtonWithoutFocus btnPause;
        
 
        //inkyTimer.Tick += InkyMove;
