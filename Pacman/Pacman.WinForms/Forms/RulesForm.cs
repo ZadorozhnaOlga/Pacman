@@ -12,9 +12,14 @@ namespace Pacman.WinForms
 {
     public partial class RulesForm : Form
     {
+
+        #region Constructor
+
         public RulesForm()
         {
             InitializeComponent();
         }
+
+        #endregion
     }
 }

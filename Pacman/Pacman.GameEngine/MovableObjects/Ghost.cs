@@ -25,34 +25,38 @@ namespace Pacman.GameEngine
        
         public Direction MoveOneStep(Game game, Direction direction) 
         {
+            Direction result = Direction.None;
             switch (direction)
             {
                 case Direction.Left:
                     {
                        MoveLeft(game.Map.MyMap);
-                       return CheckApplesRight(game.Map.GetApples());
+                       result = CheckApplesRight(game.Map.GetApples());
                     }
+                    break;
 
                 case Direction.Right: 
                     {
                         MoveRight(game.Map.MyMap);
-                        return CheckApplesLeft(game.Map.GetApples());
+                        result = CheckApplesLeft(game.Map.GetApples());
                     }
+                    break;
 
                 case Direction.Up: 
                     {
                         MoveUp(game.Map.MyMap);
-                        return CheckApplesDown(game.Map.GetApples());
+                        result = CheckApplesDown(game.Map.GetApples());
                     }
+                    break;
 
                 case Direction.Down: 
                     {
                         MoveDown(game.Map.MyMap);
-                        return CheckApplesUp(game.Map.GetApples());
+                        result = CheckApplesUp(game.Map.GetApples());
                     }
-
-                default: return Direction.None;            
-            }           
+                    break;   
+            }
+            return result;
         }
        
         public Direction Move(Game game)
@@ -102,6 +106,7 @@ namespace Pacman.GameEngine
             Array.Sort(x);
             int lastIndexOfUnreachableCell = Array.LastIndexOf(x, -2) + 1;
             int propperDirection = Array.IndexOf(copyx, x[lastIndexOfUnreachableCell]);
+
             return propperDirection;
         }
 

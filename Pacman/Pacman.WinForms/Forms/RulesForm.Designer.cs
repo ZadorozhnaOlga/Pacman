@@ -39,7 +39,7 @@
             this.richTxtBoxRules.Location = new System.Drawing.Point(12, 37);
             this.richTxtBoxRules.Name = "richTxtBoxRules";
             this.richTxtBoxRules.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTxtBoxRules.Size = new System.Drawing.Size(368, 182);
+            this.richTxtBoxRules.Size = new System.Drawing.Size(454, 214);
             this.richTxtBoxRules.TabIndex = 0;
             this.richTxtBoxRules.Text = resources.GetString("richTxtBoxRules.Text");
             // 
@@ -49,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(406, 245);
+            this.ClientSize = new System.Drawing.Size(501, 281);
             this.Controls.Add(this.richTxtBoxRules);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

@@ -25,44 +25,46 @@ namespace Pacman.GameEngine
         }
 
         #endregion
-
-        public event EventHandler PacmanWin;
-
+       
         #region Methods
 
         public bool Move(Game game, Direction direction)
         {
             this.Direction = direction;
-
+            bool ifMoved = false;
             switch (direction)
             {
 
                 case Direction.Left:
                     {
                         game.MyPacman.Direction = Direction.Left;
-                        return CheckedMove(game, MoveAndEatLeft);
+                        ifMoved = CheckedMove(game, MoveAndEatLeft);
                     }
+                    break;
 
                 case Direction.Right:
                     {
                         game.MyPacman.Direction = Direction.Right;
-                        return CheckedMove(game, MoveAndEatRight);
+                        ifMoved = CheckedMove(game, MoveAndEatRight);
                     }
+                    break;
 
                 case Direction.Up:
                     {
                         game.MyPacman.Direction = Direction.Up;
-                        return CheckedMove(game, MoveAndEatUp);
+                        ifMoved = CheckedMove(game, MoveAndEatUp);
                     }
+                    break;
 
                 case Direction.Down:
                     {
                         game.MyPacman.Direction = Direction.Down;
-                        return CheckedMove(game, MoveAndEatDown);
+                        ifMoved = CheckedMove(game, MoveAndEatDown);
                     }
-
-                default: throw new ArgumentException();
+                    break;
             }
+
+            return ifMoved;
         }
 
 #endregion
@@ -70,19 +72,15 @@ namespace Pacman.GameEngine
         #region Helpers
         public bool EatApples(Apples app)
         {
+            bool ifEat = false;
             if (app.Dots[this.Y, this.X])
             {
                 Game.Scores += 1;
                 app.Dots[this.Y, this.X] = false;
-                if ((Game.Scores == 325) && (PacmanWin != null))
-                {
-
-                    PacmanWin(this, EventArgs.Empty);
-                }
-                return true;
+                ifEat = true;
             }
             
-            return false;
+            return ifEat;
         }
 
         private bool MoveAndEatLeft(Game game)
@@ -107,15 +105,17 @@ namespace Pacman.GameEngine
      
         private bool CheckedMove(Game game, Func<Game, bool> func)
         {
+            bool result = false;
             if (game.IfPacmanNotEated())
             {
-                return func(game);
+                result = func(game);
             }
             else
             {
                 game.MyPacman.EatApples(game.Map.GetApples());
-                return false;
             }
+
+            return result;
         }
 
         #endregion

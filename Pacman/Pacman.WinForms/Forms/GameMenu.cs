@@ -15,60 +15,56 @@ namespace Pacman.WinForms
 {
     public partial class GameMenu : Form
     {
-        
-        public SoundPlayer musicStart = new SoundPlayer(Properties.Resources.StartMenuMusic);
-            
+
+
+        #region Fields
+
+        private SoundPlayer _musicStart = new SoundPlayer(Properties.Resources.StartMenuMusic);
+
+        #endregion
+
+
+        #region Constructor
+
         public GameMenu()
         {
             InitializeComponent();
-            
-                
-            
         }
 
-       
+        #endregion
+
+
+        #region Load
 
         private void GameMenu_Load(object sender, EventArgs e)
         {
-            musicStart.Play();
+            _musicStart.Play();
         }
 
+        #endregion
 
 
-        private void btnStart_Click(object sender, EventArgs e)
+        #region ButtonRules
+        private void btnRules_Click(object sender, EventArgs e)
         {
-            musicStart.Stop();
-            MainForm mainForm = new MainForm();
-            mainForm.ShowDialog();
-            
+            RulesForm rulesform = new RulesForm();
+            rulesform.ShowDialog();
         }
 
-        private void btnStart_MouseEnter(object sender, EventArgs e)
+        private void btnRules_MouseEnter(object sender, EventArgs e)
         {
-            btnStart.BackColor = Color.Yellow;
+            btnRules.BackColor = Color.Yellow;
         }
 
-        private void btnStart_MouseLeave(object sender, EventArgs e)
+        private void btnRules_MouseLeave(object sender, EventArgs e)
         {
-            btnStart.BackColor = Color.DarkOrange;
-        }
-        
-
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            btnRules.BackColor = Color.DarkOrange;
         }
 
-        private void btnQuit_MouseEnter(object sender, EventArgs e)
-        {
-            btnQuit.BackColor = Color.Yellow;
-        }
+        #endregion
 
-        private void btnQuit_MouseLeave(object sender, EventArgs e)
-        {
-            btnQuit.BackColor = Color.DarkOrange;
-        }
 
+        #region ButtonControls
         private void btnControls_Click(object sender, EventArgs e)
         {
             ControlForm controlsForm = new ControlForm();
@@ -85,37 +81,48 @@ namespace Pacman.WinForms
             btnControl.BackColor = Color.DarkOrange;
         }
 
-        private void btnRules_Click(object sender, EventArgs e)
+        #endregion
+
+         
+        #region ButtonStart
+
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            RulesForm rulesform = new RulesForm();
-            rulesform.ShowDialog();
+            _musicStart.Stop();
+            MainForm mainForm = new MainForm();
+            mainForm.ShowDialog();          
         }
 
-
-        private void btnRules_MouseEnter(object sender, EventArgs e)
+        private void btnStart_MouseEnter(object sender, EventArgs e)
         {
-            btnRules.BackColor = Color.Yellow;
+            btnStart.BackColor = Color.Yellow;
         }
 
-        private void btnRules_MouseLeave(object sender, EventArgs e)
+        private void btnStart_MouseLeave(object sender, EventArgs e)
         {
-            btnRules.BackColor = Color.DarkOrange;
+            btnStart.BackColor = Color.DarkOrange;
         }
 
-        private void PacmanStarMenuPlay()
+        #endregion
+
+
+        #region ButtonQuite
+        private void btnQuit_Click(object sender, EventArgs e)
         {
-            SoundPlayer musicStart = new SoundPlayer(@"D:\visual_studio\Pacman_branch\Pacman\Pacman\Pacman.WinForms\Sounds\StartMenu.wav");
-            
-                musicStart.Play();
-            
+            this.Close();
         }
 
-        private void MusicStop()
+        private void btnQuit_MouseEnter(object sender, EventArgs e)
         {
-            
-            musicStart.Play();
-
+            btnQuit.BackColor = Color.Yellow;
         }
+
+        private void btnQuit_MouseLeave(object sender, EventArgs e)
+        {
+            btnQuit.BackColor = Color.DarkOrange;
+        }
+
+        #endregion
 
        
     }

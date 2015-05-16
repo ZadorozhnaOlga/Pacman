@@ -117,61 +117,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\StartMenu.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Pacman.GameEngine\Pacman.GameEngine.csproj">
       <Project>{2eb579e2-2001-4c5b-b053-5727477c21d0}</Project>
       <Name>Pacman.GameEngine</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\pacmanIcon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Down.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Left.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Up.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Right.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\PacmanLeft.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\PacmanRight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\PacmanUp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\PacmanDown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Pacman.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Pinky.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Inky.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sounds\PacmanEatApple.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sounds\PacmanEated.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sounds\StartMenuMusic.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\PacmanIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Down.jpg" />
@@ -219,10 +168,13 @@
     <None Include="Resources\PacmanEated.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\StartMenuMusic.wav" />
+    <None Include="Resources\PacmanIco.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PacmanIco.ico" />
+    <None Include="Resources\PacnamWin.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartMenuMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

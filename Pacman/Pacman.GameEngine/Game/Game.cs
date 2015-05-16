@@ -19,6 +19,8 @@ namespace Pacman.GameEngine
         private Inky _inky;
         private Pinky _pinky;
 
+        public EventHandler PacmanEatApple;
+
         #endregion
 
 
@@ -45,6 +47,7 @@ namespace Pacman.GameEngine
         }
 
         public static int Scores { get; set; }
+        
 
         #endregion
 
@@ -61,17 +64,7 @@ namespace Pacman.GameEngine
         }
 
         #endregion
-
-
-
-        public event EventHandler PacmanEated;
-        
-        public event EventHandler Pause;
-       // public event EventHandler PacmanDied;
-
-       
-        public event EventHandler PacmanWin;
-        public event EventHandler PacmanEatApple;
+         
 
         #region Methods
 
@@ -109,7 +102,6 @@ namespace Pacman.GameEngine
             if (hasNoMoreLives)
             {
                 _status = GameStatus.Completed;
-               // PacmanDied(this, EventArgs.Empty);
             }
             
             return hasNoMoreLives;    
@@ -122,19 +114,8 @@ namespace Pacman.GameEngine
         
         public bool IfPacmanNotEated() 
         {           
-                var result = (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
+               return (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
                     !(MyPinky.X == MyPacman.X & MyPinky.Y == MyPacman.Y));
-
-                
-                if (!result && (PacmanEated != null))
-                {
-                    MinusLive();
-                    PacmanEated(this, EventArgs.Empty);               
-                }
-
-            
-
-                return result;
         }
 
         public static int[,] LoadMap(string path, int mapX, int mapY)

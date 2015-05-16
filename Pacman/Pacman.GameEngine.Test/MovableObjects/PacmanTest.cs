@@ -53,19 +53,6 @@ namespace Pacman.GameEngine.Test.MovableObjects
             game.MyPacman.Y = 12;
             Assert.IsFalse(game.MyPacman.Move(game, Direction.Left));
         }
-
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ExceptionMove()
-        {
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            var mapFile = @"\Map\Map.txt";
-            string mapPath = string.Concat(projectPath, mapFile);
-
-            Game game = new Game(28, 32, Game.LoadMap(mapPath, 28, 32), 13, 26, 13, 12, 14, 12);
-            game.MyPacman.Move(game, Direction.None);
-        }
       
     }
 }

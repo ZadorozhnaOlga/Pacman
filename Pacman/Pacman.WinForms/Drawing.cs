@@ -93,11 +93,11 @@ namespace Pacman.WinForms
             Apples currentApples = game.Map.GetApples();
             DrawMap(game.Map.MyMap, sender, e);
             DrawApples(currentApples, sender, e);
-            
-            
+
+            DrawPacman(game.MyPacman, sender, e);
             DrawInky(game.MyInky, sender, e);
             DrawPinky(game.MyPinky, sender, e);
-            DrawPacman(game.MyPacman, sender, e);
+            
             
         }
 

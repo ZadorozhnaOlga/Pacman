@@ -118,16 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="richTxtBoxRules.Text" xml:space="preserve">
-    <value>У грі є гравець - Пакман та два привиди - його вороги.
-Ціль Пакмана - з'їсти всі жовті крапки на ігровому полі.
-Ціль привидів - наздогнати Пакмана. 
-Якщо привид зустрічається з Пакманом, 
-результат завжди однаковий - Пакман вмирає. 
-Всього у Пакмана є три життя.
-Гра закінчується, якщо:
-           Пакман виграв (з'їв всі жовті крапки)
-           Пакман програв (його тричі наздогнали привиди).
-</value>
+    <value>There are three players on the game field - the Pacman and two ghosts.
+The Pacman purpose is to eat all yellow dots on the board.
+Ghosts goal is to catch th Pacman.
+
+If any ghost meets the Pacman the result will be always the same. 
+The Pacman will Die :( 
+But the Pacman has three lives, so he can try to win again.
+
+The game is over in two cases:
+       When Pacman win (there are no more yellow dots on the field)
+       When Pacman loose (he'd been eated three times).
+
+Good Luck!</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
