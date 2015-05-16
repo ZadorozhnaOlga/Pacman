@@ -159,9 +159,6 @@
     <None Include="Resources\Up.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PacmanIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\PacmanEatApple.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\StartMenuMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonClicked.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

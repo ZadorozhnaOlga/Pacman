@@ -21,6 +21,8 @@ namespace Pacman.WinForms
 
         private SoundPlayer _musicStart = new SoundPlayer(Properties.Resources.StartMenuMusic);
 
+        public static SoundPlayer musicButtonClicked = new SoundPlayer(Properties.Resources.ButtonClicked);
+
         #endregion
 
 
@@ -47,6 +49,7 @@ namespace Pacman.WinForms
         #region ButtonRules
         private void btnRules_Click(object sender, EventArgs e)
         {
+            musicButtonClicked.Play();
             RulesForm rulesform = new RulesForm();
             rulesform.ShowDialog();
         }
@@ -67,6 +70,7 @@ namespace Pacman.WinForms
         #region ButtonControls
         private void btnControls_Click(object sender, EventArgs e)
         {
+            musicButtonClicked.Play();
             ControlForm controlsForm = new ControlForm();
             controlsForm.ShowDialog();
         }
@@ -88,9 +92,9 @@ namespace Pacman.WinForms
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            _musicStart.Stop();
             MainForm mainForm = new MainForm();
-            mainForm.ShowDialog();          
+            mainForm.ShowDialog();
+            
         }
 
         private void btnStart_MouseEnter(object sender, EventArgs e)

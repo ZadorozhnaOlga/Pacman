@@ -29,10 +29,24 @@ namespace Pacman.WinForms
         #region Constructor
         public MainForm()
         {
+            GameMenu.musicButtonClicked.Play();
+
             var mapPath = ConfigurationManager.AppSettings["Path"];
             var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             string path = string.Concat(projectPath, mapPath);
-            _game = new Game(28, 32, Game.LoadMap(path, 28, 32), 13, 26, 13, 12, 14, 12);
+            var width = Int32.Parse(ConfigurationManager.AppSettings["Width"]);
+            var heigth = Int32.Parse(ConfigurationManager.AppSettings["Heigth"]);
+            int pacmanX = Int32.Parse(ConfigurationManager.AppSettings["PacmanX"]);
+            int pacmanY = Int32.Parse(ConfigurationManager.AppSettings["PacmanY"]);
+            int inkyX = Int32.Parse(ConfigurationManager.AppSettings["InkyX"]);
+            int inkyY = Int32.Parse(ConfigurationManager.AppSettings["InkyY"]);
+            int pinkyX = Int32.Parse(ConfigurationManager.AppSettings["PinkyX"]);
+            int pinkyY = Int32.Parse(ConfigurationManager.AppSettings["PinkyY"]);
+
+            int[,] array = Game.LoadMap(path, width, heigth);
+
+            _game = new Game(width, heigth, array, pacmanX, pacmanY, inkyX, inkyY, pinkyX, pinkyY);
+
             Game.Scores = 0;
 
             InitializeComponent();           
@@ -256,6 +270,7 @@ namespace Pacman.WinForms
                         inkyTimer.Start();
                         pinkyTimer.Start();
                         GameSubscribe();
+                        GameMenu.musicButtonClicked.Play();
                     }
                 }
 
