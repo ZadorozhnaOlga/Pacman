@@ -12,7 +12,7 @@ namespace Pacman.GameEngine
 
     public class Pacman : Player
     {
-        #region Properties & Fields
+        #region Properties
         public int Lives { get; set; }
 
         #endregion
@@ -34,7 +34,6 @@ namespace Pacman.GameEngine
             bool ifMoved = false;
             switch (direction)
             {
-
                 case Direction.Left:
                     {
                         game.MyPacman.Direction = Direction.Left;
@@ -118,7 +117,7 @@ namespace Pacman.GameEngine
             return result;
         }
 
-        #endregion
+#endregion
 
     }
 }

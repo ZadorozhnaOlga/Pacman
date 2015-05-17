@@ -35,9 +35,11 @@
             // richTxtBoxRules
             // 
             this.richTxtBoxRules.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.richTxtBoxRules.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.richTxtBoxRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTxtBoxRules.Location = new System.Drawing.Point(12, 37);
             this.richTxtBoxRules.Name = "richTxtBoxRules";
+            this.richTxtBoxRules.ReadOnly = true;
             this.richTxtBoxRules.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTxtBoxRules.Size = new System.Drawing.Size(454, 214);
             this.richTxtBoxRules.TabIndex = 0;
@@ -56,6 +58,7 @@
             this.Name = "RulesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rules";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RulesForm_Closed);
             this.ResumeLayout(false);
 
         }

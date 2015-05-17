@@ -21,5 +21,15 @@ namespace Pacman.WinForms
         }
 
         #endregion
+
+
+        #region Events
+
+        private void RulesForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            GameMenu.MusicStart.Play();
+        }
+
+        #endregion
     }
 }

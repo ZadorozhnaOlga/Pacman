@@ -14,23 +14,28 @@ namespace Pacman.WinForms
 {
     internal class Drawing
     {
-        private const int multiplier = 23;
-        private const int turn = 8;
-        private const int appleSize = 7;
+
+        #region Const
+
+        private const int THE_MULTIPLIER = 23;
+        private const int THE_TURN = 8;
+        private const int THE_APPLESIZE = 7;
+
+        #endregion
 
         #region Draw Methods
 
         private static void DrawWall(int i, int j, object sender, PaintEventArgs e)
         {
             SolidBrush blueBrush = new SolidBrush(Color.Blue);
-            Rectangle rect = new Rectangle(i * multiplier, j * multiplier, multiplier, multiplier);
+            Rectangle rect = new Rectangle(i * THE_MULTIPLIER, j * THE_MULTIPLIER, THE_MULTIPLIER, THE_MULTIPLIER);
             e.Graphics.FillRectangle(blueBrush, rect);
         }
 
         private static void DrawWay(int i, int j, object sender, PaintEventArgs e)
         {
             SolidBrush blackBrush = new SolidBrush(Color.Black);
-            Rectangle rect = new Rectangle(i * multiplier, j * multiplier, multiplier, multiplier);
+            Rectangle rect = new Rectangle(i * THE_MULTIPLIER, j * THE_MULTIPLIER, THE_MULTIPLIER, THE_MULTIPLIER);
             e.Graphics.FillRectangle(blackBrush, rect);
         }
 
@@ -44,7 +49,7 @@ namespace Pacman.WinForms
                 {
                     if (app.Dots[i, j] == true)
                     {
-                        Rectangle rect = new Rectangle(j * multiplier + turn, i * multiplier + turn, appleSize, appleSize);
+                        Rectangle rect = new Rectangle(j * THE_MULTIPLIER + THE_TURN, i * THE_MULTIPLIER + THE_TURN, THE_APPLESIZE, THE_APPLESIZE);
                         e.Graphics.FillEllipse(yellowBrush, rect);
                     }                   
                 }
@@ -87,13 +92,13 @@ namespace Pacman.WinForms
         private static void DrawInky(Inky inky, object sender, PaintEventArgs e)
         {
             Image image = Properties.Resources.Inky;
-            e.Graphics.DrawImage(image, inky.X * multiplier, inky.Y * multiplier, multiplier - 1, multiplier - 1);
+            e.Graphics.DrawImage(image, inky.X * THE_MULTIPLIER, inky.Y * THE_MULTIPLIER, THE_MULTIPLIER - 1, THE_MULTIPLIER - 1);
         }
 
         private static void DrawPinky(Pinky pinky, object sender, PaintEventArgs e)
         {
             Image image = Properties.Resources.Pinky;
-            e.Graphics.DrawImage(image, pinky.X * multiplier, pinky.Y * multiplier, multiplier - 1, multiplier - 1);
+            e.Graphics.DrawImage(image, pinky.X * THE_MULTIPLIER, pinky.Y * THE_MULTIPLIER, THE_MULTIPLIER - 1, THE_MULTIPLIER - 1);
         }
 
         public static void DrawPacman(Pacman.GameEngine.Pacman pacman, object sender, PaintEventArgs e)
@@ -108,7 +113,7 @@ namespace Pacman.WinForms
                 case Direction.Left: image.RotateFlip(RotateFlipType.Rotate180FlipY);
                     break;
             }
-            e.Graphics.DrawImage(image, pacman.X * multiplier, pacman.Y * multiplier, multiplier - 1, multiplier - 1);
+            e.Graphics.DrawImage(image, pacman.X * THE_MULTIPLIER, pacman.Y * THE_MULTIPLIER, THE_MULTIPLIER - 1, THE_MULTIPLIER - 1);
         }
 
 

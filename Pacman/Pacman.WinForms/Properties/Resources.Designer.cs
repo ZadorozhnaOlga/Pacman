@@ -100,6 +100,32 @@ namespace Pacman.WinForms.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1111111111111111111111111111
+        ///1000000000000110000000000001
+        ///1011110111110110111110111101
+        ///1011110111110110111110111101
+        ///1000000000000000000000000001
+        ///1011110101111111111010111101
+        ///1000000101000110001010000001
+        ///1111110100000110000010111111
+        ///1111110111221111221110111111
+        ///1000000111221111221110000001
+        ///1011110111221111221110111101
+        ///1011110222222222222220111101
+        ///1000000222222222222220000001
+        ///1110110111221111221110110111
+        ///1110110111221111221110110111
+        ///1110110111221111221110110111
+        ///1110000000000000000000000111
+        ///11 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Map {
+            get {
+                return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pacman {

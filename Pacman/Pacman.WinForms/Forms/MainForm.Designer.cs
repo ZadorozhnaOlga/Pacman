@@ -79,7 +79,7 @@ namespace Pacman.WinForms
             // inkyTimer
             // 
             this.inkyTimer.Enabled = true;
-            this.inkyTimer.Interval = 500;
+            this.inkyTimer.Interval = 400;
             this.inkyTimer.Tick += new System.EventHandler(this.inkyTimer_Tick);
             // 
             // pinkyTimer
@@ -147,17 +147,7 @@ namespace Pacman.WinForms
         private System.Windows.Forms.Timer pinkyTimer;
         private Label lblGetLives;
         private Label lblLives;
-       // private ButtonWithoutFocus btnPause;
        
-
-       //inkyTimer.Tick += InkyMove;
-       //     pinkyTimer.Tick += PinkyMove;
-
-       //     inkyTimer.Start();
-       //     pinkyTimer.Start();
-
-      
-
     }
 }
 

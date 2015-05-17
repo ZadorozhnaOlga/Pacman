@@ -64,12 +64,13 @@ namespace Pacman.GameEngine
 
         private bool Move(int[,] array, int x, int y, Action action)
         {
+            bool ifMoved = false;
             if (CheckPosition(array, x, y))
             {
                 action();
-                return true;
+                ifMoved = true;
             }
-            return false;
+            return ifMoved;
         }
 
         public bool CheckPosition(int[,] array, int x, int y)

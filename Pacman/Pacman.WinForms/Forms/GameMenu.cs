@@ -16,12 +16,10 @@ namespace Pacman.WinForms
     public partial class GameMenu : Form
     {
 
+        #region Properties
 
-        #region Fields
-
-        private SoundPlayer _musicStart = new SoundPlayer(Properties.Resources.StartMenuMusic);
-
-        public static SoundPlayer musicButtonClicked = new SoundPlayer(Properties.Resources.ButtonClicked);
+        public static SoundPlayer MusicStart{get; private set; }
+        public static SoundPlayer MusicButtonClicked {get; private set;}
 
         #endregion
 
@@ -33,14 +31,22 @@ namespace Pacman.WinForms
             InitializeComponent();
         }
 
+        static GameMenu()
+        {
+            MusicButtonClicked = new SoundPlayer(Properties.Resources.ButtonClicked);
+            MusicStart = new SoundPlayer(Properties.Resources.StartMenuMusic);          
+        }
+
         #endregion
 
+
+        #region Events
 
         #region Load
 
         private void GameMenu_Load(object sender, EventArgs e)
         {
-            _musicStart.Play();
+            MusicStart.Play();
         }
 
         #endregion
@@ -49,14 +55,14 @@ namespace Pacman.WinForms
         #region ButtonRules
         private void btnRules_Click(object sender, EventArgs e)
         {
-            musicButtonClicked.Play();
+            MusicButtonClicked.Play();
             RulesForm rulesform = new RulesForm();
             rulesform.ShowDialog();
         }
 
         private void btnRules_MouseEnter(object sender, EventArgs e)
         {
-            btnRules.BackColor = Color.Yellow;
+            btnRules.BackColor = Color.Lime;
         }
 
         private void btnRules_MouseLeave(object sender, EventArgs e)
@@ -70,14 +76,14 @@ namespace Pacman.WinForms
         #region ButtonControls
         private void btnControls_Click(object sender, EventArgs e)
         {
-            musicButtonClicked.Play();
+            MusicButtonClicked.Play();
             ControlForm controlsForm = new ControlForm();
             controlsForm.ShowDialog();
         }
 
         private void btnControl_MouseEnter(object sender, EventArgs e)
         {
-            btnControl.BackColor = Color.Yellow;
+            btnControl.BackColor = Color.Lime;
         }
 
         private void btnControl_MouseLeave(object sender, EventArgs e)
@@ -93,13 +99,12 @@ namespace Pacman.WinForms
         private void btnStart_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
-            mainForm.ShowDialog();
-            
+            mainForm.ShowDialog();          
         }
 
         private void btnStart_MouseEnter(object sender, EventArgs e)
         {
-            btnStart.BackColor = Color.Yellow;
+            btnStart.BackColor = Color.Lime;
         }
 
         private void btnStart_MouseLeave(object sender, EventArgs e)
@@ -118,7 +123,7 @@ namespace Pacman.WinForms
 
         private void btnQuit_MouseEnter(object sender, EventArgs e)
         {
-            btnQuit.BackColor = Color.Yellow;
+            btnQuit.BackColor = Color.Lime;
         }
 
         private void btnQuit_MouseLeave(object sender, EventArgs e)
@@ -128,6 +133,8 @@ namespace Pacman.WinForms
 
         #endregion
 
-       
+
+        #endregion
+
     }
 }

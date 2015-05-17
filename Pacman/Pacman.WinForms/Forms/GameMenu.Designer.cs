@@ -44,6 +44,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(185, 75);
             this.btnStart.TabIndex = 0;
+            this.btnStart.TabStop = false;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -59,6 +60,7 @@
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(185, 75);
             this.btnQuit.TabIndex = 1;
+            this.btnQuit.TabStop = false;
             this.btnQuit.Text = "QUIT";
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
@@ -74,6 +76,7 @@
             this.btnControl.Name = "btnControl";
             this.btnControl.Size = new System.Drawing.Size(185, 75);
             this.btnControl.TabIndex = 2;
+            this.btnControl.TabStop = false;
             this.btnControl.Text = "CONTROL";
             this.btnControl.UseVisualStyleBackColor = false;
             this.btnControl.Click += new System.EventHandler(this.btnControls_Click);
@@ -89,6 +92,7 @@
             this.btnRules.Name = "btnRules";
             this.btnRules.Size = new System.Drawing.Size(185, 75);
             this.btnRules.TabIndex = 3;
+            this.btnRules.TabStop = false;
             this.btnRules.Text = "RULES";
             this.btnRules.UseVisualStyleBackColor = false;
             this.btnRules.Click += new System.EventHandler(this.btnRules_Click);

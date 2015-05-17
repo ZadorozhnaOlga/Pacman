@@ -50,6 +50,10 @@
             this.pctBoxRightRight = new System.Windows.Forms.PictureBox();
             this.pctBoxUpUp = new System.Windows.Forms.PictureBox();
             this.pctBoxDownDown = new System.Windows.Forms.PictureBox();
+            this.pctBoxPressDown = new System.Windows.Forms.PictureBox();
+            this.pctBoxPressUp = new System.Windows.Forms.PictureBox();
+            this.pctBoxPressLeft = new System.Windows.Forms.PictureBox();
+            this.pctBoxPressRight = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxUp)).BeginInit();
@@ -58,6 +62,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxRightRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxUpUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxDownDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressRight)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLeft
@@ -77,6 +85,7 @@
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 68);
             this.btnLeft.TabIndex = 1;
+            this.btnLeft.TabStop = false;
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
@@ -106,6 +115,7 @@
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 68);
             this.btnRight.TabIndex = 4;
+            this.btnRight.TabStop = false;
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
@@ -135,6 +145,7 @@
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 68);
             this.btnUp.TabIndex = 7;
+            this.btnUp.TabStop = false;
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
@@ -159,12 +170,14 @@
             // 
             // btnDown
             // 
+            this.btnDown.BackColor = System.Drawing.Color.Orange;
             this.btnDown.Image = global::Pacman.WinForms.Properties.Resources.Down;
             this.btnDown.Location = new System.Drawing.Point(138, 31);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(75, 68);
             this.btnDown.TabIndex = 10;
-            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.TabStop = false;
+            this.btnDown.UseVisualStyleBackColor = false;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // lblDown
@@ -279,12 +292,56 @@
             this.pctBoxDownDown.TabStop = false;
             this.pctBoxDownDown.Visible = false;
             // 
+            // pctBoxPressDown
+            // 
+            this.pctBoxPressDown.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Down;
+            this.pctBoxPressDown.Location = new System.Drawing.Point(141, 31);
+            this.pctBoxPressDown.Name = "pctBoxPressDown";
+            this.pctBoxPressDown.Size = new System.Drawing.Size(72, 68);
+            this.pctBoxPressDown.TabIndex = 21;
+            this.pctBoxPressDown.TabStop = false;
+            this.pctBoxPressDown.Visible = false;
+            // 
+            // pctBoxPressUp
+            // 
+            this.pctBoxPressUp.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Up;
+            this.pctBoxPressUp.Location = new System.Drawing.Point(141, 181);
+            this.pctBoxPressUp.Name = "pctBoxPressUp";
+            this.pctBoxPressUp.Size = new System.Drawing.Size(72, 68);
+            this.pctBoxPressUp.TabIndex = 22;
+            this.pctBoxPressUp.TabStop = false;
+            this.pctBoxPressUp.Visible = false;
+            // 
+            // pctBoxPressLeft
+            // 
+            this.pctBoxPressLeft.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Left;
+            this.pctBoxPressLeft.Location = new System.Drawing.Point(141, 333);
+            this.pctBoxPressLeft.Name = "pctBoxPressLeft";
+            this.pctBoxPressLeft.Size = new System.Drawing.Size(72, 68);
+            this.pctBoxPressLeft.TabIndex = 23;
+            this.pctBoxPressLeft.TabStop = false;
+            this.pctBoxPressLeft.Visible = false;
+            // 
+            // pctBoxPressRight
+            // 
+            this.pctBoxPressRight.BackgroundImage = global::Pacman.WinForms.Properties.Resources.Right;
+            this.pctBoxPressRight.Location = new System.Drawing.Point(141, 484);
+            this.pctBoxPressRight.Name = "pctBoxPressRight";
+            this.pctBoxPressRight.Size = new System.Drawing.Size(72, 68);
+            this.pctBoxPressRight.TabIndex = 24;
+            this.pctBoxPressRight.TabStop = false;
+            this.pctBoxPressRight.Visible = false;
+            // 
             // ControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(981, 638);
+            this.Controls.Add(this.pctBoxPressRight);
+            this.Controls.Add(this.pctBoxPressLeft);
+            this.Controls.Add(this.pctBoxPressUp);
+            this.Controls.Add(this.pctBoxPressDown);
             this.Controls.Add(this.pctBoxDownDown);
             this.Controls.Add(this.pctBoxUpUp);
             this.Controls.Add(this.pctBoxRightRight);
@@ -311,6 +368,7 @@
             this.Name = "ControlForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Control";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ControlForm_Closed);
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxUp)).EndInit();
@@ -319,6 +377,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxRightRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxUpUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxDownDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBoxPressRight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,5 +409,9 @@
         private System.Windows.Forms.PictureBox pctBoxRightRight;
         private System.Windows.Forms.PictureBox pctBoxUpUp;
         private System.Windows.Forms.PictureBox pctBoxDownDown;
+        private System.Windows.Forms.PictureBox pctBoxPressDown;
+        private System.Windows.Forms.PictureBox pctBoxPressUp;
+        private System.Windows.Forms.PictureBox pctBoxPressLeft;
+        private System.Windows.Forms.PictureBox pctBoxPressRight;
     }
 }
