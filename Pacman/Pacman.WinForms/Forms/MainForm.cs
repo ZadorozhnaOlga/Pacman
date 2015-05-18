@@ -49,9 +49,7 @@ namespace Pacman.WinForms
             int pinkyX = Int32.Parse(ConfigurationManager.AppSettings["PinkyX"]);
             int pinkyY = Int32.Parse(ConfigurationManager.AppSettings["PinkyY"]);
 
-
-            string path = ConfigurationManager.AppSettings["Path"];
-            
+            string path = ConfigurationManager.AppSettings["Path"];         
             
             string filename = Path.Combine(Application.StartupPath, path);
            
@@ -60,8 +58,6 @@ namespace Pacman.WinForms
             _game = new Game(width, heigth, array, pacmanX, pacmanY, inkyX, inkyY, pinkyX, pinkyY);
 
             Game.Scores = 0;
-
-
 
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
