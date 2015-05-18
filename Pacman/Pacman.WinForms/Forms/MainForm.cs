@@ -29,24 +29,6 @@ namespace Pacman.WinForms
         #region Constructor
         public MainForm()
         {
-            GameMenu.MusicButtonClicked.Play();
-            var width = Int32.Parse(ConfigurationManager.AppSettings["Width"]);
-            var heigth = Int32.Parse(ConfigurationManager.AppSettings["Heigth"]);
-            int pacmanX = Int32.Parse(ConfigurationManager.AppSettings["PacmanX"]);
-            int pacmanY = Int32.Parse(ConfigurationManager.AppSettings["PacmanY"]);
-            int inkyX = Int32.Parse(ConfigurationManager.AppSettings["InkyX"]);
-            int inkyY = Int32.Parse(ConfigurationManager.AppSettings["InkyY"]);
-            int pinkyX = Int32.Parse(ConfigurationManager.AppSettings["PinkyX"]);
-            int pinkyY = Int32.Parse(ConfigurationManager.AppSettings["PinkyY"]);
-
-            string path = ConfigurationManager.AppSettings["Path"];
-            string filename = Path.Combine(Application.StartupPath, path);
-            int[,] array = Game.LoadMap(filename, width, heigth);
-
-            _game = new Game(width, heigth, array, pacmanX, pacmanY, inkyX, inkyY, pinkyX, pinkyY);
-
-            Game.Scores = 0;
-
             InitializeComponent();           
         }
 
@@ -57,6 +39,30 @@ namespace Pacman.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            GameMenu.MusicButtonClicked.Play();
+            var width = Int32.Parse(ConfigurationManager.AppSettings["Width"]);
+            var heigth = Int32.Parse(ConfigurationManager.AppSettings["Heigth"]);
+            int pacmanX = Int32.Parse(ConfigurationManager.AppSettings["PacmanX"]);
+            int pacmanY = Int32.Parse(ConfigurationManager.AppSettings["PacmanY"]);
+            int inkyX = Int32.Parse(ConfigurationManager.AppSettings["InkyX"]);
+            int inkyY = Int32.Parse(ConfigurationManager.AppSettings["InkyY"]);
+            int pinkyX = Int32.Parse(ConfigurationManager.AppSettings["PinkyX"]);
+            int pinkyY = Int32.Parse(ConfigurationManager.AppSettings["PinkyY"]);
+
+
+            string path = ConfigurationManager.AppSettings["Path"];
+            
+            
+            string filename = Path.Combine(Application.StartupPath, path);
+           
+            int[,] array = Game.LoadMap(filename, width, heigth);
+
+            _game = new Game(width, heigth, array, pacmanX, pacmanY, inkyX, inkyY, pinkyX, pinkyY);
+
+            Game.Scores = 0;
+
+
+
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -254,14 +260,14 @@ namespace Pacman.WinForms
 
                     if (result == DialogResult.Yes)
                     {
-                        _game.MyInky.X = 13;
-                        _game.MyInky.Y = 12;
+                        _game.MyInky.X = Int32.Parse(ConfigurationManager.AppSettings["InkyX"]); ;
+                        _game.MyInky.Y = Int32.Parse(ConfigurationManager.AppSettings["InkyY"]); ;
 
-                        _game.MyPinky.X = 14;
-                        _game.MyPinky.Y = 12;
+                        _game.MyPinky.X = Int32.Parse(ConfigurationManager.AppSettings["PinkyX"]); ;
+                        _game.MyPinky.Y = Int32.Parse(ConfigurationManager.AppSettings["PinkyY"]); ;
 
-                        _game.MyPacman.X = 13;
-                        _game.MyPacman.Y = 26;
+                        _game.MyPacman.X = Int32.Parse(ConfigurationManager.AppSettings["PacmanX"]); ;
+                        _game.MyPacman.Y = Int32.Parse(ConfigurationManager.AppSettings["PacmanY"]); ;
                         _game.MyPacman.Direction = Direction.Left;
                         inkyTimer.Start();
                         pinkyTimer.Start();
