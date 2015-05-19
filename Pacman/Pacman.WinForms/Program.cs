@@ -22,12 +22,7 @@ namespace Pacman.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameMenu());
-
-            
+            Application.Run(new GameMenu());   
         }
-
-
-      
     }
 }
