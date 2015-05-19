@@ -15,50 +15,38 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_2E22AA10A8984E608623377EF1957A9B"
+        "MsmKey" = "8:_1721BCA0CAEB1CC2F803C77D076B512E"
+        "OwnerKey" = "8:_835F05FA220C4C97911DF61B34C40909"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_515911C3DDB54F7C9095A9F0976046EF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_45D759365CF76E1EF437252678685B92"
-        "OwnerKey" = "8:_8C61E86EA2444D028ED65198D66FF884"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8C61E86EA2444D028ED65198D66FF884"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9AA86E829BC241EC9B2FAD70AB79EA95"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D541E2DE22B143EAAF5CD6118476E3A5"
+        "MsmKey" = "8:_835F05FA220C4C97911DF61B34C40909"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2E22AA10A8984E608623377EF1957A9B"
+        "OwnerKey" = "8:_515911C3DDB54F7C9095A9F0976046EF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8C61E86EA2444D028ED65198D66FF884"
+        "OwnerKey" = "8:_835F05FA220C4C97911DF61B34C40909"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_45D759365CF76E1EF437252678685B92"
+        "OwnerKey" = "8:_1721BCA0CAEB1CC2F803C77D076B512E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -79,6 +67,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -95,6 +99,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -124,51 +144,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2E22AA10A8984E608623377EF1957A9B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1721BCA0CAEB1CC2F803C77D076B512E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Pacman.GameEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2E22AA10A8984E608623377EF1957A9B"
+                    "_1721BCA0CAEB1CC2F803C77D076B512E"
                     {
                     "Name" = "8:Pacman.GameEngine.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:..\\Pacman.WinForms\\bin\\Release\\Pacman.GameEngine.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_45D759365CF76E1EF437252678685B92"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Pacman.GameEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_45D759365CF76E1EF437252678685B92"
-                    {
-                    "Name" = "8:Pacman.GameEngine.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Pacman.GameEngine.DLL"
+            "SourcePath" = "8:Pacman.GameEngine.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
@@ -184,77 +173,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8C61E86EA2444D028ED65198D66FF884"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Pacman.WinForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_8C61E86EA2444D028ED65198D66FF884"
-                    {
-                    "Name" = "8:Pacman.WinForms.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\Pacman.WinForms\\bin\\Release\\Pacman.WinForms.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AA86E829BC241EC9B2FAD70AB79EA95"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\PacmanIco.ico"
-            "TargetName" = "8:PacmanIco.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D541E2DE22B143EAAF5CD6118476E3A5"
-            {
-            "SourcePath" = "8:..\\Pacman.WinForms\\bin\\Release\\Pacman.WinForms.exe.config"
-            "TargetName" = "8:Pacman.WinForms.exe.config"
-            "Tag" = "8:"
-            "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -325,7 +243,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pacman"
         "ProductCode" = "8:{3FB49844-4B2F-4A18-995B-916898F36F32}"
-        "PackageCode" = "8:{C84DC8A0-7450-4585-B32D-921B1A386867}"
+        "PackageCode" = "8:{2A36230A-2504-4B9D-8F5A-43F861E15B26}"
         "UpgradeCode" = "8:{035EAD62-FD59-4179-BE88-A84579F59978}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -445,32 +363,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_09B57933E9574412A9CE47C2A15527C0"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2BDBF839BFBA405384F0B84B19A22627"
             {
             "Name" = "8:Pacman"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_8C61E86EA2444D028ED65198D66FF884"
+            "Target" = "8:_835F05FA220C4C97911DF61B34C40909"
             "Folder" = "8:_AE316CD0480E410BA1320211B65E702C"
             "WorkingFolder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
-            "Icon" = "8:_9AA86E829BC241EC9B2FAD70AB79EA95"
+            "Icon" = "8:_835F05FA220C4C97911DF61B34C40909"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_689BC14CA72E48F9B67D9DCE6257D291"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9AE44E3CBA2F4F00BD57B4E1D441755A"
             {
             "Name" = "8:Pacman"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_8C61E86EA2444D028ED65198D66FF884"
+            "Target" = "8:_835F05FA220C4C97911DF61B34C40909"
             "Folder" = "8:_E8C56916ADC1448196DE8B190CCDF4C4"
             "WorkingFolder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
-            "Icon" = "8:_9AA86E829BC241EC9B2FAD70AB79EA95"
+            "Icon" = "8:_835F05FA220C4C97911DF61B34C40909"
             "Feature" = "8:"
             }
         }
@@ -872,7 +790,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F87A705F74D84399BFF38806E786C7C1"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1442B553FE1D42C4A8B16F031AFC5542"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -894,6 +812,62 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:ContentFiles"
+            "OutputProjectGuid" = "8:{7FFA39B4-0CCB-407D-B70B-8C3C84ADFBCF}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_515911C3DDB54F7C9095A9F0976046EF"
+            {
+            "SourcePath" = "8:..\\Pacman.GameEngine\\obj\\Debug\\Pacman.GameEngine.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{2EB579E2-2001-4C5B-B053-5727477C21D0}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_835F05FA220C4C97911DF61B34C40909"
+            {
+            "SourcePath" = "8:..\\Pacman.WinForms\\obj\\Debug\\Pacman.WinForms.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A7A783A0A3F8471EACE4F594EEF2CF50"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{7FFA39B4-0CCB-407D-B70B-8C3C84ADFBCF}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"

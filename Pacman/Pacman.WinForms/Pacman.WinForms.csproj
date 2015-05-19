@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\PacmanIco.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -165,7 +168,9 @@
     <None Include="Resources\PacmanEated.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PacmanIco.ico" />
+    <Content Include="Resources\PacmanIco.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PacnamWin.wav" />
