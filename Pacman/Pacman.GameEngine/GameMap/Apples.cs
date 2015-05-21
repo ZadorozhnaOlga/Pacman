@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Варто було б назвати namespace Pacman.GameEngine.GameMap
 namespace Pacman.GameEngine
 {
-    
-
+   
     public class Apples
     {
         #region Properties
