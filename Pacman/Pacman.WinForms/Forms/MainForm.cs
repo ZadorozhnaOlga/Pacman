@@ -38,8 +38,9 @@ namespace Pacman.WinForms
         #region Events
 
         private void MainForm_Load(object sender, EventArgs e)
-        {
+        {          
             GameMenu.MusicButtonClicked.Play();
+            // варто винести в окремий метод
             var width = Int32.Parse(ConfigurationManager.AppSettings["Width"]);
             var heigth = Int32.Parse(ConfigurationManager.AppSettings["Heigth"]);
             int pacmanX = Int32.Parse(ConfigurationManager.AppSettings["PacmanX"]);
@@ -151,11 +152,13 @@ namespace Pacman.WinForms
 
         private void InkyMove(Object source, EventArgs e)
         {
+            // локальна змінна не використовується
             Direction InkyEatApple = _game.MyInky.Move(_game);
         }
 
         private void PinkyMove(Object source, EventArgs e)
         {
+            // локальна змінна не використовується
             Direction PinkyEatApple = _game.MyPinky.Move(_game);
         }
 
@@ -182,7 +185,7 @@ namespace Pacman.WinForms
 
         private void GameSubscribe()
         {
-            _game.PacmanEatApple += OnPacmanEatApple;
+           // _game.PacmanEatApple += OnPacmanEatApple;
             lblGetScores.Text = Game.Scores.ToString();
             pinkyTimer.Start();
             inkyTimer.Start();
@@ -196,6 +199,7 @@ namespace Pacman.WinForms
 
         private void IfPacmanWin()
         {
+            // магічне число
             if (Game.Scores == 325)
             {
                 PacmanWinMusic();
@@ -227,6 +231,7 @@ namespace Pacman.WinForms
             }
         }
 
+        // варто розбити цей метод на декілька менших
         private void IfPacmanEated()
         {
             if (!_game.IfPacmanNotEated())
@@ -295,8 +300,9 @@ namespace Pacman.WinForms
       
         private void PacmanEatAppleMusic()
         {
+            // Я б радив винести усі звуки в окремий клас
             SoundPlayer eatApple = new SoundPlayer(Properties.Resources.PacmanEatApple);
-             eatApple.Play();          
+            eatApple.Play();          
         }
 
         private void PacmanDiedMusic()

@@ -19,7 +19,8 @@ namespace Pacman.GameEngine
         private Inky _inky;
         private Pinky _pinky;
 
-        public EventHandler PacmanEatApple;
+        // дана подія не використовується
+        //public EventHandler PacmanEatApple;
 
         #endregion
 

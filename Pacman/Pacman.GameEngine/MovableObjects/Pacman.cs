@@ -21,6 +21,7 @@ namespace Pacman.GameEngine
         public Pacman(int x, int y) 
             : base(x, y)
         {
+            // Магічне число)
             this.Lives = 3;
         }
 
