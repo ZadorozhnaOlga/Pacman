@@ -23,6 +23,12 @@ namespace Pacman.WinForms
 
         #endregion
 
+        /*
+         * ВВ: 
+         *      у методи промальовки не варто передавати PaintEventArgs, 
+         *      оскільки вони використовують лише графічний контекст Graphics
+         */
+
         #region Draw Methods
 
         private static void DrawWall(int i, int j, object sender, PaintEventArgs e)

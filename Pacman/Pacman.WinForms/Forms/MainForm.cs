@@ -20,7 +20,9 @@ namespace Pacman.WinForms
     {
 
         #region Fields
-
+        /*
+         * ВВ: не треба робити це поле статичним
+         */
         private static Game _game;
 
         #endregion
@@ -286,6 +288,9 @@ namespace Pacman.WinForms
                     if (result == DialogResult.Yes)
                     {
                         this.Close();
+                        /*
+                         * ВВ: завдяки цій лінії коду після програшу "стара" головна форма не закривається, і користувач бачить на панелі задач 2 відкриті форми
+                         */
                         MainForm mainForm = new MainForm();
                         mainForm.ShowDialog();
                     }

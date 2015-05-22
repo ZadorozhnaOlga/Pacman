@@ -18,6 +18,11 @@ namespace Pacman.WinForms
 
         #region Properties
 
+        /*
+         * ВВ: 
+         *      Ця форма не повинна відповідати за звук.
+         *      Управління звуком краще винести у головну форму.
+         */
         public static SoundPlayer MusicStart{get; private set; }
         public static SoundPlayer MusicButtonClicked {get; private set;}
 
