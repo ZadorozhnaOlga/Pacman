@@ -12,7 +12,7 @@ namespace Pacman.GameEngine
 
     public class Pacman : Player
     {
-        #region Properties & Fields
+        #region Properties
         public int Lives { get; set; }
 
         #endregion
@@ -25,56 +25,61 @@ namespace Pacman.GameEngine
         }
 
         #endregion
-
+       
         #region Methods
 
         public bool Move(Game game, Direction direction)
         {
             this.Direction = direction;
-
+            bool ifMoved = false;
             switch (direction)
             {
-
                 case Direction.Left:
                     {
                         game.MyPacman.Direction = Direction.Left;
-                        return CheckedMove(game, MoveAndEatLeft);
+                        ifMoved = CheckedMove(game, MoveAndEatLeft);
                     }
+                    break;
 
                 case Direction.Right:
                     {
                         game.MyPacman.Direction = Direction.Right;
-                        return CheckedMove(game, MoveAndEatRight);
+                        ifMoved = CheckedMove(game, MoveAndEatRight);
                     }
+                    break;
 
                 case Direction.Up:
                     {
                         game.MyPacman.Direction = Direction.Up;
-                        return CheckedMove(game, MoveAndEatUp);
+                        ifMoved = CheckedMove(game, MoveAndEatUp);
                     }
+                    break;
 
                 case Direction.Down:
                     {
                         game.MyPacman.Direction = Direction.Down;
-                        return CheckedMove(game, MoveAndEatDown);
+                        ifMoved = CheckedMove(game, MoveAndEatDown);
                     }
-
-                default: throw new ArgumentException();
+                    break;
             }
+
+            return ifMoved;
         }
 
 #endregion
 
         #region Helpers
-        private bool EatApples(Apples app)
+        public bool EatApples(Apples app)
         {
+            bool ifEat = false;
             if (app.Dots[this.Y, this.X])
             {
-                app.Dots[this.Y, this.X] = false;
                 Game.Scores += 1;
-                return true;
+                app.Dots[this.Y, this.X] = false;
+                ifEat = true;
             }
-            return false;
+            
+            return ifEat;
         }
 
         private bool MoveAndEatLeft(Game game)
@@ -99,18 +104,20 @@ namespace Pacman.GameEngine
      
         private bool CheckedMove(Game game, Func<Game, bool> func)
         {
+            bool result = false;
             if (game.IfPacmanNotEated())
             {
-                return func(game);
+                result = func(game);
             }
             else
             {
                 game.MyPacman.EatApples(game.Map.GetApples());
-                return false;
             }
+
+            return result;
         }
 
-        #endregion
+#endregion
 
     }
 }

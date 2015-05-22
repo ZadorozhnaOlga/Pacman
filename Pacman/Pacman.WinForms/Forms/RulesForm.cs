@@ -10,11 +10,26 @@ using System.Windows.Forms;
 
 namespace Pacman.WinForms
 {
-    public partial class Form1 : Form
+    public partial class RulesForm : Form
     {
-        public Form1()
+
+        #region Constructor
+
+        public RulesForm()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+
+        #region Events
+
+        private void RulesForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            GameMenu.MusicStart.Play();
+        }
+
+        #endregion
     }
 }

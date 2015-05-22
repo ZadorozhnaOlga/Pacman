@@ -19,6 +19,8 @@ namespace Pacman.GameEngine
         private Inky _inky;
         private Pinky _pinky;
 
+        public EventHandler PacmanEatApple;
+
         #endregion
 
 
@@ -45,6 +47,7 @@ namespace Pacman.GameEngine
         }
 
         public static int Scores { get; set; }
+        
 
         #endregion
 
@@ -61,7 +64,7 @@ namespace Pacman.GameEngine
         }
 
         #endregion
-
+         
 
         #region Methods
 
@@ -110,9 +113,9 @@ namespace Pacman.GameEngine
         }
         
         public bool IfPacmanNotEated() 
-        {
-            return (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
-                !(MyPinky.X == MyPacman.X & MyPinky.Y == MyPacman.Y));
+        {           
+               return (!(MyInky.X == MyPacman.X & MyInky.Y == MyPacman.Y) &&
+                    !(MyPinky.X == MyPacman.X & MyPinky.Y == MyPacman.Y));
         }
 
         public static int[,] LoadMap(string path, int mapX, int mapY)

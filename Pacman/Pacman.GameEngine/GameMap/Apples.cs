@@ -10,7 +10,7 @@ namespace Pacman.GameEngine
 
     public class Apples
     {
-        #region Properties & Fields
+        #region Properties
         public bool[,] Dots { get; set; }
 
         #endregion

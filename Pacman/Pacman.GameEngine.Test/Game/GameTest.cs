@@ -97,8 +97,7 @@ namespace Pacman.GameEngine.Test
 
         [TestMethod]
         public void MinusLive()
-        {
-          
+        {       
             game.MinusLive();
 
             Assert.AreEqual(game.MyPacman.Lives, 2);
@@ -106,8 +105,7 @@ namespace Pacman.GameEngine.Test
 
         [TestMethod]
         public void IfPacmanNotEated()
-        {
-            
+        {          
             game.MyPinky.X = 13;
             Assert.IsTrue(game.IfPacmanNotEated());
 
@@ -115,11 +113,10 @@ namespace Pacman.GameEngine.Test
             Assert.IsFalse(game.IfPacmanNotEated());
 
             game.MyInky.Y = 26;
-            Assert.IsFalse(game.IfPacmanNotEated());          
+            Assert.IsFalse(game.IfPacmanNotEated());
 
             game.MyInky.Y = 26;
             Assert.IsFalse(game.IfPacmanNotEated());
         }
-
     }
 }

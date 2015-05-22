@@ -9,6 +9,9 @@ namespace Pacman.ConsoleUI
 {
     class Drawing
     {
+
+        #region Methods 
+
         public void DrawMap(int[,] array) 
         {
             Console.SetCursorPosition(0, 0);
@@ -105,6 +108,9 @@ namespace Pacman.ConsoleUI
                     }
             }
 
-        }  
+        }
+
+        #endregion
+
     }
 }

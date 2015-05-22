@@ -24,6 +24,8 @@ namespace Pacman.ConsoleUI
         #endregion
 
 
+        #region Constructor
+
         static Program() 
         {
             _sync = new object();
@@ -32,7 +34,6 @@ namespace Pacman.ConsoleUI
             var mapPath = ConfigurationManager.AppSettings["MapPath"];
             var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             string path = string.Concat(projectPath, mapPath);
-
 
             var width = Int32.Parse(ConfigurationManager.AppSettings["Width"]);
             var heigth = Int32.Parse(ConfigurationManager.AppSettings["Heigth"]);
@@ -48,11 +49,13 @@ namespace Pacman.ConsoleUI
             _game = new Game(width, heigth, array, pacmanX, pacmanY, inkyX, inkyY, pinkyX, pinkyY);
         }
 
+        #endregion
+
+
         #region Main
 
         static void Main(string[] args)
-        {
-
+        {         
             Console.CursorVisible = false;
             WriteMessage(35, 0, "Press Enter to start the game");
 
@@ -87,12 +90,10 @@ namespace Pacman.ConsoleUI
             pinkyTimer.Elapsed += PinkyMove;
             pinkyTimer.Start();
 
-
             MainCycle(ref key, currentApples, direction, inkyTimer, pinkyTimer);
 
             Console.WriteLine("Press Enter to Exit");
-            Console.ReadLine();
-            
+            Console.ReadLine();        
         }
 
         #endregion
@@ -102,7 +103,6 @@ namespace Pacman.ConsoleUI
 
         private static void MainCycle(ref ConsoleKeyInfo key, Apples currentApples, Direction direction, Timer inkyTimer, Timer pinkyTimer)
         {
-
             while (!_game.GameOver())
             {
                 if (Game.Scores == 325)
@@ -136,8 +136,6 @@ namespace Pacman.ConsoleUI
                             Console.Clear();
                             WriteResume(_game);
                             key = Console.ReadKey();
-
-
                             if (key.Key == ConsoleKey.Enter)
                             {
                                 DrawLevel(currentApples, inkyTimer, pinkyTimer, 13, 12, 14, 12, 13, 26);
@@ -176,7 +174,7 @@ namespace Pacman.ConsoleUI
 
             inkyTimer.Start();
             pinkyTimer.Start();
-            
+          
         }
 
         private static void PacmanMove(ref Apples currentApples, Drawing Draw, Game game, ref ConsoleKeyInfo key, ref Direction direction, Timer inkyTimer, Timer pinkyTimer)

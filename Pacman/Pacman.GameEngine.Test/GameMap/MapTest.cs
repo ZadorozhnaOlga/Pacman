@@ -19,9 +19,7 @@ namespace Pacman.GameEngine.Test.GameMap
 
         static MapTest() 
         {
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            var mapFile = @"\Map\Map.txt";
-            string mapPath = string.Concat(projectPath, mapFile);
+            string mapPath = GetPath(@"\Map\Map.txt"); 
             game = new Game(28, 32, Game.LoadMap(mapPath, 28, 32), 13, 26, 13, 12, 14, 12);
         }
 
@@ -71,9 +69,7 @@ namespace Pacman.GameEngine.Test.GameMap
         [TestMethod]
         public void FindPaths()
         {
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            var pacmanFile = @"\Map\PathArrayToPacman.txt";      
-            string mapPathToPacman = string.Concat(projectPath, pacmanFile);            
+            string mapPathToPacman = GetPath(@"\Map\PathArrayToPacman.txt");      
             int[,] result = LoadPath(mapPathToPacman);
                         
             CollectionAssert.AreEqual(game.Map.FindPaths(game, 13, 26), result);        
@@ -83,9 +79,7 @@ namespace Pacman.GameEngine.Test.GameMap
         [TestMethod]
         public void FindPathsToDownLeftCorner()
         {
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            var pacmanFile = @"\Map\PathArrayToDownLeftCorner.txt";
-            string mapPathToPacman = string.Concat(projectPath, pacmanFile);
+            string mapPathToPacman = GetPath(@"\Map\PathArrayToDownLeftCorner.txt"); 
             int[,] result = LoadPath(mapPathToPacman);
 
             CollectionAssert.AreEqual(game.Map.FindPaths(game, 1, 30), result);
@@ -95,12 +89,16 @@ namespace Pacman.GameEngine.Test.GameMap
         [TestMethod]
         public void FindPathsToUpRightCorner()
         {
-            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            var pacmanFile = @"\Map\PathArrayToUpRightCorner.txt";
-            string mapPathToPacman = string.Concat(projectPath, pacmanFile);
+            string mapPathToPacman = GetPath(@"\Map\PathArrayToUpRightCorner.txt"); 
             int[,] result = LoadPath(mapPathToPacman);
 
             CollectionAssert.AreEqual(game.Map.FindPaths(game, 26, 1), result);
+        }
+
+        public static string GetPath(string str) 
+        {
+            var projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            return string.Concat(projectPath, str);
         }
        
     }
